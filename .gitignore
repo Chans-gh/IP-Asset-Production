@@ -1,0 +1,23 @@
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+*.pyc
+.DS_Store
+workspace/
+private/
+outputs/
+cache/
+logs/
+secrets/
+uploads/
+*.sqlite
+*.db
+# User source archives and embedded portrait source files should never be committed
+AIKate_*
+*角色资产生成清单完整版*

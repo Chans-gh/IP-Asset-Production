@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GenerationRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "template_id",
+    "character_id",
+    "character_version",
+    "compiled_prompt",
+    "output_spec",
+    "approval_status"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "template_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "character_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "character_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provider_preference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "compiled_prompt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ref_id",
+          "role",
+          "uri"
+        ],
+        "properties": {
+          "ref_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uri": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "identity",
+              "face",
+              "silhouette",
+              "style",
+              "pose",
+              "outfit",
+              "prop",
+              "scene",
+              "material",
+              "product"
+            ]
+          },
+          "subject_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "permission_scope": {
+            "type": "string",
+            "enum": [
+              "private_local",
+              "approved_external",
+              "demo_public"
+            ]
+          }
+        }
+      }
+    },
+    "output_spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "width_px",
+        "height_px",
+        "format",
+        "alpha_required"
+      ],
+      "properties": {
+        "width_px": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height_px": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "PNG",
+            "JPEG",
+            "WEBP",
+            "PDF"
+          ]
+        },
+        "alpha_required": {
+          "type": "boolean"
+        },
+        "color_mode": {
+          "type": "string"
+        },
+        "ppi": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "trim_mm": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "bleed_mm": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "safe_margin_pct": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 0.5
+        }
+      }
+    },
+    "variable_values": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "approval_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved"
+      ]
+    }
+  }
+}

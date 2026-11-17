@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/ip-asset-production/styles/preview-manifest.schema.json",
+  "title": "StylePreviewManifest",
+  "type": "object",
+  "required": [
+    "version",
+    "total_planned",
+    "minimum_required_for_v1",
+    "items"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "note_zh": {
+      "type": "string"
+    },
+    "total_planned": {
+      "type": "integer",
+      "minimum": 48
+    },
+    "minimum_required_for_v1": {
+      "const": 48
+    },
+    "items": {
+      "type": "array",
+      "minItems": 48,
+      "items": {
+        "$ref": "#/$defs/preview"
+      }
+    }
+  },
+  "$defs": {
+    "preview": {
+      "type": "object",
+      "required": [
+        "preview_id",
+        "style_id",
+        "prototype_id",
+        "subject_type",
+        "expected_file",
+        "actual_file",
+        "status",
+        "review_status",
+        "output_spec",
+        "prompt",
+        "prompt_sha256"
+      ],
+      "properties": {
+        "preview_id": {
+          "type": "string"
+        },
+        "style_id": {
+          "type": "string",
+          "pattern": "^STYLE-\\d{3}$"
+        },
+        "prototype_id": {
+          "type": "string"
+        },
+        "subject_type": {
+          "type": "string"
+        },
+        "expected_file": {
+          "type": "string"
+        },
+        "actual_file": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "enum": [
+            "planned",
+            "generating",
+            "generated",
+            "review",
+            "approved",
+            "failed",
+            "rejected"
+          ]
+        },
+        "review_status": {
+          "type": "string"
+        },
+        "output_spec": {
+          "type": "object"
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 20
+        },
+        "prompt_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "provider": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "created_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "license_review": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

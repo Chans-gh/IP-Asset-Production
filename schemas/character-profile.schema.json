@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CharacterProfile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "character_id",
+    "version",
+    "approval_status",
+    "creation_mode",
+    "ip_type",
+    "body_topology",
+    "style_profile",
+    "identity_anchors",
+    "reference_manifest",
+    "rights_acknowledgement"
+  ],
+  "properties": {
+    "character_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "approval_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "pending",
+        "approved",
+        "archived"
+      ]
+    },
+    "creation_mode": {
+      "type": "string",
+      "enum": [
+        "REFERENCE_DIRECT",
+        "REFERENCE_TRANSFORM",
+        "ORIGINAL_CREATE"
+      ]
+    },
+    "ip_type": {
+      "type": "string",
+      "enum": [
+        "digital_human",
+        "anime_human",
+        "cartoon_animal",
+        "anthropomorphic_object",
+        "fantasy_creature",
+        "other"
+      ]
+    },
+    "body_topology": {
+      "type": "string",
+      "minLength": 1
+    },
+    "style_profile": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "medium"
+      ],
+      "properties": {
+        "medium": {
+          "type": "string"
+        },
+        "tradition": {
+          "type": "string"
+        },
+        "material": {
+          "type": "string"
+        },
+        "linework": {
+          "type": "string"
+        },
+        "mood": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "style_confirmed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "identity_anchors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "allowed_variations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "canonical_image_uri": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "canonical_image_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "palette": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "reference_manifest": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ref_id",
+          "role",
+          "uri"
+        ],
+        "properties": {
+          "ref_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uri": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "identity",
+              "face",
+              "silhouette",
+              "style",
+              "pose",
+              "outfit",
+              "prop",
+              "scene",
+              "material",
+              "product"
+            ]
+          },
+          "subject_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "permission_scope": {
+            "type": "string",
+            "enum": [
+              "private_local",
+              "approved_external",
+              "demo_public"
+            ]
+          }
+        }
+      }
+    },
+    "keep_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "change_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "rights_acknowledgement": {
+      "type": "boolean"
+    },
+    "approved_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  }
+}

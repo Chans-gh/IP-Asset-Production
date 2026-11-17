@@ -1,0 +1,150 @@
+{
+  "version": "1.2.0",
+  "cases": [
+    {
+      "id": "T01",
+      "title": "五张真人参考图直接建立三视图",
+      "expected": "REFERENCE_DIRECT; same identity; independent views"
+    },
+    {
+      "id": "T02",
+      "title": "真人参考微调生成新数字人",
+      "expected": "requires rights/keep/change/new approved version"
+    },
+    {
+      "id": "T03",
+      "title": "文字原创毛绒小熊",
+      "expected": "ORIGINAL_CREATE; non-digital style confirmed"
+    },
+    {
+      "id": "T04",
+      "title": "身份图/服装图/风格图混合输入",
+      "expected": "reference role mapping; no identity fusion"
+    },
+    {
+      "id": "T05",
+      "title": "无腿云朵形象生成全资产",
+      "expected": "no forced fingers/toes/shoes; skip or adapt"
+    },
+    {
+      "id": "T06",
+      "title": "直接交付16个表情包",
+      "expected": "16 standalone PNG 1024x1024 + sheet + manifest"
+    },
+    {
+      "id": "T07",
+      "title": "会议室四状态门牌",
+      "expected": "four individual states; correct text; 300x120 mm + 3mm bleed PDF"
+    },
+    {
+      "id": "T08",
+      "title": "四视图拼板",
+      "expected": "all independent views valid; composites after generation"
+    },
+    {
+      "id": "T09",
+      "title": "Provider 原生不支持透明和目标像素",
+      "expected": "degraded mode; alpha verified; no false native claim"
+    },
+    {
+      "id": "T10",
+      "title": "缺少 API key",
+      "expected": "plan and prompts available; no claimed image generation"
+    },
+    {
+      "id": "T11",
+      "title": "真人图未经外发授权",
+      "expected": "external transfer blocked"
+    },
+    {
+      "id": "T12",
+      "title": "图片直接含错别字",
+      "expected": "replace via deterministic typography"
+    },
+    {
+      "id": "T13",
+      "title": "工具超时和重复失败",
+      "expected": "bounded retries; partial completion reported"
+    },
+    {
+      "id": "T14",
+      "title": "DeepSeek skill provider 未启用",
+      "expected": "explicit diagnostic and no installed claim"
+    },
+    {
+      "id": "T15",
+      "title": "WorkBuddy 包格式与权限需要实测",
+      "expected": "installation spike and documented evidence"
+    },
+    {
+      "id": "T16",
+      "title": "公开 Git 仓库安全",
+      "expected": "block private image, env, secrets and original HTML"
+    },
+    {
+      "id": "T17",
+      "title": "修改批准的角色身份锚点",
+      "expected": "new immutable character version"
+    },
+    {
+      "id": "T18",
+      "title": "只做门牌，用户无标准资产",
+      "expected": "only minimal dependencies generated"
+    },
+    {
+      "id": "T19",
+      "title": "卡通动物创建时自动触发风格确认",
+      "expected": "non-digital style options shown before finalization"
+    },
+    {
+      "id": "T20",
+      "title": "同一动物原型返回 6 个相关风格推荐",
+      "expected": "style recommendations filtered by subject type and preview-ready"
+    },
+    {
+      "id": "T21",
+      "title": "风格样例画廊降级方案",
+      "expected": "when host UI is limited, local HTML gallery is produced"
+    },
+    {
+      "id": "T22",
+      "title": "用户确认 STYLE-XXX 后继续资产生成",
+      "expected": "style_id persisted to character version and reused by later assets"
+    },
+    {
+      "id": "T23",
+      "title": "公开仓库中的风格样例来源合规",
+      "expected": "preview samples are self-generated or redistributable with manifest traceability"
+    },
+    {
+      "id": "T24",
+      "title": "风格目录 48 条完整性",
+      "expected": "48 unique STYLE-001..STYLE-048 across 8 groups; each style has prompt and applicability"
+    },
+    {
+      "id": "T25",
+      "title": "样例清单和真实文件区分",
+      "expected": "planned previews have actual_file=null and are not displayed as generated"
+    },
+    {
+      "id": "T26",
+      "title": "每个风格至少一张真实已审核样例",
+      "expected": "release gate: 48 approved actual files exist with format and dimensions verified"
+    },
+    {
+      "id": "T27",
+      "title": "同一原型跨风格可对比",
+      "expected": "stable canonical subject and layout, visible style difference"
+    },
+    {
+      "id": "T28",
+      "title": "风格选择后资产继承",
+      "expected": "selected style_id persists to approved character version, all assets inherit unless new version"
+    },
+    {
+      "id": "T29",
+      "title": "风格预览可用性",
+      "expected": "host can render previews or generate local searchable HTML gallery"
+    }
+  ]
+}

@@ -1,0 +1,1279 @@
+{
+  "version": "1.2.0-draft",
+  "total_styles": 48,
+  "groups": [
+    {
+      "group_id": "G01",
+      "name_zh": "日系与东方二维动画"
+    },
+    {
+      "group_id": "G02",
+      "name_zh": "欧美与经典二维卡通"
+    },
+    {
+      "group_id": "G03",
+      "name_zh": "绘本与自然手绘"
+    },
+    {
+      "group_id": "G04",
+      "name_zh": "图形、贴纸与像素"
+    },
+    {
+      "group_id": "G05",
+      "name_zh": "2.5D 与手工层叠"
+    },
+    {
+      "group_id": "G06",
+      "name_zh": "三维动画造型"
+    },
+    {
+      "group_id": "G07",
+      "name_zh": "玩具与实体材质"
+    },
+    {
+      "group_id": "G08",
+      "name_zh": "实验材质与主题风格"
+    }
+  ],
+  "styles": [
+    {
+      "style_id": "STYLE-001",
+      "group_id": "G01",
+      "display_name_zh": "日系经典赛璐璐",
+      "description_zh": "清晰色块、标准动画线稿、干净阴影",
+      "medium": "2d",
+      "tradition": "anime",
+      "proportions": "standard",
+      "material": "cel_shaded",
+      "linework": "fine",
+      "mood": [
+        "playful",
+        "clean"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "clean Japanese-inspired 2D cel animation, confident thin ink outlines, flat color blocks, one crisp shadow layer, controlled highlights",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-002",
+      "group_id": "G01",
+      "display_name_zh": "日系柔彩日常",
+      "description_zh": "低对比柔色、柔光、日常亲和气质",
+      "medium": "2d",
+      "tradition": "anime",
+      "proportions": "stylized",
+      "material": "soft_digital",
+      "linework": "fine",
+      "mood": [
+        "warm",
+        "calm"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object"
+      ],
+      "prompt_fragment_en": "soft pastel 2D everyday animation, gentle diffuse shading, light delicate contours, subtle warm palette, approachable quiet mood",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-003",
+      "group_id": "G01",
+      "display_name_zh": "热血夸张动作番",
+      "description_zh": "动态线条、锐利阴影、运动夸张",
+      "medium": "2d",
+      "tradition": "anime",
+      "proportions": "dynamic",
+      "material": "cel_shaded",
+      "linework": "bold",
+      "mood": [
+        "energetic",
+        "dramatic"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "energetic action animation design, sharp angular shadows, expressive poses, dynamic ink strokes, high-contrast accent colors, readable silhouette",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-004",
+      "group_id": "G01",
+      "display_name_zh": "少女浪漫梦幻",
+      "description_zh": "轻盈线条、柔和闪光、浪漫配色",
+      "medium": "2d",
+      "tradition": "anime",
+      "proportions": "stylized",
+      "material": "soft_digital",
+      "linework": "fine",
+      "mood": [
+        "romantic",
+        "dreamy"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal"
+      ],
+      "prompt_fragment_en": "dreamy romantic 2D animation illustration, graceful flowing linework, delicate luminous accents, soft luminous gradient highlights, elegant color harmony",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-005",
+      "group_id": "G01",
+      "display_name_zh": "二头身 Q 版萌系",
+      "description_zh": "大头短身、极简表情、高辨识轮廓",
+      "medium": "2d",
+      "tradition": "anime",
+      "proportions": "chibi",
+      "material": "cel_shaded",
+      "linework": "bold",
+      "mood": [
+        "cute",
+        "playful"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "super deformed chibi 2D character, oversized head, compact rounded body, simplified expressive facial features, bright readable colors, clean flat shadows",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-006",
+      "group_id": "G01",
+      "display_name_zh": "国风工笔动画",
+      "description_zh": "工整轮廓、装饰纹理、东方配色",
+      "medium": "2d",
+      "tradition": "chinese_animation",
+      "proportions": "stylized",
+      "material": "ink_color",
+      "linework": "fine",
+      "mood": [
+        "elegant",
+        "calm"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "Chinese-inspired meticulous brush illustration animation, precise delicate contour lines, elegant layered flat pigments, restrained ornamental details",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-007",
+      "group_id": "G02",
+      "display_name_zh": "欧美经典圆润卡通",
+      "description_zh": "圆润轮廓、灵活动作、鲜明色彩",
+      "medium": "2d",
+      "tradition": "western_cartoon",
+      "proportions": "rounded",
+      "material": "cel_shaded",
+      "linework": "bold",
+      "mood": [
+        "playful",
+        "cute"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "classic rounded western cartoon illustration, lively elastic shapes, bold contour lines, squash-and-stretch expression, bright clean cel colors",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-008",
+      "group_id": "G02",
+      "display_name_zh": "现代欧美扁平动画",
+      "description_zh": "几何块面、简洁五官、现代排布",
+      "medium": "2d",
+      "tradition": "western_cartoon",
+      "proportions": "stylized",
+      "material": "flat_color",
+      "linework": "none",
+      "mood": [
+        "clean",
+        "minimal"
+      ],
+      "detail": "low",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "modern flat animated character design, geometric color shapes, simplified anatomy, minimal facial marks, flat graphic surfaces without gradients",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-009",
+      "group_id": "G02",
+      "display_name_zh": "复古橡皮管动画",
+      "description_zh": "弧形肢体、黑白胶片感、夸张弹性",
+      "medium": "2d",
+      "tradition": "retro_animation",
+      "proportions": "rubber_hose",
+      "material": "ink_bw",
+      "linework": "bold",
+      "mood": [
+        "retro",
+        "playful"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "original 1920s-inspired rubber-hose cartoon aesthetics, noodle-like limbs, curved elastic joints, vintage ink-and-paper contrast, playful rhythmic silhouettes",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-010",
+      "group_id": "G02",
+      "display_name_zh": "复古报刊四格",
+      "description_zh": "点阵网纹、报刊色限制、漫画笔触",
+      "medium": "2d",
+      "tradition": "retro_comic",
+      "proportions": "stylized",
+      "material": "halftone",
+      "linework": "bold",
+      "mood": [
+        "retro",
+        "witty"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "vintage newspaper comic character illustration, thick pen strokes, halftone dot shadows, limited spot colors, clear expressive staging",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-011",
+      "group_id": "G02",
+      "display_name_zh": "现代粗线角色",
+      "description_zh": "粗线条、夸张五官、图标级辨识",
+      "medium": "2d",
+      "tradition": "western_cartoon",
+      "proportions": "rounded",
+      "material": "flat_color",
+      "linework": "bold",
+      "mood": [
+        "bold",
+        "playful"
+      ],
+      "detail": "low",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "bold modern cartoon character art, heavy uniform dark outlines, expressive large shapes, simplified flat palette, highly readable graphic silhouette",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-012",
+      "group_id": "G02",
+      "display_name_zh": "欧陆清新线描",
+      "description_zh": "轻手绘线、浅色留白、松弛表情",
+      "medium": "2d",
+      "tradition": "editorial_illustration",
+      "proportions": "stylized",
+      "material": "soft_digital",
+      "linework": "hand_drawn",
+      "mood": [
+        "calm",
+        "light"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object"
+      ],
+      "prompt_fragment_en": "airy European editorial cartoon illustration, spare hand-drawn strokes, abundant white space, subtle pastel washes, casual gentle expression",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-013",
+      "group_id": "G03",
+      "display_name_zh": "儿童绘本水彩",
+      "description_zh": "水彩扩散、纸纹、温暖叙事",
+      "medium": "2d",
+      "tradition": "picture_book",
+      "proportions": "rounded",
+      "material": "watercolor",
+      "linework": "hand_drawn",
+      "mood": [
+        "warm",
+        "whimsical"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "children picture-book watercolor illustration, soft pigment blooms, textured watercolor paper, gentle outlines, warm storytelling color atmosphere",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-014",
+      "group_id": "G03",
+      "display_name_zh": "彩铅素描绘本",
+      "description_zh": "彩铅笔触、纸张颗粒、渐层线条",
+      "medium": "2d",
+      "tradition": "picture_book",
+      "proportions": "rounded",
+      "material": "colored_pencil",
+      "linework": "hand_drawn",
+      "mood": [
+        "warm",
+        "handmade"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "colored-pencil storybook drawing, visible layered pencil strokes, toothy paper texture, gentle crosshatching, hand-rendered subtle color variation",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-015",
+      "group_id": "G03",
+      "display_name_zh": "蜡笔童趣涂绘",
+      "description_zh": "蜡笔粗糙边缘、童画不规则感",
+      "medium": "2d",
+      "tradition": "picture_book",
+      "proportions": "simplified",
+      "material": "crayon",
+      "linework": "hand_drawn",
+      "mood": [
+        "playful",
+        "naive"
+      ],
+      "detail": "low",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "playful crayon children illustration, chunky waxy crayon marks, uneven hand-colored fills, simple childlike shapes, warm paper background",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-016",
+      "group_id": "G03",
+      "display_name_zh": "拼贴剪贴绘本",
+      "description_zh": "纸材拼接、可见纤维、不规则轮廓",
+      "medium": "2d",
+      "tradition": "picture_book",
+      "proportions": "stylized",
+      "material": "collage",
+      "linework": "none",
+      "mood": [
+        "handmade",
+        "whimsical"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "hand-cut paper collage storybook illustration, mismatched colored paper pieces, visible paper fibers, layered handmade edges, friendly proportions",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-017",
+      "group_id": "G03",
+      "display_name_zh": "粉蜡笔柔雾画",
+      "description_zh": "粉化颗粒、轻柔扩散、柔雾光感",
+      "medium": "2d",
+      "tradition": "picture_book",
+      "proportions": "stylized",
+      "material": "soft_pastel",
+      "linework": "hand_drawn",
+      "mood": [
+        "dreamy",
+        "warm"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "soft pastel chalk illustration, dusty pigment edges, velvety diffuse color transitions, subdued dreamy glow, delicate handmade paper grain",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-018",
+      "group_id": "G03",
+      "display_name_zh": "东方水墨动画",
+      "description_zh": "浓淡墨韵、晕染、克制色彩",
+      "medium": "2d",
+      "tradition": "chinese_animation",
+      "proportions": "stylized",
+      "material": "ink_wash",
+      "linework": "hand_drawn",
+      "mood": [
+        "calm",
+        "elegant"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "original ink-wash animated character design, flowing expressive ink contours, tonal wash gradations, intentional negative space, subtle mineral pigment touches",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-019",
+      "group_id": "G04",
+      "display_name_zh": "极简矢量图标",
+      "description_zh": "少色块、稳定几何、可缩小识别",
+      "medium": "2d",
+      "tradition": "graphic",
+      "proportions": "simplified",
+      "material": "vector",
+      "linework": "none",
+      "mood": [
+        "minimal",
+        "clean"
+      ],
+      "detail": "low",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "minimal geometric vector mascot, limited flat color palette, crisp simple geometric contours, no textures or gradients, strong tiny-icon readability",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-020",
+      "group_id": "G04",
+      "display_name_zh": "粗描边贴纸插画",
+      "description_zh": "粗描边、白边贴纸、强烈表情",
+      "medium": "2d",
+      "tradition": "graphic",
+      "proportions": "rounded",
+      "material": "sticker",
+      "linework": "bold",
+      "mood": [
+        "cute",
+        "bold"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "bold outlined sticker illustration, playful mascot shapes, strong graphic contour, smooth flat color, separate thick white sticker border",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-021",
+      "group_id": "G04",
+      "display_name_zh": "街头潮流涂鸦",
+      "description_zh": "喷涂纹理、涂鸦动态、重叠线",
+      "medium": "2d",
+      "tradition": "graphic",
+      "proportions": "dynamic",
+      "material": "marker",
+      "linework": "hand_drawn",
+      "mood": [
+        "energetic",
+        "bold"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "original street-art doodle character illustration, expressive marker scribbles, paint splatter accents, loose kinetic outlines, vibrant layered colors",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-022",
+      "group_id": "G04",
+      "display_name_zh": "波普丝网印刷",
+      "description_zh": "网点套印、有限专色、强对比",
+      "medium": "2d",
+      "tradition": "graphic",
+      "proportions": "stylized",
+      "material": "screenprint",
+      "linework": "bold",
+      "mood": [
+        "retro",
+        "bold"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "pop screen-print character art, coarse halftone texture, limited vivid spot-color inks, slight ink registration offsets, bold iconic shadow areas",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-023",
+      "group_id": "G04",
+      "display_name_zh": "8 位复古像素",
+      "description_zh": "低像素数量、强网格、单像素边缘",
+      "medium": "pixel",
+      "tradition": "pixel_art",
+      "proportions": "simplified",
+      "material": "pixel_8",
+      "linework": "none",
+      "mood": [
+        "retro",
+        "playful"
+      ],
+      "detail": "low",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "authentic low-resolution 8-bit sprite aesthetic, strict pixel grid, hard pixel edges, very limited retro palette, no interpolation or smooth outlines",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-024",
+      "group_id": "G04",
+      "display_name_zh": "16 位精致像素",
+      "description_zh": "更丰富色阶、手工像素阴影",
+      "medium": "pixel",
+      "tradition": "pixel_art",
+      "proportions": "stylized",
+      "material": "pixel_16",
+      "linework": "none",
+      "mood": [
+        "retro",
+        "detailed"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "detailed 16-bit pixel-art character sprite aesthetic, hand-clustered pixels, distinct small-scale highlights, controlled dithering, crisp non-antialiased edges",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-025",
+      "group_id": "G05",
+      "display_name_zh": "2.5D 等距角色插画",
+      "description_zh": "等距体块、统一三维投影、扁平景深",
+      "medium": "2_5d",
+      "tradition": "isometric",
+      "proportions": "stylized",
+      "material": "matte",
+      "linework": "none",
+      "mood": [
+        "clean",
+        "playful"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "isometric 2.5D character illustration, consistent axonometric geometry, soft painted planar shading, clean readable forms, controlled depth cues",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-026",
+      "group_id": "G05",
+      "display_name_zh": "2.5D 分层纸雕",
+      "description_zh": "多层纸片厚度、投影、手工裁边",
+      "medium": "2_5d",
+      "tradition": "paper_art",
+      "proportions": "rounded",
+      "material": "paper_cut",
+      "linework": "none",
+      "mood": [
+        "warm",
+        "handmade"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "layered paper-cut diorama character, stacked matte cardstock shapes, visible cut paper thickness, gentle between-layer shadows, clean craft composition",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-027",
+      "group_id": "G05",
+      "display_name_zh": "剪纸皮影戏造型",
+      "description_zh": "镂空纹样、侧影强、皮影平面结构",
+      "medium": "2_5d",
+      "tradition": "paper_art",
+      "proportions": "stylized",
+      "material": "shadow_puppet",
+      "linework": "fine",
+      "mood": [
+        "elegant",
+        "retro"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "Chinese-inspired traditional shadow-puppet silhouette design, thin translucent cutout plates, refined perforated ornaments, planar joint details, warm backlit edges",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-028",
+      "group_id": "G05",
+      "display_name_zh": "黏土浮雕插画",
+      "description_zh": "浅浮雕凸起、压印纹理、侧面微阴影",
+      "medium": "2_5d",
+      "tradition": "craft",
+      "proportions": "rounded",
+      "material": "clay",
+      "linework": "none",
+      "mood": [
+        "cute",
+        "handmade"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "shallow polymer-clay relief illustration, raised molded shapes on a flat board, soft tactile clay texture, subtle directional relief shadows, clean frontal view",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-029",
+      "group_id": "G05",
+      "display_name_zh": "布艺拼贴角色",
+      "description_zh": "缝线、毛毡布片、软质重叠",
+      "medium": "2_5d",
+      "tradition": "craft",
+      "proportions": "rounded",
+      "material": "fabric",
+      "linework": "none",
+      "mood": [
+        "warm",
+        "handmade"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "layered textile appliqué character art, soft fabric patches, visible stitched seams, tactile woven and felt surface, gentle fabric-layer shadows",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-030",
+      "group_id": "G05",
+      "display_name_zh": "立体糖果图标",
+      "description_zh": "半立体高光、小景深、圆润几何",
+      "medium": "2_5d",
+      "tradition": "graphic",
+      "proportions": "rounded",
+      "material": "glossy",
+      "linework": "none",
+      "mood": [
+        "cute",
+        "playful"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "semi-dimensional candy-like mascot icon, softly extruded rounded shapes, restrained glossy highlights, shallow playful depth, simple friendly icon composition",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-031",
+      "group_id": "G06",
+      "display_name_zh": "现代三维卡通动画",
+      "description_zh": "柔和体积光、圆润轮廓、细节平衡",
+      "medium": "3d",
+      "tradition": "animation_3d",
+      "proportions": "rounded",
+      "material": "soft_plastic",
+      "linework": "none",
+      "mood": [
+        "warm",
+        "playful"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "original high-quality modern 3D cartoon character render, friendly rounded modeling, soft global illumination, polished materials, expressive appealing proportions",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-032",
+      "group_id": "G06",
+      "display_name_zh": "3D Q 版萌系",
+      "description_zh": "超大头、短四肢、圆鼓鼓形体",
+      "medium": "3d",
+      "tradition": "animation_3d",
+      "proportions": "chibi",
+      "material": "soft_plastic",
+      "linework": "none",
+      "mood": [
+        "cute",
+        "playful"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "stylized 3D chibi mascot, oversized head and tiny compact body, rounded toy-like anatomy, simple readable expression, clean soft shading",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-033",
+      "group_id": "G06",
+      "display_name_zh": "3D 半写实角色",
+      "description_zh": "真实结构+动画比例、细腻材质",
+      "medium": "3d",
+      "tradition": "animation_3d",
+      "proportions": "semi_realistic",
+      "material": "subsurface",
+      "linework": "none",
+      "mood": [
+        "natural",
+        "elegant"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "semi-realistic stylized 3D animation character, credible anatomy with slightly exaggerated features, nuanced subsurface shading, natural material textures",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-034",
+      "group_id": "G06",
+      "display_name_zh": "3D 低多边形",
+      "description_zh": "明显棱面、简化多边形、硬边颜色",
+      "medium": "3d",
+      "tradition": "animation_3d",
+      "proportions": "low_poly",
+      "material": "faceted",
+      "linework": "none",
+      "mood": [
+        "minimal",
+        "clean"
+      ],
+      "detail": "low",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "low-poly faceted 3D character, visible polygon planes, simplified sculptural silhouette, flat-shaded surfaces, restrained color palette, no smoothing",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-035",
+      "group_id": "G06",
+      "display_name_zh": "3D 圆角软胶简模",
+      "description_zh": "无纹理软胶、少量零件、平滑转折",
+      "medium": "3d",
+      "tradition": "animation_3d",
+      "proportions": "rounded",
+      "material": "rubber",
+      "linework": "none",
+      "mood": [
+        "cute",
+        "minimal"
+      ],
+      "detail": "low",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "minimal 3D soft-rubber mascot, smooth rounded volumes, matte elastomer material, simplified parts, minimal seams, clear graphic geometry",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-036",
+      "group_id": "G06",
+      "display_name_zh": "3D 未来科幻卡通",
+      "description_zh": "柔性未来组件、可读科技细节、非写实科技",
+      "medium": "3d",
+      "tradition": "animation_3d",
+      "proportions": "stylized",
+      "material": "sci_fi",
+      "linework": "none",
+      "mood": [
+        "sci_fi",
+        "playful"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "friendly futuristic 3D cartoon character, sleek simplified tech panels, soft luminous accents, readable stylized mechanical details, bright sci-fi color language",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-037",
+      "group_id": "G07",
+      "display_name_zh": "3D 毛绒玩偶",
+      "description_zh": "短毛绒、软缝线、饱满轮廓",
+      "medium": "3d",
+      "tradition": "toy_design",
+      "proportions": "chibi",
+      "material": "plush",
+      "linework": "none",
+      "mood": [
+        "cute",
+        "warm"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "plush stuffed toy character, short fluffy pile fibers, soft fabric seams, padded rounded silhouette, embroidered facial features, studio product lighting",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-038",
+      "group_id": "G07",
+      "display_name_zh": "3D 羊毛毡手作",
+      "description_zh": "针毡纤维、扎实毛束、手工表情",
+      "medium": "3d",
+      "tradition": "toy_design",
+      "proportions": "rounded",
+      "material": "felt",
+      "linework": "none",
+      "mood": [
+        "warm",
+        "handmade"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "needle-felted wool toy character, densely packed visible wool fibers, handmade felt texture, tiny sculpted details, soft natural shadow",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-039",
+      "group_id": "G07",
+      "display_name_zh": "3D 黏土定格",
+      "description_zh": "指压痕、黏土接缝、逐帧定格感",
+      "medium": "stop_motion_look",
+      "tradition": "craft",
+      "proportions": "rounded",
+      "material": "clay",
+      "linework": "none",
+      "mood": [
+        "handmade",
+        "playful"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "handcrafted clay stop-motion character appearance, subtle finger-pressed fingerprints, sculpted clay seams, tactile matte clay surface, warm studio set lighting",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-040",
+      "group_id": "G07",
+      "display_name_zh": "3D 搪胶潮玩",
+      "description_zh": "搪胶高光、精简装饰、工业量产造型",
+      "medium": "3d",
+      "tradition": "toy_design",
+      "proportions": "chibi",
+      "material": "vinyl",
+      "linework": "none",
+      "mood": [
+        "bold",
+        "cute"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "collectible vinyl art-toy character, smooth vinyl shell, crisp painted graphic details, polished toy finish, simplified production-friendly part separation",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-041",
+      "group_id": "G07",
+      "display_name_zh": "3D 陶瓷摆件",
+      "description_zh": "釉面反射、陶瓷厚度、微小釉面差异",
+      "medium": "3d",
+      "tradition": "toy_design",
+      "proportions": "rounded",
+      "material": "ceramic",
+      "linework": "none",
+      "mood": [
+        "elegant",
+        "calm"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "glazed ceramic figurine character, glossy fired glaze, rounded ceramic thickness, subtle ceramic imperfections, gentle controlled studio reflections",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-042",
+      "group_id": "G07",
+      "display_name_zh": "3D 木雕玩具",
+      "description_zh": "木纹走向、手工雕刻、哑光木质",
+      "medium": "3d",
+      "tradition": "toy_design",
+      "proportions": "simplified",
+      "material": "wood",
+      "linework": "none",
+      "mood": [
+        "warm",
+        "retro"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "hand-carved wooden toy character, visible natural wood grain, softened carved edges, matte varnished wood, simple craftsmanship-friendly shape",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-043",
+      "group_id": "G08",
+      "display_name_zh": "3D 透明琉璃糖果",
+      "description_zh": "半透明彩色折射、晶亮边缘、轻盈体积",
+      "medium": "3d",
+      "tradition": "material_experiment",
+      "proportions": "rounded",
+      "material": "glass",
+      "linework": "none",
+      "mood": [
+        "dreamy",
+        "cute"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "translucent candy-glass mascot, colored refraction, delicate glossy edges, clean transparent material volume, bright studio caustic-like highlights",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-044",
+      "group_id": "G08",
+      "display_name_zh": "3D 金属机甲萌系",
+      "description_zh": "小型金属装甲、圆润结构、局部机械件",
+      "medium": "3d",
+      "tradition": "material_experiment",
+      "proportions": "chibi",
+      "material": "metallic",
+      "linework": "none",
+      "mood": [
+        "sci_fi",
+        "playful"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "cute chibi mechanized character, rounded modular metal armor, simplified mechanical joints, brushed metallic accents, friendly expressive face",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-045",
+      "group_id": "G08",
+      "display_name_zh": "3D 纸盒积木玩具",
+      "description_zh": "纸盒折边、方块结构、少量印刷面",
+      "medium": "3d",
+      "tradition": "toy_design",
+      "proportions": "simplified",
+      "material": "cardboard",
+      "linework": "none",
+      "mood": [
+        "cute",
+        "handmade"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "modular cardboard block toy character, folded paperboard edges, boxy geometric parts, visible cardboard texture, clean colored printed panels",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-046",
+      "group_id": "G08",
+      "display_name_zh": "2D 暗黑童话",
+      "description_zh": "暗色调、奇想剪影、克制怪诞",
+      "medium": "2d",
+      "tradition": "storybook_dark",
+      "proportions": "stylized",
+      "material": "ink_color",
+      "linework": "hand_drawn",
+      "mood": [
+        "dark",
+        "dreamy"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "dark fairytale character illustration, whimsical eerie silhouettes, rich muted jewel-tone palette, delicate crosshatched details, mysterious storybook lighting",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-047",
+      "group_id": "G08",
+      "display_name_zh": "2D 赛博霓虹",
+      "description_zh": "高饱和荧光、轮廓发光、数字都市感",
+      "medium": "2d",
+      "tradition": "graphic",
+      "proportions": "stylized",
+      "material": "neon",
+      "linework": "bold",
+      "mood": [
+        "sci_fi",
+        "energetic"
+      ],
+      "detail": "high",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "stylized cyber-neon 2D mascot illustration, luminous contrasting edge lights, vibrant magenta-cyan accents, dark crisp graphic background, futurist details",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    },
+    {
+      "style_id": "STYLE-048",
+      "group_id": "G08",
+      "display_name_zh": "2D 复古双色印刷",
+      "description_zh": "限定两色油墨、错位印刷、粗粝纸张",
+      "medium": "2d",
+      "tradition": "printmaking",
+      "proportions": "simplified",
+      "material": "duotone",
+      "linework": "hand_drawn",
+      "mood": [
+        "retro",
+        "artful"
+      ],
+      "detail": "medium",
+      "supported_subjects": [
+        "anime_human",
+        "animal",
+        "anthropomorphic_object",
+        "fantasy_creature"
+      ],
+      "prompt_fragment_en": "retro two-ink risograph-style character print, exactly two spot ink colors, misregistered print texture, grainy uncoated paper feel, bold simplified shapes",
+      "negative_prompt_en": "No watermark, logos, captions, illegible typography, extra subjects, inconsistent anatomy, cropped character.",
+      "preview_prototype_preference": "animal",
+      "status": "specified"
+    }
+  ]
+}

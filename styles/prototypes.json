@@ -1,0 +1,29 @@
+{
+  "version": "1.2.0-draft",
+  "prototypes": {
+    "anime_human": {
+      "id": "HUMAN_PROTO",
+      "name": "动漫人物",
+      "subject_zh": "原创中性青年卡通人物，短深棕头发，青绿色连帽上衣，米色裤子，红色鞋子，面向镜头，右手轻挥，完整角色入镜。",
+      "subject_en": "an original androgynous young cartoon person with short dark-brown hair, teal hoodie, beige trousers and red shoes, facing the camera, raising the right hand in a friendly wave, full body visible"
+    },
+    "animal": {
+      "id": "ANIMAL_PROTO",
+      "name": "卡通动物",
+      "subject_zh": "原创橘红色狐狸吉祥物，奶油色胸腹、圆角大耳朵、蓬松长尾巴，双足直立，面向镜头，一只前爪轻挥，完整角色入镜。",
+      "subject_en": "an original orange-red fox mascot with cream-colored chest, rounded large ears and fluffy long tail, standing upright on two legs, facing the camera and waving one front paw, whole character visible"
+    },
+    "anthropomorphic_object": {
+      "id": "OBJECT_PROTO",
+      "name": "拟人化物体",
+      "subject_zh": "原创奶油白色拟人咖啡杯，蓝色把手、可见棕色咖啡液面、温和大眼睛和两只简化手臂，面向镜头挥手，完整角色入镜。",
+      "subject_en": "an original cream-white anthropomorphic coffee cup with blue handle, visible brown coffee surface, friendly large eyes and two simple arms, facing camera and waving, whole character visible"
+    },
+    "fantasy_creature": {
+      "id": "FANTASY_PROTO",
+      "name": "幻想角色",
+      "subject_zh": "原创圆润幻想小精灵，薄荷绿色身体，头顶两片叶状触角，小圆角翅膀，面向镜头轻挥一只小手，完整角色入镜。",
+      "subject_en": "an original friendly rounded fantasy sprite with mint-green body, two leaf-like antennae and short rounded wings, facing camera, waving one small hand, complete character visible"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "version": "1.2.0-draft",
+  "aliases": {
+    "STYLE-ANIME-2D-CLEAN-001": "STYLE-001",
+    "STYLE-3D-PLUSH-CUTE-001": "STYLE-037"
+  },
+  "note_zh": "v1.1 草案中仅有的两个风格种子 ID 迁移到 v1.2 稳定编号；不推荐新调用使用旧 ID。"
+}

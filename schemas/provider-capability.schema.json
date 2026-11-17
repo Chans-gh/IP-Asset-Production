@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProviderCapabilities",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "text_to_image",
+    "image_to_image",
+    "image_edit",
+    "multi_reference",
+    "mask_inpaint",
+    "seed",
+    "negative_prompt",
+    "alpha_native",
+    "native_sizes",
+    "async_jobs",
+    "cost_estimate"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "text_to_image": {
+      "type": "boolean"
+    },
+    "image_to_image": {
+      "type": "boolean"
+    },
+    "image_edit": {
+      "type": "boolean"
+    },
+    "multi_reference": {
+      "type": "boolean"
+    },
+    "mask_inpaint": {
+      "type": "boolean"
+    },
+    "seed": {
+      "type": "boolean"
+    },
+    "negative_prompt": {
+      "type": "boolean"
+    },
+    "alpha_native": {
+      "type": "boolean"
+    },
+    "native_sizes": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+    "max_images": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "max_reference_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "async_jobs": {
+      "type": "boolean"
+    },
+    "cost_estimate": {
+      "type": "boolean"
+    }
+  }
+}

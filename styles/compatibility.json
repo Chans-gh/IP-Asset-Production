@@ -1,0 +1,47 @@
+{
+  "version": "1.2.0-draft",
+  "constraints": [
+    {
+      "id": "COMP-01",
+      "applies_to": {
+        "medium": "pixel"
+      },
+      "enforce": {
+        "rendering": "nearest_neighbor_no_antialias"
+      },
+      "reason_zh": "保持像素边缘与原始像素网格"
+    },
+    {
+      "id": "COMP-02",
+      "applies_to": {
+        "medium": "2d",
+        "material": "plush"
+      },
+      "enforce": {
+        "rendering": "illustrated_plush_look"
+      },
+      "reason_zh": "二维中的毛绒质感仅作插画表现"
+    },
+    {
+      "id": "COMP-03",
+      "applies_to": {
+        "medium": "stop_motion_look"
+      },
+      "enforce": {
+        "rendering": "static_still_only"
+      },
+      "reason_zh": "静态图不能宣称已产出动画"
+    },
+    {
+      "id": "COMP-04",
+      "applies_to": {
+        "material": "glass"
+      },
+      "enforce": {
+        "qa": "check_subject_silhouette"
+      },
+      "reason_zh": "透明材质不能破坏轮廓辨识"
+    }
+  ],
+  "rule_zh": "仅作为首版预置组合与后处理规则；其他组合须由规则引擎识别冲突并提示用户。"
+}

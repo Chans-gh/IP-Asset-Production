@@ -1,0 +1,417 @@
+{
+  "version": "1.0.0",
+  "source_count": 41,
+  "note": "Metadata mapping only. No embedded images or original prompt text are published.",
+  "records": [
+    {
+      "legacy_id": "foundation-01",
+      "legacy_title": "历史记录 01（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A01",
+      "prompt_family": "BASE_VIEW",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "foundation-02",
+      "legacy_title": "历史记录 02（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A06",
+      "prompt_family": "BASE_OUTFIT",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "foundation-03",
+      "legacy_title": "历史记录 03（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A01",
+      "prompt_family": "BASE_VIEW",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "foundation-04",
+      "legacy_title": "历史记录 04（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A01",
+      "prompt_family": "BASE_VIEW",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "foundation-05",
+      "legacy_title": "历史记录 05（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A07",
+      "prompt_family": "BASE_PROFILE",
+      "variant": "clean",
+      "recommended_action": "parameterize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "foundation-06",
+      "legacy_title": "历史记录 06（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A01",
+      "prompt_family": "BASE_VIEW",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "foundation-07",
+      "legacy_title": "历史记录 07（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A01",
+      "prompt_family": "BASE_VIEW",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "foundation-08",
+      "legacy_title": "历史记录 08（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A01",
+      "prompt_family": "BASE_VIEW",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "complete-01",
+      "legacy_title": "历史记录 09（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A03",
+      "prompt_family": "BASE_EXPRESSION",
+      "variant": "clean",
+      "recommended_action": "parameterize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "complete-02",
+      "legacy_title": "历史记录 10（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A01",
+      "prompt_family": "BASE_VIEW",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "complete-03",
+      "legacy_title": "历史记录 11（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A04",
+      "prompt_family": "BASE_POSE",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "complete-04",
+      "legacy_title": "历史记录 12（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A04",
+      "prompt_family": "BASE_POSE",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "complete-05",
+      "legacy_title": "历史记录 13（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A01",
+      "prompt_family": "BASE_VIEW",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "complete-06",
+      "legacy_title": "历史记录 14（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A01",
+      "prompt_family": "BASE_VIEW",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "complete-07",
+      "legacy_title": "历史记录 15（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A06",
+      "prompt_family": "BASE_OUTFIT",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "complete-08",
+      "legacy_title": "历史记录 16（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A06",
+      "prompt_family": "BASE_OUTFIT",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "complete-09",
+      "legacy_title": "历史记录 17（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A06",
+      "prompt_family": "BASE_OUTFIT",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-01",
+      "legacy_title": "历史记录 18（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A02",
+      "prompt_family": "BASE_DETAIL",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-02",
+      "legacy_title": "历史记录 19（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A02",
+      "prompt_family": "BASE_DETAIL",
+      "variant": "annotated",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-03",
+      "legacy_title": "历史记录 20（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A02",
+      "prompt_family": "BASE_DETAIL",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-04",
+      "legacy_title": "历史记录 21（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A02",
+      "prompt_family": "BASE_DETAIL",
+      "variant": "annotated",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-05",
+      "legacy_title": "历史记录 22（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A05",
+      "prompt_family": "BASE_STRUCTURE",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-06",
+      "legacy_title": "历史记录 23（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A05",
+      "prompt_family": "BASE_STRUCTURE",
+      "variant": "annotated",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-07",
+      "legacy_title": "历史记录 24（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A05",
+      "prompt_family": "BASE_STRUCTURE",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-08",
+      "legacy_title": "历史记录 25（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A05",
+      "prompt_family": "BASE_STRUCTURE",
+      "variant": "annotated",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-09",
+      "legacy_title": "历史记录 26（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A05",
+      "prompt_family": "BASE_STRUCTURE",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-10",
+      "legacy_title": "历史记录 27（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A05",
+      "prompt_family": "BASE_STRUCTURE",
+      "variant": "annotated",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-11",
+      "legacy_title": "历史记录 28（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A04",
+      "prompt_family": "BASE_POSE",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-12",
+      "legacy_title": "历史记录 29（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A04",
+      "prompt_family": "BASE_POSE",
+      "variant": "annotated",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-13",
+      "legacy_title": "历史记录 30（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A06",
+      "prompt_family": "BASE_OUTFIT",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-14",
+      "legacy_title": "历史记录 31（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A06",
+      "prompt_family": "BASE_OUTFIT",
+      "variant": "annotated",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-15",
+      "legacy_title": "历史记录 32（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A03",
+      "prompt_family": "BASE_EXPRESSION",
+      "variant": "clean",
+      "recommended_action": "parameterize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-16",
+      "legacy_title": "历史记录 33（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A03",
+      "prompt_family": "BASE_EXPRESSION",
+      "variant": "annotated",
+      "recommended_action": "parameterize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-17",
+      "legacy_title": "历史记录 34（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A04",
+      "prompt_family": "BASE_POSE",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-18",
+      "legacy_title": "历史记录 35（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A04",
+      "prompt_family": "BASE_POSE",
+      "variant": "annotated",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-19",
+      "legacy_title": "历史记录 36（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A05",
+      "prompt_family": "BASE_STRUCTURE",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-20",
+      "legacy_title": "历史记录 37（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A05",
+      "prompt_family": "BASE_STRUCTURE",
+      "variant": "annotated",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-21",
+      "legacy_title": "历史记录 38（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A06",
+      "prompt_family": "BASE_OUTFIT",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-22",
+      "legacy_title": "历史记录 39（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A06",
+      "prompt_family": "BASE_OUTFIT",
+      "variant": "annotated",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-23",
+      "legacy_title": "历史记录 40（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A06",
+      "prompt_family": "BASE_OUTFIT",
+      "variant": "clean",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    },
+    {
+      "legacy_id": "detail-24",
+      "legacy_title": "历史记录 41（仅保留 ID 与类别；真实名称保留在用户私有原始档案中）",
+      "mapped_category": "A06",
+      "prompt_family": "BASE_OUTFIT",
+      "variant": "annotated",
+      "recommended_action": "parameterize_and_de-humanize",
+      "provenance": "user_supplied_AIKate_archive",
+      "publish_raw_source": false
+    }
+  ]
+}

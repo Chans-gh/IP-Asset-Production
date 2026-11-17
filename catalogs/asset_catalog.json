@@ -1,0 +1,309 @@
+{
+  "version": "1.0.0",
+  "taxonomies": {
+    "ip_types": [
+      "digital_human",
+      "anime_human",
+      "cartoon_animal",
+      "anthropomorphic_object",
+      "fantasy_creature",
+      "other"
+    ],
+    "topologies": [
+      "humanoid",
+      "quadruped",
+      "biped_animal",
+      "winged",
+      "limbless",
+      "object_with_limbs",
+      "abstract",
+      "custom"
+    ],
+    "priorities": [
+      "P0",
+      "P1",
+      "P2"
+    ]
+  },
+  "categories": [
+    {
+      "id": "A01",
+      "name": "角色身份与标准视图",
+      "family": "identity_views",
+      "default_priority": "P0"
+    },
+    {
+      "id": "A02",
+      "name": "面部与关键特征",
+      "family": "feature_details",
+      "default_priority": "P0"
+    },
+    {
+      "id": "A03",
+      "name": "表情与情绪",
+      "family": "expression",
+      "default_priority": "P1"
+    },
+    {
+      "id": "A04",
+      "name": "动作与姿态",
+      "family": "poses",
+      "default_priority": "P1"
+    },
+    {
+      "id": "A05",
+      "name": "身体与局部结构",
+      "family": "anatomy",
+      "default_priority": "P1"
+    },
+    {
+      "id": "A06",
+      "name": "服装配饰与造型",
+      "family": "outfits",
+      "default_priority": "P1"
+    },
+    {
+      "id": "A07",
+      "name": "角色设定资料",
+      "family": "profile",
+      "default_priority": "P1"
+    },
+    {
+      "id": "A08",
+      "name": "物种与非人形专项",
+      "family": "topology",
+      "default_priority": "P0"
+    },
+    {
+      "id": "A09",
+      "name": "场景与世界观",
+      "family": "scenes",
+      "default_priority": "P2"
+    },
+    {
+      "id": "A10",
+      "name": "道具与交互",
+      "family": "interaction",
+      "default_priority": "P1"
+    },
+    {
+      "id": "A11",
+      "name": "传播内容基础组件",
+      "family": "marketing",
+      "default_priority": "P2"
+    },
+    {
+      "id": "A12",
+      "name": "动画视频制作参考",
+      "family": "animation",
+      "default_priority": "P2"
+    },
+    {
+      "id": "A13",
+      "name": "衍生与商品化设计参考",
+      "family": "merchandising",
+      "default_priority": "P2"
+    }
+  ],
+  "new_asset_templates": [
+    {
+      "id": "NEW-01",
+      "name": "标准配色板",
+      "category": "A01",
+      "default_priority": "P0",
+      "prompt_id": "BASE_PALETTE",
+      "compatibility_hint": "所有",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-02",
+      "name": "轮廓与剪影板",
+      "category": "A01",
+      "default_priority": "P0",
+      "prompt_id": "BASE_SILHOUETTE",
+      "compatibility_hint": "所有",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-03",
+      "name": "物种与非人形结构板",
+      "category": "A08",
+      "default_priority": "P0",
+      "prompt_id": "BASE_TOPOLOGY",
+      "compatibility_hint": "动物/拟人/幻想",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-04",
+      "name": "毛发与材质板",
+      "category": "A02",
+      "default_priority": "P1",
+      "prompt_id": "BASE_MATERIAL",
+      "compatibility_hint": "所有",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-05",
+      "name": "标志性道具库",
+      "category": "A10",
+      "default_priority": "P1",
+      "prompt_id": "BASE_PROP",
+      "compatibility_hint": "所有",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-06",
+      "name": "标志性动作库",
+      "category": "A04",
+      "default_priority": "P1",
+      "prompt_id": "BASE_SIGNATURE",
+      "compatibility_hint": "所有",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-07",
+      "name": "口型与发声表情",
+      "category": "A12",
+      "default_priority": "P1",
+      "prompt_id": "BASE_VISEME",
+      "compatibility_hint": "有可视发声构造",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-08",
+      "name": "角色与产品互动",
+      "category": "A10",
+      "default_priority": "P1",
+      "prompt_id": "BASE_PRODUCT",
+      "compatibility_hint": "所有",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-09",
+      "name": "多角色关系板",
+      "category": "A10",
+      "default_priority": "P2",
+      "prompt_id": "BASE_RELATION",
+      "compatibility_hint": "多角色",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-10",
+      "name": "角色与环境接触",
+      "category": "A10",
+      "default_priority": "P1",
+      "prompt_id": "BASE_CONTACT",
+      "compatibility_hint": "所有",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-11",
+      "name": "极端镜头视角",
+      "category": "A01",
+      "default_priority": "P2",
+      "prompt_id": "BASE_CAMERA",
+      "compatibility_hint": "所有",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-12",
+      "name": "不同光照适配",
+      "category": "A02",
+      "default_priority": "P2",
+      "prompt_id": "BASE_LIGHTING",
+      "compatibility_hint": "所有",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-13",
+      "name": "二维动画拆件参考",
+      "category": "A12",
+      "default_priority": "P2",
+      "prompt_id": "BASE_RIG",
+      "compatibility_hint": "可分件角色",
+      "kind": "foundation"
+    },
+    {
+      "id": "NEW-14",
+      "name": "公仔玩具设计参考",
+      "category": "A13",
+      "default_priority": "P2",
+      "prompt_id": "BASE_TOY",
+      "compatibility_hint": "适用商品",
+      "kind": "foundation"
+    }
+  ],
+  "application_kits": [
+    {
+      "id": "APP-01",
+      "name": "表情包",
+      "usage": "表情聊天与客服",
+      "prompt_id": "APP-01",
+      "kind": "application"
+    },
+    {
+      "id": "APP-02",
+      "name": "会议室门牌包",
+      "usage": "会议室状态标识",
+      "prompt_id": "APP-02",
+      "kind": "application"
+    },
+    {
+      "id": "APP-03",
+      "name": "办公导视包",
+      "usage": "办公室空间",
+      "prompt_id": "APP-03",
+      "kind": "application"
+    },
+    {
+      "id": "APP-04",
+      "name": "社交账号视觉包",
+      "usage": "账号头像与封面",
+      "prompt_id": "APP-04",
+      "kind": "application"
+    },
+    {
+      "id": "APP-05",
+      "name": "直播视频贴片",
+      "usage": "视频与直播",
+      "prompt_id": "APP-05",
+      "kind": "application"
+    },
+    {
+      "id": "APP-06",
+      "name": "节日主题海报",
+      "usage": "活动与营销",
+      "prompt_id": "APP-06",
+      "kind": "application"
+    },
+    {
+      "id": "APP-07",
+      "name": "主题壁纸",
+      "usage": "手机与桌面",
+      "prompt_id": "APP-07",
+      "kind": "application"
+    },
+    {
+      "id": "APP-08",
+      "name": "贴纸打印周边",
+      "usage": "贴纸与印刷",
+      "prompt_id": "APP-08",
+      "kind": "application"
+    },
+    {
+      "id": "APP-09",
+      "name": "欢迎与提示牌",
+      "usage": "空间指示标牌",
+      "prompt_id": "APP-09",
+      "kind": "application"
+    },
+    {
+      "id": "APP-10",
+      "name": "角色介绍品牌应用",
+      "usage": "IP介绍与品牌传播",
+      "prompt_id": "APP-10",
+      "kind": "application"
+    }
+  ],
+  "legacy_mapping_file": "legacy_41_mapping.json"
+}
