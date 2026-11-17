@@ -27,6 +27,23 @@
 
 > 阅读 `AGENTS.md` 与 `docs/SPEC.md`，严格按照 `docs/IMPLEMENTATION_PLAN.md` 只实现 M0：仓库基础、Schemas、catalog validator、MockProvider 最小合同及离线测试。不得接入真实生图或上传任何用户原图。每个 PR 附测试结果与已完成验收项。
 
+## 本地开发（M0）
+
+```bash
+uv venv --python 3.11 .venv && uv pip install --python .venv/bin/python -e '.[dev]'
+```
+
+每次提交前运行（与 CI 相同；全程离线，不需要任何图像服务凭证）：
+
+```bash
+.venv/bin/python scripts/secret_scan.py      # 隐私 / 密钥扫描
+.venv/bin/python scripts/validate_spec.py    # SPEC ↔ 数据交叉一致性
+.venv/bin/ruff check . && .venv/bin/ruff format --check . && .venv/bin/mypy
+.venv/bin/python -m pytest
+```
+
+`scripts/check_style_release.py` 是 v1 发布门禁，在 M2A 产出 48 张真实审核样例之前**必然失败**。
+
 ## 安全与发布
 
 **严禁提交原始用户参考图、AIKate 原始 HTML/图片、真实真人照片、密钥、缓存与内部日志。** 本仓库的 41 组素材仅保留来源编号、标题与参数化模板映射，未纳入原始成图和逐字提示词。

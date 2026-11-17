@@ -25,7 +25,7 @@ Build a production-quality, installable IP asset production Skill for Tencent Wo
 - Use finite retries and explicit failure states. Preserve immutable approved character versions.
 
 ## Required per-PR checks
-- Run `python scripts/validate_spec.py` and unit tests once implemented.
+- Run `python scripts/secret_scan.py`, `python scripts/validate_spec.py`, `ruff check .`, `ruff format --check .`, `mypy` and `pytest` (all offline; see README).
 - Update schemas, catalogs, prompts, docs and test cases together for any template or behavior change.
 - Report which target host/device was actually tested, and which integrations remain unverified.
 

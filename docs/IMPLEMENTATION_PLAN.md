@@ -9,6 +9,7 @@
 - 从 `schemas/` 生成/校验类型合同；创建无网络 mock fixture。
 - 实现 `CapabilityRegistry`、`ImageProvider` 抽象协议与 `MockProvider`，严禁真实 API 默认开启。
 - **验收**：规范静态校验、所有 Schema 解析、离线 smoke test、secret scan 无错误。
+- **状态**：本地完成，验收记录见 `CHANGELOG.md`；待推送远端后由 GitHub Actions 复核。
 
 ## M1 — 创建入口、角色档案、风格库骨架与规划器
 
