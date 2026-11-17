@@ -203,6 +203,96 @@
         "null"
       ],
       "format": "date-time"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "style_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^STYLE-\\d{3}$"
+    },
+    "style_preview_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "parent_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "anatomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "capability_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "absent_parts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "parts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "export_consent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "data_categories",
+        "purpose",
+        "approved"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "data_categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "approved": {
+          "type": "boolean"
+        },
+        "approved_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
     }
   }
 }

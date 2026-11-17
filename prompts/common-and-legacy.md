@@ -12,6 +12,12 @@
 交付资产类别={{asset_template_id}}，输出变体={{output_variant}}，最终尺寸={{width_px}}×{{height_px}} 像素，画幅={{aspect_ratio}}，文件格式={{format}}，颜色模式={{color_mode}}，透明背景={{alpha_required}}，安全留白={{safe_margin}}。角色必须完整且位置正确，不裁掉重要结构。独立图片优先，总览拼板由程序合成；真实输出规格由工具验证。准确文字={{exact_text}}、标注={{annotations}} 须由布局程序叠加，不准让生成模型猜测或伪造尺寸与汉字。若模型原生能力不足，记录实际原生尺寸、后处理步骤与质量检查结果。
 ```
 
+## PROMPT: CANONICAL
+
+```text
+使用 COMMON-LOCK、STYLE-BRANCH、COMMON-OUTPUT。为待批准角色生成一张定妆候选图（G3）：完整单角色、自然站姿或其形体的标准姿态，正面或三分之四正面，身份锚点={{identity_anchors}} 全部清晰可见，配色={{palette_and_material}}。角色描述={{character_brief}}。简洁中性背景，主体居中、四周留白，不添加文字、Logo 或水印。该图只是候选，用户明确批准后才成为不可变的角色版本。
+```
+
 ## PROMPT: STYLE-BRANCH (仅选择一个匹配分支)
 
 ```text

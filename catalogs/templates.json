@@ -1,0 +1,1948 @@
+{
+ "version": "1.0.0",
+ "note_zh": "模板注册表：依赖、输出规格与形体适配规则（候选默认值，SPEC §5.2/§6；可评审调整）。template 字段符合 schemas/asset-template.schema.json。",
+ "topology_tags": {
+  "humanoid": [
+   "has_face",
+   "visible_mouth",
+   "has_limbs",
+   "has_hands",
+   "has_feet",
+   "wearable",
+   "can_hold",
+   "separable_parts"
+  ],
+  "biped_animal": [
+   "has_face",
+   "visible_mouth",
+   "has_limbs",
+   "has_paws",
+   "has_feet",
+   "wearable",
+   "can_hold",
+   "separable_parts",
+   "non_human"
+  ],
+  "quadruped": [
+   "has_face",
+   "visible_mouth",
+   "has_limbs",
+   "has_paws",
+   "has_feet",
+   "separable_parts",
+   "non_human"
+  ],
+  "winged": [
+   "has_face",
+   "has_limbs",
+   "has_wings",
+   "has_feet",
+   "separable_parts",
+   "non_human"
+  ],
+  "limbless": [
+   "has_face",
+   "non_human"
+  ],
+  "object_with_limbs": [
+   "has_face",
+   "visible_mouth",
+   "has_limbs",
+   "has_hands",
+   "can_hold",
+   "separable_parts",
+   "non_human"
+  ],
+  "abstract": [
+   "non_human"
+  ],
+  "custom": [
+   "non_human"
+  ]
+ },
+ "use_cases": {
+  "character_bible": {
+   "name_zh": "角色设定/身份锁定",
+   "templates": [
+    "CANONICAL",
+    "BASE_VIEW",
+    "NEW-01",
+    "NEW-02",
+    "NEW-03",
+    "BASE_DETAIL",
+    "BASE_EXPRESSION",
+    "BASE_PROFILE"
+   ]
+  },
+  "animation": {
+   "name_zh": "动画与视频制作",
+   "templates": [
+    "BASE_VIEW",
+    "BASE_POSE",
+    "BASE_STRUCTURE",
+    "NEW-02",
+    "NEW-07",
+    "NEW-11",
+    "NEW-13"
+   ]
+  },
+  "content": {
+   "name_zh": "日常内容与漫画",
+   "templates": [
+    "BASE_EXPRESSION",
+    "BASE_POSE",
+    "BASE_OUTFIT",
+    "NEW-06",
+    "NEW-10",
+    "NEW-12"
+   ]
+  },
+  "marketing": {
+   "name_zh": "营销传播",
+   "templates": [
+    "NEW-06",
+    "NEW-08",
+    "APP-04",
+    "APP-06"
+   ]
+  },
+  "merchandise": {
+   "name_zh": "周边商品",
+   "templates": [
+    "BASE_VIEW",
+    "NEW-04",
+    "NEW-14",
+    "APP-08"
+   ]
+  },
+  "brand": {
+   "name_zh": "品牌手册",
+   "templates": [
+    "NEW-01",
+    "BASE_PROFILE",
+    "APP-10"
+   ]
+  },
+  "emoji": {
+   "name_zh": "表情包",
+   "templates": [
+    "APP-01"
+   ]
+  },
+  "door_sign": {
+   "name_zh": "会议室门牌",
+   "templates": [
+    "APP-02"
+   ]
+  },
+  "office_signage": {
+   "name_zh": "办公导视",
+   "templates": [
+    "APP-03"
+   ]
+  },
+  "social": {
+   "name_zh": "社交账号视觉",
+   "templates": [
+    "APP-04"
+   ]
+  },
+  "live_stream": {
+   "name_zh": "直播/视频贴片",
+   "templates": [
+    "APP-05"
+   ]
+  },
+  "holiday_poster": {
+   "name_zh": "节日海报",
+   "templates": [
+    "APP-06"
+   ]
+  },
+  "wallpaper": {
+   "name_zh": "壁纸",
+   "templates": [
+    "APP-07"
+   ]
+  },
+  "sticker_print": {
+   "name_zh": "贴纸印刷",
+   "templates": [
+    "APP-08"
+   ]
+  },
+  "notice_sign": {
+   "name_zh": "欢迎与提示牌",
+   "templates": [
+    "APP-09"
+   ]
+  }
+ },
+ "default_recommendation": [
+  "CANONICAL",
+  "BASE_VIEW",
+  "NEW-01",
+  "NEW-02",
+  "NEW-03",
+  "BASE_EXPRESSION",
+  "BASE_POSE"
+ ],
+ "templates": [
+  {
+   "template": {
+    "template_id": "CANONICAL",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A01",
+    "title": "定妆候选（G3）",
+    "prompt_id": "CANONICAL",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1536,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "character_bible"
+    ],
+    "dependencies": [],
+    "variants": [
+     "clean"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "identity_soft_review"
+    ],
+    "default_priority": "P0"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "BASE_VIEW",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A01",
+    "title": "标准视图／三四六视图",
+    "prompt_id": "BASE_VIEW",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1536,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 3072,
+      "height_px": 4096,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "character_bible",
+     "animation",
+     "merchandise"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "clean",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "view_consistency_soft_review"
+    ],
+    "default_priority": "P0"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "BASE_DETAIL",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A02",
+    "title": "面部及识别部位精细图",
+    "prompt_id": "BASE_DETAIL",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 2048,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "character_bible"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "clean",
+     "annotated"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "annotation_text_exact"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "BASE_EXPRESSION",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A03",
+    "title": "表情九宫格及情绪系列",
+    "prompt_id": "BASE_EXPRESSION",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1024,
+      "height_px": 1024,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 3072,
+      "height_px": 3072,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "character_bible",
+     "animation",
+     "content"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "individual",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": [
+     "visible_mouth"
+    ]
+   }
+  },
+  {
+   "template": {
+    "template_id": "BASE_POSE",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A04",
+    "title": "常用动作／手势／头颈动作",
+    "prompt_id": "BASE_POSE",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1536,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "animation",
+     "content"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "clean"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": [
+     "has_limbs"
+    ]
+   }
+  },
+  {
+   "template": {
+    "template_id": "BASE_STRUCTURE",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A05",
+    "title": "解剖、局部手足爪翼结构",
+    "prompt_id": "BASE_STRUCTURE",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [
+     "has_limbs"
+    ],
+    "outputs": [
+     {
+      "width_px": 2048,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "animation",
+     "character_bible"
+    ],
+    "dependencies": [
+     "BASE_VIEW"
+    ],
+    "variants": [
+     "clean",
+     "annotated"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "annotation_text_exact"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [
+     "has_limbs"
+    ],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "BASE_OUTFIT",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A06",
+    "title": "服饰、鞋履和造型适配",
+    "prompt_id": "BASE_OUTFIT",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [
+     "wearable"
+    ],
+    "outputs": [
+     {
+      "width_px": 1536,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "content",
+     "merchandise"
+    ],
+    "dependencies": [
+     "BASE_VIEW"
+    ],
+    "variants": [
+     "clean",
+     "annotated"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [
+     "wearable"
+    ],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "BASE_PROFILE",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A07",
+    "title": "角色资料卡与介绍",
+    "prompt_id": "BASE_PROFILE",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 3072,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "character_bible",
+     "brand"
+    ],
+    "dependencies": [
+     "CANONICAL",
+     "NEW-01"
+    ],
+    "variants": [
+     "clean"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "layout_text_exact"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-01",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A01",
+    "title": "标准配色板",
+    "prompt_id": "NEW-01",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 2048,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 3072,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "character_bible",
+     "brand"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "clean",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P0"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-02",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A01",
+    "title": "轮廓与剪影板",
+    "prompt_id": "NEW-02",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1024,
+      "height_px": 1536,
+      "format": "PNG",
+      "alpha_required": true
+     },
+     {
+      "width_px": 4096,
+      "height_px": 3072,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "character_bible",
+     "animation"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "clean",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P0"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-03",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A08",
+    "title": "物种与非人形结构板",
+    "prompt_id": "NEW-03",
+    "applicable_ip_types": [
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [
+     "non_human"
+    ],
+    "outputs": [
+     {
+      "width_px": 1536,
+      "height_px": 1536,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 3072,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "character_bible",
+     "animation"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "clean",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P0"
+   },
+   "rules": {
+    "skip_if_missing": [
+     "non_human"
+    ],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-04",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A02",
+    "title": "毛发与材质板",
+    "prompt_id": "NEW-04",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1536,
+      "height_px": 1536,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 3072,
+      "height_px": 3072,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "character_bible",
+     "merchandise"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "clean",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-05",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A10",
+    "title": "标志性道具库",
+    "prompt_id": "NEW-05",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1536,
+      "height_px": 1536,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 1536,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "content",
+     "marketing"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "clean",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": [
+     "can_hold"
+    ]
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-06",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A04",
+    "title": "标志性动作库",
+    "prompt_id": "NEW-06",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1536,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "content",
+     "animation",
+     "marketing"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "clean"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": [
+     "has_limbs"
+    ]
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-07",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A12",
+    "title": "口型与发声表情",
+    "prompt_id": "NEW-07",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [
+     "visible_mouth"
+    ],
+    "outputs": [
+     {
+      "width_px": 1024,
+      "height_px": 1024,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "animation"
+    ],
+    "dependencies": [
+     "BASE_EXPRESSION"
+    ],
+    "variants": [
+     "clean"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [
+     "visible_mouth"
+    ],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-08",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A10",
+    "title": "角色与产品互动",
+    "prompt_id": "NEW-08",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 2048,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 2048,
+      "height_px": 3072,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "marketing"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "clean",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": [
+     "can_hold"
+    ]
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-09",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A10",
+    "title": "多角色关系板",
+    "prompt_id": "NEW-09",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [
+     "multi_character"
+    ],
+    "outputs": [
+     {
+      "width_px": 2048,
+      "height_px": 3072,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "content"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "clean"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P2"
+   },
+   "rules": {
+    "skip_if_missing": [
+     "multi_character"
+    ],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-10",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A10",
+    "title": "角色与环境接触",
+    "prompt_id": "NEW-10",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 2048,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "content",
+     "animation"
+    ],
+    "dependencies": [
+     "BASE_VIEW"
+    ],
+    "variants": [
+     "clean"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": [
+     "has_feet"
+    ]
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-11",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A01",
+    "title": "极端镜头视角",
+    "prompt_id": "NEW-11",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1536,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "animation",
+     "content"
+    ],
+    "dependencies": [
+     "BASE_VIEW"
+    ],
+    "variants": [
+     "clean"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P2"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-12",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A02",
+    "title": "不同光照适配",
+    "prompt_id": "NEW-12",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1536,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "content",
+     "marketing"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "clean"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P2"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-13",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A12",
+    "title": "二维动画拆件参考",
+    "prompt_id": "NEW-13",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [
+     "separable_parts"
+    ],
+    "outputs": [
+     {
+      "width_px": 3072,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "animation"
+    ],
+    "dependencies": [
+     "BASE_VIEW"
+    ],
+    "variants": [
+     "clean"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P2"
+   },
+   "rules": {
+    "skip_if_missing": [
+     "separable_parts"
+    ],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "NEW-14",
+    "version": "1.0.0",
+    "kind": "foundation",
+    "category": "A13",
+    "title": "公仔玩具设计参考",
+    "prompt_id": "NEW-14",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1536,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 3072,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "merchandise"
+    ],
+    "dependencies": [
+     "BASE_VIEW",
+     "NEW-04"
+    ],
+    "variants": [
+     "clean",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format"
+    ],
+    "default_priority": "P2"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "APP-01",
+    "version": "1.0.0",
+    "kind": "application",
+    "category": "A03",
+    "title": "表情包",
+    "prompt_id": "APP-01",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1024,
+      "height_px": 1024,
+      "format": "PNG",
+      "alpha_required": true
+     },
+     {
+      "width_px": 512,
+      "height_px": 512,
+      "format": "PNG",
+      "alpha_required": true
+     },
+     {
+      "width_px": 4096,
+      "height_px": 4096,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "emoji"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "individual",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "alpha_verified",
+     "count_exact",
+     "safe_margin"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "APP-02",
+    "version": "1.0.0",
+    "kind": "application",
+    "category": "A11",
+    "title": "会议室门牌包",
+    "prompt_id": "APP-02",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 3614,
+      "height_px": 1488,
+      "format": "PNG",
+      "alpha_required": false,
+      "ppi": 300,
+      "trim_mm": [
+       300,
+       120
+      ],
+      "bleed_mm": 3,
+      "color_mode": "RGB"
+     },
+     {
+      "width_px": 3614,
+      "height_px": 1488,
+      "format": "PDF",
+      "alpha_required": false,
+      "ppi": 300,
+      "trim_mm": [
+       300,
+       120
+      ],
+      "bleed_mm": 3,
+      "color_mode": "RGB"
+     }
+    ],
+    "use_cases": [
+     "door_sign"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "individual",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "layout_text_exact",
+     "print_trim_bleed",
+     "safe_margin",
+     "count_exact"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "APP-03",
+    "version": "1.0.0",
+    "kind": "application",
+    "category": "A11",
+    "title": "办公导视包",
+    "prompt_id": "APP-03",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 2433,
+      "height_px": 2433,
+      "format": "PNG",
+      "alpha_required": false,
+      "ppi": 300,
+      "trim_mm": [
+       200,
+       200
+      ],
+      "bleed_mm": 3
+     },
+     {
+      "width_px": 2433,
+      "height_px": 2433,
+      "format": "PDF",
+      "alpha_required": false,
+      "ppi": 300,
+      "trim_mm": [
+       200,
+       200
+      ],
+      "bleed_mm": 3
+     }
+    ],
+    "use_cases": [
+     "office_signage"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "individual",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "layout_text_exact",
+     "print_trim_bleed"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "APP-04",
+    "version": "1.0.0",
+    "kind": "application",
+    "category": "A11",
+    "title": "社交账号视觉包",
+    "prompt_id": "APP-04",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1024,
+      "height_px": 1024,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 2560,
+      "height_px": 1440,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 1080,
+      "height_px": 1920,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "social"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "individual",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "layout_text_exact",
+     "safe_margin"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "APP-05",
+    "version": "1.0.0",
+    "kind": "application",
+    "category": "A11",
+    "title": "直播视频贴片",
+    "prompt_id": "APP-05",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 2048,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": true
+     },
+     {
+      "width_px": 3840,
+      "height_px": 2160,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 2160,
+      "height_px": 3840,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "live_stream"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "individual",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "alpha_verified"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "APP-06",
+    "version": "1.0.0",
+    "kind": "application",
+    "category": "A11",
+    "title": "节日主题海报",
+    "prompt_id": "APP-06",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 2048,
+      "height_px": 2048,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 2160,
+      "height_px": 2700,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 2160,
+      "height_px": 3840,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "holiday_poster"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "individual",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "layout_text_exact",
+     "safe_margin"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "APP-07",
+    "version": "1.0.0",
+    "kind": "application",
+    "category": "A11",
+    "title": "主题壁纸",
+    "prompt_id": "APP-07",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 3840,
+      "height_px": 2160,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 2160,
+      "height_px": 3840,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "wallpaper"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "individual",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "subject_not_cropped"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "APP-08",
+    "version": "1.0.0",
+    "kind": "application",
+    "category": "A13",
+    "title": "贴纸打印周边",
+    "prompt_id": "APP-08",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 3000,
+      "height_px": 3000,
+      "format": "PNG",
+      "alpha_required": true
+     },
+     {
+      "width_px": 732,
+      "height_px": 732,
+      "format": "PDF",
+      "alpha_required": false,
+      "ppi": 300,
+      "trim_mm": [
+       56,
+       56
+      ],
+      "bleed_mm": 3
+     }
+    ],
+    "use_cases": [
+     "sticker_print"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "individual",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "alpha_verified",
+     "print_trim_bleed"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "APP-09",
+    "version": "1.0.0",
+    "kind": "application",
+    "category": "A11",
+    "title": "欢迎与提示牌",
+    "prompt_id": "APP-09",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 2551,
+      "height_px": 3579,
+      "format": "PNG",
+      "alpha_required": false,
+      "ppi": 300,
+      "trim_mm": [
+       210,
+       297
+      ],
+      "bleed_mm": 3
+     },
+     {
+      "width_px": 2551,
+      "height_px": 3579,
+      "format": "PDF",
+      "alpha_required": false,
+      "ppi": 300,
+      "trim_mm": [
+       210,
+       297
+      ],
+      "bleed_mm": 3
+     }
+    ],
+    "use_cases": [
+     "notice_sign"
+    ],
+    "dependencies": [
+     "CANONICAL"
+    ],
+    "variants": [
+     "individual",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "layout_text_exact",
+     "print_trim_bleed"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  },
+  {
+   "template": {
+    "template_id": "APP-10",
+    "version": "1.0.0",
+    "kind": "application",
+    "category": "A07",
+    "title": "角色介绍品牌应用",
+    "prompt_id": "APP-10",
+    "applicable_ip_types": [
+     "digital_human",
+     "anime_human",
+     "cartoon_animal",
+     "anthropomorphic_object",
+     "fantasy_creature",
+     "other"
+    ],
+    "required_topology_tags": [],
+    "outputs": [
+     {
+      "width_px": 1920,
+      "height_px": 1080,
+      "format": "PNG",
+      "alpha_required": false
+     },
+     {
+      "width_px": 2560,
+      "height_px": 1440,
+      "format": "PNG",
+      "alpha_required": false
+     }
+    ],
+    "use_cases": [
+     "brand"
+    ],
+    "dependencies": [
+     "CANONICAL",
+     "NEW-01",
+     "BASE_PROFILE"
+    ],
+    "variants": [
+     "individual",
+     "contact_sheet"
+    ],
+    "qa_rules": [
+     "file_exists",
+     "dimensions",
+     "format",
+     "layout_text_exact"
+    ],
+    "default_priority": "P1"
+   },
+   "rules": {
+    "skip_if_missing": [],
+    "adapt_if_missing": []
+   }
+  }
+ ]
+}

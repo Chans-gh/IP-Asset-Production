@@ -471,19 +471,33 @@ def _preview_status_problems(data: RepoData, item: dict[str, Any]) -> list[str]:
 
 
 def check_preview_requests(data: RepoData, schemas: SchemaRegistry) -> list[str]:
+    """JSONL holds the immutable *request* half of each manifest item; status fields may move on."""
+    from ..styles import REQUEST_FIELDS, planned_preview_items
+
     rows = data.preview_requests
     items = data.preview_manifest["items"]
-    if rows == items:
-        return []
-    problems = [f"preview_requests.jsonl ({len(rows)} rows) differs from preview_manifest.json items ({len(items)})"]
+    problems = []
+    if [r.get("preview_id") for r in rows] != [i["preview_id"] for i in items]:
+        problems.append(
+            f"preview_requests.jsonl ({len(rows)} rows) and manifest ({len(items)}) list different previews"
+        )
     by_id = {i["preview_id"]: i for i in items}
     for row in rows:
         pid = row.get("preview_id")
         if pid not in by_id:
             problems.append(f"{pid}: request has no manifest item")
-        elif row != by_id[pid]:
-            diff = sorted(k for k in set(row) | set(by_id[pid]) if row.get(k) != by_id[pid].get(k))
+            continue
+        diff = [k for k in REQUEST_FIELDS if row.get(k) != by_id[pid].get(k)]
+        if diff:
             problems.append(f"{pid}: request differs from manifest in {diff}")
+    compiled = {i["preview_id"]: i for i in planned_preview_items(data)}
+    for pid, item in by_id.items():
+        want = compiled.get(pid)
+        if want is None:
+            continue  # reported by check_preview_manifest
+        diff = [k for k in REQUEST_FIELDS if want[k] != item.get(k)]
+        if diff:
+            problems.append(f"{pid}: manifest request fields differ from compiled catalog/prototype prompt in {diff}")
     return problems
 
 

@@ -157,8 +157,26 @@ def test_detects_prompt_hash_mismatch(repo_copy: Path, edit_json: Any) -> None:
 
 
 def test_detects_requests_jsonl_drift(repo_copy: Path) -> None:
-    _jsonl_edit(repo_copy / "styles/preview_requests.jsonl", 3, "status", "approved")
+    _jsonl_edit(repo_copy / "styles/preview_requests.jsonl", 3, "prompt", "a different prompt for this preview")
     assert failing(repo_copy) == {"preview_requests"}
+
+
+def test_request_rows_may_lag_manifest_status(repo_copy: Path) -> None:
+    # The JSONL is the immutable request; generation/review state lives only in the manifest.
+    _jsonl_edit(repo_copy / "styles/preview_requests.jsonl", 3, "status", "generated")
+    assert failing(repo_copy) == set()
+
+
+def test_detects_manifest_prompt_not_compiled_from_catalog(repo_copy: Path, edit_json: Any) -> None:
+    import hashlib
+
+    def tamper(d: dict[str, Any]) -> None:
+        item = d["items"][5]
+        item["prompt"] = item["prompt"].replace("Apply ONLY", "Apply mostly")
+        item["prompt_sha256"] = hashlib.sha256(item["prompt"].encode()).hexdigest()
+
+    edit_json(repo_copy, "styles/preview_manifest.json", tamper)
+    assert "preview_requests" in failing(repo_copy)
 
 
 def test_detects_missing_manifest_item(repo_copy: Path, edit_json: Any) -> None:

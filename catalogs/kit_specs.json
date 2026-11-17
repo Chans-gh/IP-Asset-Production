@@ -1,0 +1,46 @@
+{
+ "version": "1.0.0",
+ "note_zh": "应用成品默认交付参数（通用参考，并非任何平台或印厂的官方规范；渠道/印厂真实规范覆盖这些默认值，SPEC §6）。文字均由排版层叠加。",
+ "kits": {
+  "APP-01": {
+   "allowed_counts": [12, 16, 24],
+   "default_count": 16,
+   "master_px": 1024,
+   "export_px": [512],
+   "safe_margin_pct": 0.08,
+   "sheet_columns": 4,
+   "meanings_zh": ["你好", "谢谢", "好的", "加油", "开心", "爱你", "哈哈", "惊讶", "思考中", "难过", "生气", "晚安", "辛苦了", "收到", "抱歉", "再见", "点赞", "求助", "庆祝", "无语", "害羞", "忙碌中", "早安", "冲鸭"],
+   "meanings_en": ["hello wave", "thank you bow", "OK gesture", "cheering", "joyful", "sending love", "laughing", "surprised", "thinking", "sad", "angry", "good night sleepy", "appreciating hard work", "message received", "apologizing", "goodbye", "thumbs up", "asking for help", "celebrating", "speechless", "shy blushing", "busy working", "good morning", "charging forward"]
+  },
+  "APP-02": {
+   "trim_mm": [300, 120],
+   "bleed_mm": 3,
+   "ppi": 300,
+   "safe_mm": 8,
+   "illustration_ratio": 0.36,
+   "illustration_side": "right",
+   "default_room_name": "会议室",
+   "states": [
+    {"state_id": "in_meeting", "text_zh": "会议中", "pose_en": "quietly focused, holding a notebook, subtle meeting elements", "accent": "#C8553D"},
+    {"state_id": "available", "text_zh": "空闲", "pose_en": "relaxed and welcoming, open friendly gesture", "accent": "#3D8C5A"},
+    {"state_id": "do_not_disturb", "text_zh": "请勿打扰", "pose_en": "polite clear 'please wait' gesture with a calm expression", "accent": "#8A4FB0"},
+    {"state_id": "welcome", "text_zh": "欢迎使用", "pose_en": "friendly guiding gesture pointing toward the room", "accent": "#2F6FB3"}
+   ]
+  },
+  "APP-03": {"trim_mm": [200, 200], "bleed_mm": 3, "ppi": 300, "safe_mm": 8, "illustration_ratio": 0.5, "illustration_side": "top",
+   "items": [{"item_id": "pantry", "text_zh": "茶水间", "pose_en": "holding a warm cup of tea"}, {"item_id": "print", "text_zh": "打印区", "pose_en": "carrying a stack of printed paper"}, {"item_id": "lounge", "text_zh": "休息区", "pose_en": "resting comfortably on a cushion"}, {"item_id": "quiet", "text_zh": "安静区", "pose_en": "gently gesturing to keep quiet"}]},
+  "APP-04": {"items": [
+   {"item_id": "avatar", "width_px": 1024, "height_px": 1024, "pose_en": "front-facing head and shoulders portrait, subject fills most of the frame", "text_zh": null},
+   {"item_id": "banner", "width_px": 2560, "height_px": 1440, "pose_en": "wide banner scene, character at one side, calm open background", "text_zh": "{{headline}}"},
+   {"item_id": "vertical_cover", "width_px": 1080, "height_px": 1920, "pose_en": "vertical cover, character in lower half, clear title space on top", "text_zh": "{{headline}}"}]},
+  "APP-05": {"items": [
+   {"item_id": "welcome", "text_zh": "欢迎来到直播间", "pose_en": "waving hello"}, {"item_id": "like", "text_zh": "点赞", "pose_en": "thumbs up"}, {"item_id": "follow", "text_zh": "关注", "pose_en": "pointing at a follow button shape"}, {"item_id": "notice", "text_zh": "温馨提示", "pose_en": "holding a blank sign"}, {"item_id": "ending", "text_zh": "下次见", "pose_en": "bowing goodbye"}],
+   "sticker_px": 2048, "previews": [[3840, 2160], [2160, 3840]]},
+  "APP-06": {"items": [{"item_id": "square", "width_px": 2048, "height_px": 2048}, {"item_id": "portrait_4x5", "width_px": 2160, "height_px": 2700}, {"item_id": "story_9x16", "width_px": 2160, "height_px": 3840}], "pose_en": "festive celebration pose with seasonal elements, clear empty headline area"},
+  "APP-07": {"items": [{"item_id": "desktop", "width_px": 3840, "height_px": 2160, "pose_en": "wide desktop wallpaper, character off-center leaving icon space"}, {"item_id": "mobile", "width_px": 2160, "height_px": 3840, "pose_en": "tall phone wallpaper, character in lower-middle area, top clear for clock"}]},
+  "APP-08": {"default_count": 6, "master_px": 3000, "trim_mm": [56, 56], "bleed_mm": 3, "ppi": 300, "cut_offset_mm": 2, "poses_en": ["waving", "jumping with joy", "sitting cutely", "holding a heart", "sleeping", "thumbs up"]},
+  "APP-09": {"trim_mm": [210, 297], "bleed_mm": 3, "ppi": 300, "safe_mm": 10, "illustration_ratio": 0.55, "illustration_side": "top",
+   "items": [{"item_id": "welcome", "text_zh": "欢迎光临", "pose_en": "warm welcoming bow"}, {"item_id": "quiet", "text_zh": "请保持安静", "pose_en": "finger to lips, gentle"}, {"item_id": "queue", "text_zh": "请排队", "pose_en": "politely pointing to a line"}]},
+  "APP-10": {"items": [{"item_id": "intro_1080p", "width_px": 1920, "height_px": 1080}, {"item_id": "intro_1440p", "width_px": 2560, "height_px": 1440}], "pose_en": "confident signature pose, clean presentation layout space on one side"}
+ }
+}

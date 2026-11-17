@@ -57,6 +57,16 @@ class RepoData:
         return data
 
     @cached_property
+    def templates(self) -> JsonObj:
+        data: JsonObj = load_json(self.path("catalogs/templates.json"))
+        return data
+
+    @cached_property
+    def kit_specs(self) -> JsonObj:
+        data: JsonObj = load_json(self.path("catalogs/kit_specs.json"))
+        return data
+
+    @cached_property
     def style_catalog(self) -> JsonObj:
         data: JsonObj = load_json(self.path("styles/catalog.json"))
         return data
