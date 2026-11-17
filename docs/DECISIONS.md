@@ -9,7 +9,7 @@
 | ADR-005 | 文字与精确数据交由排版 | 暂定 | 中文精确性及印刷要求 |
 | ADR-006 | 先 mock 后真实 Provider | 暂定 | CI 可离线执行 |
 | ADR-007 | 公共仓库不含用户私有图片/原始 HTML | 默认 | 需用户明确允许才可变更 |
-| ADR-008 | 具体服务商、许可证、Git 远端 | 待决定 | 不阻塞开发前两阶段 |
+| ADR-008 | 具体服务商、许可证、Git 远端 | 部分确认 | 许可证：Apache-2.0（仓库根目录 `LICENSE`）；Git 远端：`github.com/Chans-gh/IP-Asset-Production`（公开）；真实图片服务商与宿主版本仍待决定 |
 | ADR-009 | 风格全集单独建设 | 确认预留 | v1 先具备可扩展 taxonomy |
 | ADR-010 | 代码布局：`src/ip_asset_production`，Python ≥ 3.11；运行依赖仅 pydantic / jsonschema / Pillow，开发依赖 pytest / ruff / mypy | 确认（M0） | `schemas/*.json` 是契约唯一来源；Pydantic 模型是运行时实现，`test_schemas_and_models.py` 保证两者字段集一致、导出实例可通过 Schema |
 | ADR-011 | Mock 产物隔离 | 确认（M0） | MockProvider 恒为 `data_egress=local`、`is_mock=True`，PNG 内嵌 `ipap:mock=true`；`validate_spec.py` 与 `check_style_release.py` 拒绝把 provider=mock 或带标记的图片计入 48 样例门禁 |

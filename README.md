@@ -48,7 +48,7 @@ uv venv --python 3.11 .venv && uv pip install --python .venv/bin/python -e '.[de
 
 **严禁提交原始用户参考图、AIKate 原始 HTML/图片、真实真人照片、密钥、缓存与内部日志。** 本仓库的 41 组素材仅保留来源编号、标题与参数化模板映射，未纳入原始成图和逐字提示词。
 
-公开仓库的组织名、License、真实图片 Provider、WorkBuddy 运行版本等需用户在发布前最终确定。发布前请阅读 `docs/SECURITY_AND_PUBLISHING.md`。
+本仓库以 Apache-2.0 许可发布（见 `LICENSE`）。真实图片 Provider、WorkBuddy 运行版本等需用户在发布前最终确定。发布前请阅读 `docs/SECURITY_AND_PUBLISHING.md`。
 
 ## 状态
 
