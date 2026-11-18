@@ -685,6 +685,10 @@ def build_application_kit(ctx: KitContext, kit_id: str, variables: Mapping[str, 
         items = [dict(i, pose_en=i.get("pose_en", ks.get("pose_en", ""))) for i in ks["items"]]
         pv: dict[str, Any] = {}
         copy_extra: list[tuple[str, str]] = []
+        if kit_id == "APP-04":
+            if not v.get("headline"):
+                raise KitError("APP-04 needs variable 'headline' (title designed into banner and cover)")
+            pv = {"headline": v["headline"]}
         if kit_id == "APP-06":
             for key in ("holiday", "headline"):
                 if not v.get(key):

@@ -67,8 +67,10 @@ MEDIA_SUFFIXES = {
     ".woff2",
 }
 # Public media may only live here. Style previews additionally need manifest traceability.
-MEDIA_ALLOWED_PREFIXES = ("styles/previews/", "tests/fixtures/synthetic/")
+MEDIA_ALLOWED_PREFIXES = ("styles/previews/", "tests/fixtures/synthetic/", "site/cases/")
 PREVIEW_PREFIX = "styles/previews/"
+# Pages case images (ADR-019): each file must be listed in its case.json — generated assets only, never source photos.
+CASE_PREFIX = "site/cases/"
 
 SECRET_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("private key block", re.compile(r"-----BEGIN (?:[A-Z]+ )?PRIVATE KEY-----")),
@@ -133,6 +135,17 @@ def _manifest_preview_files(root: Path) -> set[str]:
     return {str(i["actual_file"]) for i in items if i.get("actual_file")}
 
 
+def _case_files(root: Path) -> set[str]:
+    out: set[str] = set()
+    for case in sorted((root / "site" / "cases").glob("*/case.json")):
+        data = json.loads(case.read_text(encoding="utf-8"))
+        base = case.parent.relative_to(root).as_posix()
+        for group in data.get("groups", []):
+            for a in group.get("assets", []):
+                out.update(f"{base}/{a[k]}" for k in ("file", "thumb") if a.get(k))
+    return out
+
+
 def _path_findings(rel: str, traced_previews: set[str]) -> list[Finding]:
     findings = []
     pure = PurePosixPath(rel)
@@ -146,9 +159,9 @@ def _path_findings(rel: str, traced_previews: set[str]) -> list[Finding]:
             findings.append(
                 Finding(rel, "media-outside-allowlist", f"media files are only allowed under {MEDIA_ALLOWED_PREFIXES}")
             )
-        elif rel.startswith(PREVIEW_PREFIX) and rel not in traced_previews:
+        elif rel.startswith((PREVIEW_PREFIX, CASE_PREFIX)) and rel not in traced_previews:
             findings.append(
-                Finding(rel, "untraced-preview", "preview image is not referenced by preview_manifest.json actual_file")
+                Finding(rel, "untraced-preview", "preview/case image is not referenced by preview_manifest.json or site/cases/*/case.json")
             )
     return findings
 
@@ -177,7 +190,7 @@ def _content_findings(rel: str, text: str) -> list[Finding]:
 def scan(root: Path, files: list[str] | None = None, *, staged_only: bool = False) -> list[Finding]:
     root = root.resolve()
     rels = files if files is not None else candidate_files(root, staged_only=staged_only)
-    traced = _manifest_preview_files(root)
+    traced = _manifest_preview_files(root) | _case_files(root)
     findings: list[Finding] = []
     for rel in rels:
         findings += _path_findings(rel, traced)

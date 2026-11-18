@@ -44,6 +44,10 @@ uv venv --python 3.11 .venv && uv pip install --python .venv/bin/python -e '.[de
 
 `scripts/check_style_release.py` 是 v1 发布门禁，在 M2A 产出 48 张真实审核样例之前**必然失败**。
 
+## 案例页
+
+真实生成案例发布在 GitHub Pages：https://chans-gh.github.io/IP-Asset-Production/ 。页面源文件在 `site/`，用 `python scripts/build_site.py` 从 `workspace/` 重建（规则见 ADR-019）。
+
 ## 安全与发布
 
 **严禁提交原始用户参考图、AIKate 原始 HTML/图片、真实真人照片、密钥、缓存与内部日志。** 本仓库的 41 组素材仅保留来源编号、标题与参数化模板映射，未纳入原始成图和逐字提示词。
