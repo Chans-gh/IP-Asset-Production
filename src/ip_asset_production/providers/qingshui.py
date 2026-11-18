@@ -111,6 +111,7 @@ class QingshuiProvider:
         self.skill_dir = skill_dir or find_skill_dir()
         self.timeout_s = timeout_s
         self.runner = runner
+        self._served: dict[str, int] = {}
         if check_available:
             status = provider_status(self.skill_dir)
             if not status.available:
@@ -162,6 +163,27 @@ class QingshuiProvider:
         base = re.sub(r"[^A-Za-z0-9_-]", "_", request.task_id)[:80]
         return f"{base}-{digest}"
 
+    def known_url(self, file: Path) -> str | None:
+        """URL of an image qingshui itself returned earlier (matched by SHA-256 in our private logs).
+
+        Such an image is already hosted by qingshui, so it is passed by URL instead of being
+        uploaded again (saves the upload round-trip, which can fail independently of generation).
+        """
+        if not file.is_file():
+            return None
+        digest = hashlib.sha256(file.read_bytes()).hexdigest()
+        for log in sorted(self.work_dir.glob("*/gen/log.json")):
+            try:
+                entries = json.loads(log.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                continue
+            for e in entries:
+                for name, sha in (e.get("sha256") or {}).items():
+                    files, urls = e.get("files") or [], e.get("urls") or []
+                    if sha == digest and name in files and files.index(name) < len(urls):
+                        return str(urls[files.index(name)])
+        return None
+
     def build_job(self, request: GenerationRequest) -> dict[str, Any]:
         spec = request.output_spec
         options: dict[str, Any] = {
@@ -181,21 +203,30 @@ class QingshuiProvider:
         for r in request.references:
             if r.permission_scope == "private_local":  # defence in depth; check_request_allowed raises first
                 raise ProviderError(f"reference {r.ref_id} is private_local")
-            refs.append(r.uri)
+            is_url = r.uri.startswith(("http://", "https://"))
+            refs.append(r.uri if is_url else (self.known_url(Path(r.uri)) or r.uri))
         if refs:
             job["refs"] = refs
             job["refField"] = "referenceImages"
         return job
 
-    def generate(self, request: GenerationRequest) -> ProviderResult:
-        check_request_allowed(self, request)
-        if self.skill_dir is None:
-            raise ProviderError("qingshui skill not found")
-        job = self.build_job(request)
-        job_dir = self.work_dir / job["id"]
-        job_dir.mkdir(parents=True, exist_ok=True)
-        job_file = job_dir / "job.json"
-        job_file.write_text(json.dumps(job, ensure_ascii=False, indent=1), encoding="utf-8")
+    @staticmethod
+    def _finished_files(gen: Path, job_id: str) -> list[Path]:
+        log = gen / "log.json"
+        if not log.is_file():
+            return []
+        try:
+            entries = json.loads(log.read_text(encoding="utf-8"))
+        except ValueError:
+            return []
+        done = [e for e in entries if e.get("id") == job_id and e.get("status") == "done"]
+        if not done:
+            return []
+        files = [gen.parent / f for f in done[-1].get("files") or []]
+        return [f for f in files if f.is_file() and f.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp")]
+
+    def _run_job(self, job_dir: Path, job_file: Path) -> None:
+        assert self.skill_dir is not None
         run_js = str(self.skill_dir / "scripts" / "run.js")
         try:
             check = self.runner(
@@ -211,8 +242,27 @@ class QingshuiProvider:
         (job_dir / "run.log").write_text(sanitize((proc.stdout or "") + "\n" + (proc.stderr or "")), encoding="utf-8")
         if proc.returncode != 0:
             raise ProviderError("qingshui generation failed: " + sanitize((proc.stderr or proc.stdout or "")[-400:]))
+
+    def generate(self, request: GenerationRequest) -> ProviderResult:
+        check_request_allowed(self, request)
+        if self.skill_dir is None:
+            raise ProviderError("qingshui skill not found")
+        job = self.build_job(request)
+        # A repeat request in the same process is a retry (e.g. failed hard QA): it must be a new
+        # generation, so it gets a round suffix. A fresh process resumes from finished jobs instead.
+        base = job["id"]
+        rounds = self._served.get(base, 0)
+        self._served[base] = rounds + 1
+        if rounds:
+            job["id"] = f"{base}-r{rounds + 1}"
+        job_dir = self.work_dir / job["id"]
+        job_dir.mkdir(parents=True, exist_ok=True)
+        job_file = job_dir / "job.json"
         gen = job_dir / "gen"
-        files = sorted(p for p in gen.glob(f"{job['id']}*") if p.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp"))
+        if not self._finished_files(gen, job["id"]):  # same prompt+task already generated: no new call, no new cost
+            job_file.write_text(json.dumps(job, ensure_ascii=False, indent=1), encoding="utf-8")
+            self._run_job(job_dir, job_file)
+        files = self._finished_files(gen, job["id"])
         if not files:
             raise ProviderError("qingshui returned no image file")
         data = files[0].read_bytes()

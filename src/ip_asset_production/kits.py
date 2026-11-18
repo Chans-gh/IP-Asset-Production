@@ -19,7 +19,7 @@ from PIL import Image, ImageDraw
 from .character import CharacterVersion, utc_now
 from .data import RepoData
 from .jobs import TaskOutcome, TaskRunner, save_png
-from .models import OutputSpec
+from .models import OutputSpec, ReferenceImage
 from .paths import safe_join
 from .postprocess import WARM_WHITE, contact_sheet, fit_to_spec
 from .print_layout import PrintSpec, write_print_pdf
@@ -41,6 +41,9 @@ class KitContext:
     approved: bool
     font: FontChoice | None = None
     batch_id: str = "kit"
+    # Extra references sent with every kit item (e.g. the approved canonical image as identity ref).
+    # They pass the same egress check as any reference: private_local never leaves the machine.
+    references: tuple[ReferenceImage, ...] = ()
 
     def __post_init__(self) -> None:
         if self.character.approval_status != "approved":
@@ -109,6 +112,7 @@ def _generate(
         output_spec=spec,
         variables=variables,
         kit_item=item_text,
+        references=tuple(cv.reference_manifest) + tuple(ctx.references),
     )
     pixel_art = (cv.style_profile.get("enforce") or {}).get("rendering") == "nearest_neighbor_no_antialias"
     return ctx.runner.run(req, safe_margin=safe_margin, fit_mode=fit_mode, pixel_art=pixel_art)  # type: ignore[arg-type]

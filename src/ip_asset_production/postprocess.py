@@ -184,13 +184,45 @@ def alpha_checks(img: Image.Image) -> dict[str, object]:
     }
 
 
-def ensure_alpha(img: Image.Image, *, provider_alpha_native: bool) -> Processed:
-    if img.mode == "RGBA" and provider_alpha_native:
-        checks = alpha_checks(img)
-        if checks["ok"]:
-            res = Processed(img, native_size=img.size, alpha_method="native", checks=checks)
-            res.steps.append("native alpha verified")
-            return res
+def clean_native_alpha(img: Image.Image, *, floor: int = 32, speck_px: int = 5) -> tuple[Image.Image, list[str]]:
+    """Tidy a provider-supplied alpha channel: drop near-transparent haze and isolated specks.
+
+    Morphological opening on the binary mask removes islands thinner than ``speck_px``; a 3 px
+    dilation of the kept region preserves the anti-aliased edge of the subject.
+    """
+    rgba = img.convert("RGBA")
+    a = rgba.getchannel("A")
+    mask = a.point(lambda v: 255 if v >= floor else 0)
+    kept = mask.filter(ImageFilter.MinFilter(speck_px)).filter(ImageFilter.MaxFilter(speck_px))
+    keep = kept.filter(ImageFilter.MaxFilter(3))
+    new_a = ImageChops.multiply(a.point(lambda v: v if v >= floor else 0), keep)
+    rgba.putalpha(new_a)
+    return rgba, [f"native alpha cleaned (alpha<{floor} cleared, specks <{speck_px}px removed)"]
+
+
+def has_real_alpha(img: Image.Image) -> bool:
+    return img.mode in ("RGBA", "LA") or (img.mode == "P" and "transparency" in img.info)
+
+
+def ensure_alpha(img: Image.Image, *, provider_alpha_native: bool = False) -> Processed:
+    """Use the provider's alpha when the returned file *measurably* has a usable one.
+
+    ``provider_alpha_native`` (declared capability) is not required: some models return a
+    transparent PNG when asked even though the provider does not guarantee it, so each output is
+    measured. Converting such a file to RGB would turn the transparent area black and leave the
+    semi-transparent fringe as specks, so background removal is only the fallback.
+    """
+    if has_real_alpha(img):
+        raw = img.convert("RGBA")
+        if alpha_checks(raw)["ok"]:
+            cleaned, steps = clean_native_alpha(raw)
+            checks = alpha_checks(cleaned)
+            if checks["ok"]:
+                res = Processed(cleaned, native_size=img.size, alpha_method="native", checks=checks)
+                res.steps.append("native alpha measured in provider output and verified")
+                res.steps.extend(steps)
+                return res
+        img = Image.alpha_composite(Image.new("RGBA", raw.size, (255, 255, 255, 255)), raw)
     return remove_background(img)
 
 

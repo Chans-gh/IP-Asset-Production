@@ -39,8 +39,11 @@ IP_TYPE_RULES: list[tuple[str, re.Pattern[str]]] = [
     (
         "cartoon_animal",
         re.compile(
-            r"(动物|小熊|熊|猫|狗|狐狸|兔|鸭|鸟|企鹅|熊猫|老虎|狮子|松鼠|仓鼠|猴|鹿|羊|牛|猪|鱼|"
-            r"bear|cat|dog|fox|rabbit|bunny|duck|bird|penguin|panda|animal)",
+            r"(动物|小熊|熊|猫|狗|犬|柴犬|柯基|狐狸|狼|兔|鸭|鸡|鸟|鹦鹉|猫头鹰|企鹅|熊猫|老虎|狮子|豹|松鼠|仓鼠|鼠|"
+            r"猴|鹿|羊|羊驼|牛|马|猪|鱼|鲸|海豹|海獭|水獭|考拉|树袋熊|刺猬|浣熊|河马|大象|象|长颈鹿|青蛙|蛙|龟|"
+            r"bear|cat|dog|puppy|shiba|corgi|fox|wolf|rabbit|bunny|duck|bird|owl|penguin|panda|tiger|lion|"
+            r"squirrel|hamster|mouse|monkey|deer|sheep|alpaca|cow|horse|pig|fish|whale|seal|otter|koala|"
+            r"hedgehog|raccoon|elephant|giraffe|frog|turtle|animal)",
             re.I,
         ),
     ),
