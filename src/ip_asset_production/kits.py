@@ -492,6 +492,19 @@ def build_door_sign_kit(
 # ---------------------------------------------------------------------------- generic APP-03..10
 
 
+def _frame_text(it: Mapping[str, Any], spec: OutputSpec) -> str:
+    """Composition rule for a full-frame deliverable: head fully in frame, and a clean title area when text is laid on."""
+    w, h = spec.width_px, spec.height_px
+    titled = bool(it.get("text_zh"))
+    if w > h * 1.1:
+        where = "人物站在画面右侧三分之一，头顶完整入画并留出空间" + ("；画面左半部分是干净简洁的背景，留作标题区" if titled else "")
+    elif h > w * 1.1:
+        where = "人物位于画面下方三分之二，头顶完整入画" + ("；画面上方四分之一是干净简洁的背景，留作标题区" if titled else "")
+    else:
+        where = "人物居中，头顶完整入画并留出空间"
+    return f"{it.get('pose_en', '')}；{where}；画面里不出现任何文字"
+
+
 def _screen_items(
     ctx: KitContext,
     kit_id: str,
@@ -525,7 +538,7 @@ def _screen_items(
             img = fit_subject_with_margin(tile, (spec.width_px, spec.height_px), 0.06) if tile is not None else None
         else:
             oc = _generate(
-                ctx, kit_id, it["item_id"], it.get("pose_en", it["item_id"]), spec, variables, fit_mode="cover"
+                ctx, kit_id, it["item_id"], _frame_text(it, spec), spec, variables, fit_mode="cover"
             )
             outcomes.append(oc)
             img = Image.open(_task_file(ctx, oc)).convert("RGB") if oc.delivered else None
@@ -538,8 +551,13 @@ def _screen_items(
             if text:
                 font = ctx.need_font()
                 w, h = img.size
-                box = (round(w * 0.06), round(h * 0.04), round(w * 0.94), round(h * 0.18))
-                records.append(draw_text(img, text, box, font=font, color=(34, 34, 34), align="center", max_lines=1))
+                if w > h * 1.1:  # title area is the clean left half (see _frame_text)
+                    box = (round(w * 0.06), round(h * 0.35), round(w * 0.46), round(h * 0.6))
+                    align = "left"
+                else:
+                    box = (round(w * 0.08), round(h * 0.04), round(w * 0.92), round(h * 0.16))
+                    align = "center"
+                records.append(draw_text(img, text, box, font=font, color=(34, 34, 34), align=align, max_lines=2))
             out = kit_dir / f"{it['item_id']}.png"
             save_png(img, out, mock=ctx.is_mock)
             checks = check_image_file(out, spec, expect_real=not ctx.is_mock)

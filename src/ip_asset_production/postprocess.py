@@ -81,7 +81,8 @@ def fit_to_spec(
         scale = max(tw / w, th / h)
         nw, nh = max(tw, round(w * scale)), max(th, round(h * scale))
         resized = img.resize((nw, nh), resample)
-        left, top = (nw - tw) // 2, (nh - th) // 2
+        # keep headroom: trim mostly from the bottom (feet matter less than heads)
+        left, top = (nw - tw) // 2, round((nh - th) * 0.15)
         img2 = resized.crop((left, top, left + tw, top + th))
         out.steps.append(f"cover {w}x{h} -> {nw}x{nh} cropped to {tw}x{th}")
     if scale > 1.0:
