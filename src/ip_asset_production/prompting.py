@@ -267,6 +267,15 @@ class PromptCompiler:
                 parts.append("像素风格：保持清晰像素网格与硬边，不做抗锯齿。")
             if enforce.get("rendering") == "static_still_only":
                 parts.append("这是静态画面，不是动画帧序列。")
+        if cv.creation_mode == "REFERENCE_TRANSFORM" and template_id == "CANONICAL":
+            layers.append("TRANSFORM")
+            parts.append(
+                "参考图转换：以参考图为起点设计一个新的独立角色。必须保留："
+                + "；".join(_clean(f) for f in cv.keep_features)
+                + "。必须改变："
+                + "；".join(_clean(f) for f in cv.change_features)
+                + "。"
+            )
         layers.append(f"TASK:{template.prompt_id}")
         parts.append(self.render(self.library.get(template.prompt_id), values))
         if adaptation:
