@@ -47,11 +47,10 @@ def test_group_templates_are_one_sheet_call():
 
 
 def test_annotate_sheet_keeps_grid_and_adds_title_strip():
+    import pytest
     from PIL import Image
 
     from ip_asset_production.annotate import annotate_sheet
-    import pytest
-
     from ip_asset_production.typography import TypographyError, find_font
 
     try:
