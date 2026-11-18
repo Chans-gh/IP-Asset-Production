@@ -5,126 +5,246 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IP 资产生产案例</title>
 <meta name="description" content="IP Asset Production Skill 的真实生成案例：数字人与卡通 IP 的定妆、设定图和应用成品包。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f7f5f1;--card:#fff;--ink:#1f1f1f;--muted:#6b6660;--line:#e6e1d9;--accent:#b4472f;--chip:#efeae2}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161514;--card:#1f1e1c;--ink:#ece8e1;--muted:#a19a90;--line:#33302c;--accent:#e0876f;--chip:#2a2825}}
-:root[data-theme="dark"]{--bg:#161514;--card:#1f1e1c;--ink:#ece8e1;--muted:#a19a90;--line:#33302c;--accent:#e0876f;--chip:#2a2825}
+:root{--bg:#f4f1ec;--paper:#fbfaf7;--ink:#1b1a18;--soft:#55514b;--muted:#8a847b;--line:#dcd6cc;--accent:#9c3d26;--tile:#ebe6de}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121110;--paper:#1a1917;--ink:#efebe4;--soft:#bdb6ab;--muted:#8a847b;--line:#2e2b27;--accent:#e08a6c;--tile:#23211e}}
+:root[data-theme="dark"]{--bg:#121110;--paper:#1a1917;--ink:#efebe4;--soft:#bdb6ab;--muted:#8a847b;--line:#2e2b27;--accent:#e08a6c;--tile:#23211e}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei",sans-serif}
-.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
-header{padding:56px 0 24px}
-h1{font-size:clamp(28px,5vw,44px);line-height:1.2;margin:0 0 12px;letter-spacing:.02em}
-.lead{color:var(--muted);max-width:760px;margin:0}
-nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
-nav a{background:var(--chip);color:var(--ink);text-decoration:none;padding:6px 14px;border-radius:999px;font-size:14px}
-section.case{border-top:1px solid var(--line);padding:40px 0 8px}
-h2{font-size:clamp(22px,3.4vw,30px);margin:0 0 8px}
-.case > p{color:var(--muted);max-width:820px;margin:0 0 24px}
-h3{font-size:18px;margin:32px 0 4px}
-.note{color:var(--muted);font-size:14px;margin:0 0 14px}
-.grid{display:grid;gap:12px;align-items:start;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
-.grid.wide{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))}
-.grid.small{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
-figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-figure a{display:block}
-figure img{display:block;width:100%;height:auto}
-figure.alpha img{background:repeating-conic-gradient(var(--chip) 0 25%,transparent 0 50%) 0 0/16px 16px}
-figcaption{font-size:13px;color:var(--muted);padding:8px 10px}
-footer{border-top:1px solid var(--line);margin-top:48px;padding:24px 0 48px;color:var(--muted);font-size:13px}
-@media (max-width:480px){.grid.wide{grid-template-columns:1fr}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.75 "Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+.serif{font-family:"Noto Serif SC","Songti SC",serif;font-weight:700}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+a{color:inherit}
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+.brand{font-size:15px;letter-spacing:.08em;text-decoration:none}
+.bar nav{display:flex;gap:22px;font-size:14px;overflow-x:auto;white-space:nowrap}
+.bar nav a{text-decoration:none;color:var(--soft)}
+.bar nav a:hover{color:var(--accent)}
+/* hero */
+.hero{padding:88px 0 56px}
+.eyebrow{font-size:13px;letter-spacing:.24em;color:var(--accent);margin:0 0 18px}
+.hero h1{font-size:clamp(36px,6.4vw,76px);line-height:1.12;margin:0;letter-spacing:.01em;max-width:14em}
+.hero p{color:var(--soft);font-size:clamp(16px,1.6vw,18px);max-width:40em;margin:28px 0 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;margin-top:56px}
+.card{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:end;text-decoration:none;background:var(--paper);border:1px solid var(--line);padding:16px;transition:border-color .2s}
+.card:hover{border-color:var(--accent)}
+.card img{width:150px;height:200px;object-fit:cover;display:block;background:var(--tile)}
+.card small{color:var(--muted);font-size:12px;letter-spacing:.16em}
+.card h2{font-size:24px;margin:6px 0 8px;line-height:1.3}
+.card p{margin:0;color:var(--soft);font-size:14px}
+/* case */
+.case{border-top:1px solid var(--ink);padding:72px 0 24px}
+.intro{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
+.intro figure{margin:0;position:sticky;top:80px}
+.intro img{width:100%;height:auto;display:block;background:var(--tile)}
+.intro figcaption{font-size:12px;color:var(--muted);margin-top:10px;letter-spacing:.06em}
+.case-no{font-size:13px;letter-spacing:.24em;color:var(--accent);margin:0}
+.intro h2{font-size:clamp(32px,4.4vw,56px);line-height:1.15;margin:14px 0 24px}
+.intro .sum{color:var(--soft);margin:0 0 32px;max-width:36em}
+.stats{display:flex;gap:40px;border-top:1px solid var(--line);padding-top:20px;margin-bottom:36px}
+.stats b{display:block;font:700 34px/1 "Noto Serif SC",serif}
+.stats span{font-size:12px;color:var(--muted);letter-spacing:.1em}
+.toc{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.toc li{border-bottom:1px solid var(--line)}
+.toc a{display:flex;justify-content:space-between;gap:16px;padding:12px 0;text-decoration:none;font-size:15px}
+.toc a:hover{color:var(--accent)}
+.toc em{font-style:normal;color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+/* group */
+.group{padding:80px 0 0}
+.ghead{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:end;margin-bottom:28px}
+.ghead h3{font-size:clamp(24px,2.8vw,34px);margin:0;line-height:1.25}
+.ghead h3 span{display:block;font:500 13px/1 "Noto Sans SC",sans-serif;color:var(--accent);letter-spacing:.2em;margin-bottom:12px}
+.ghead p{margin:0;color:var(--soft);font-size:15px;max-width:36em}
+.tools{display:flex;gap:0;margin-top:14px;border:1px solid var(--line);width:max-content}
+.tools button{font:inherit;font-size:13px;padding:6px 14px;border:0;background:transparent;color:var(--soft);cursor:pointer}
+.tools button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.g{display:grid;gap:16px;align-items:start}
+.g figure{margin:0}
+.g button.zoom{all:unset;display:block;cursor:zoom-in;width:100%}
+.g img{display:block;width:100%;height:auto;background:var(--tile)}
+.g .alpha img{background:var(--tile)}
+.g figcaption{font-size:13px;color:var(--muted);padding-top:8px}
+.g-feature{grid-template-columns:minmax(0,1fr)}
+.g-sheet{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.g-sheet figure:first-child{grid-column:1/-1}
+.g-sheet .clean{display:none}
+.g-sheet.show-clean .clean{display:block}.g-sheet.show-clean .labeled{display:none}
+.g-stickers{grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;background:var(--paper);border:1px solid var(--line);padding:16px}
+.g-stickers figcaption{text-align:center;font-size:12px}
+.g-mosaic{display:flex;flex-direction:column;gap:16px}
+.g-mosaic .row{display:flex;gap:16px;align-items:flex-start}
+.g-mosaic figure{min-width:0}
+footer{border-top:1px solid var(--line);margin-top:120px;padding:28px 0 56px;color:var(--muted);font-size:13px}
+/* lightbox */
+dialog{border:0;padding:0;background:transparent;max-width:100vw;max-height:100vh;width:100vw;height:100vh}
+dialog::backdrop{background:rgba(10,9,8,.92)}
+dialog .lb{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 64px 24px}
+dialog img{max-width:100%;max-height:calc(100vh - 120px);object-fit:contain}
+dialog p{color:#cfc9bf;font-size:14px;margin:14px 0 0}
+dialog .x,dialog .nav{position:absolute;background:none;border:0;color:#eee;font-size:28px;cursor:pointer;padding:12px}
+dialog .x{top:8px;right:12px}dialog .prev{left:8px;top:50%}dialog .next{right:8px;top:50%}
+@media (max-width:900px){
+ .intro,.ghead{grid-template-columns:1fr;gap:24px}
+ .intro figure{position:static;max-width:420px}
+ .g-stickers{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (max-width:560px){
+ .wrap{padding:0 16px}
+ .hero{padding:56px 0 40px}
+ .bar nav{display:none}
+ .card{grid-template-columns:96px 1fr}.card img{width:96px;height:128px}
+ .g-sheet{grid-template-columns:1fr}
+ .g-mosaic .row{flex-wrap:wrap}.g-mosaic .row figure{flex-basis:100%!important}
+ .stats{gap:24px}
+ dialog .lb{padding:48px 8px 16px}
+}
 </style>
 </head>
 <body>
 
-<div class="wrap"><header><h1>IP 资产生产案例</h1>
-<p class="lead">IP Asset Production Skill 的真实生成案例。每张图都来自实际的生图调用和程序后处理，没有手工修图。点击图片看大图。</p><nav>
-<a href="#linxi">林汐 · 写实数字人</a>
-<a href="#mituan">米团 · 卡通吉祥物</a>
-</nav></header>
-<section class="case" id="linxi"><h2>林汐 · 写实数字人</h2><p>由一张真人照片（需求方授权）转成独立的写实数字人形象，定妆后所有资产都以定妆图为唯一身份基准。多个子图的一组整组一次生成为无缝网格设定图，再由程序切分；海报、横幅、介绍页的文字由模型连同画面一起排版。</p>
-<h3>定妆</h3>
-<p class="note">3 个候选中选定 c1，作为之后全部资产的身份基准。</p>
-<div class="grid">
-<figure><a href="cases/linxi/g01-01.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g01-01.jpg" width="1200" height="1600" loading="lazy" alt="定妆图 c1"></a><figcaption>定妆图 c1</figcaption></figure>
-</div>
-<h3>基础设定图</h3>
-<p class="note">每组 1 次调用，无缝网格；带标注版由程序加标题和每格编号名称，供视频/生图参考和知识库使用。</p>
-<div class="grid wide">
-<figure><a href="cases/linxi/g02-01.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g02-01.jpg" width="1600" height="1275" loading="lazy" alt="视角设定图（标注版）"></a><figcaption>视角设定图（标注版）</figcaption></figure>
-<figure><a href="cases/linxi/g02-02.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g02-02.jpg" width="1600" height="1275" loading="lazy" alt="表情设定图（标注版）"></a><figcaption>表情设定图（标注版）</figcaption></figure>
-<figure><a href="cases/linxi/g02-03.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g02-03.jpg" width="1600" height="1275" loading="lazy" alt="动作设定图（标注版）"></a><figcaption>动作设定图（标注版）</figcaption></figure>
-<figure><a href="cases/linxi/g02-04.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g02-04.jpg" width="1600" height="1200" loading="lazy" alt="视角设定图（干净版）"></a><figcaption>视角设定图（干净版）</figcaption></figure>
-<figure><a href="cases/linxi/g02-05.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g02-05.jpg" width="1600" height="1200" loading="lazy" alt="表情设定图（干净版）"></a><figcaption>表情设定图（干净版）</figcaption></figure>
-<figure><a href="cases/linxi/g02-06.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g02-06.jpg" width="1600" height="1200" loading="lazy" alt="动作设定图（干净版）"></a><figcaption>动作设定图（干净版）</figcaption></figure>
-</div>
-<h3>表情包 APP-01</h3>
-<p class="note">16 个大头贴式胸像，2 次调用（每张 8 格），程序切成独立透明贴纸。</p>
-<div class="grid small">
-<figure class="alpha"><a href="cases/linxi/g03-01.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-01.png" width="512" height="512" loading="lazy" alt="你好"></a><figcaption>你好</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-02.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-02.png" width="512" height="512" loading="lazy" alt="谢谢"></a><figcaption>谢谢</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-03.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-03.png" width="512" height="512" loading="lazy" alt="好的"></a><figcaption>好的</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-04.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-04.png" width="512" height="512" loading="lazy" alt="加油"></a><figcaption>加油</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-05.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-05.png" width="512" height="512" loading="lazy" alt="开心"></a><figcaption>开心</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-06.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-06.png" width="512" height="512" loading="lazy" alt="爱你"></a><figcaption>爱你</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-07.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-07.png" width="512" height="512" loading="lazy" alt="哈哈"></a><figcaption>哈哈</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-08.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-08.png" width="512" height="512" loading="lazy" alt="惊讶"></a><figcaption>惊讶</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-09.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-09.png" width="512" height="512" loading="lazy" alt="思考中"></a><figcaption>思考中</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-10.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-10.png" width="512" height="512" loading="lazy" alt="难过"></a><figcaption>难过</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-11.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-11.png" width="512" height="512" loading="lazy" alt="生气"></a><figcaption>生气</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-12.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-12.png" width="512" height="512" loading="lazy" alt="晚安"></a><figcaption>晚安</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-13.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-13.png" width="512" height="512" loading="lazy" alt="辛苦了"></a><figcaption>辛苦了</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-14.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-14.png" width="512" height="512" loading="lazy" alt="收到"></a><figcaption>收到</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-15.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-15.png" width="512" height="512" loading="lazy" alt="抱歉"></a><figcaption>抱歉</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g03-16.png" target="_blank" rel="noopener"><img src="cases/linxi/g03-16.png" width="512" height="512" loading="lazy" alt="再见"></a><figcaption>再见</figcaption></figure>
-</div>
-<h3>直播贴片 APP-05</h3>
-<p class="note">5 个状态 1 次调用，一张透明网格图切分。</p>
-<div class="grid">
-<figure class="alpha"><a href="cases/linxi/g04-01.png" target="_blank" rel="noopener"><img src="cases/linxi/g04-01.png" width="1600" height="1600" loading="lazy" alt="欢迎"></a><figcaption>欢迎</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g04-02.png" target="_blank" rel="noopener"><img src="cases/linxi/g04-02.png" width="1600" height="1600" loading="lazy" alt="点赞"></a><figcaption>点赞</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g04-03.png" target="_blank" rel="noopener"><img src="cases/linxi/g04-03.png" width="1600" height="1600" loading="lazy" alt="关注"></a><figcaption>关注</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g04-04.png" target="_blank" rel="noopener"><img src="cases/linxi/g04-04.png" width="1600" height="1600" loading="lazy" alt="提示"></a><figcaption>提示</figcaption></figure>
-<figure class="alpha"><a href="cases/linxi/g04-05.png" target="_blank" rel="noopener"><img src="cases/linxi/g04-05.png" width="1600" height="1600" loading="lazy" alt="结束"></a><figcaption>结束</figcaption></figure>
-</div>
-<h3>社交账号包 APP-04</h3>
-<p class="note">整幅成品各自生成；标题由模型直接设计在画面里。</p>
-<div class="grid wide">
-<figure><a href="cases/linxi/g05-01.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g05-01.jpg" width="1024" height="1024" loading="lazy" alt="头像 1:1"></a><figcaption>头像 1:1</figcaption></figure>
-<figure><a href="cases/linxi/g05-02.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g05-02.jpg" width="1600" height="900" loading="lazy" alt="横幅 16:9"></a><figcaption>横幅 16:9</figcaption></figure>
-<figure><a href="cases/linxi/g05-03.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g05-03.jpg" width="900" height="1600" loading="lazy" alt="竖版封面 9:16"></a><figcaption>竖版封面 9:16</figcaption></figure>
-</div>
-<h3>节日海报 APP-06</h3>
-<p class="note">新年主题三个尺寸，标题和副标题由模型排版。</p>
-<div class="grid">
-<figure><a href="cases/linxi/g06-01.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g06-01.jpg" width="1600" height="1600" loading="lazy" alt="方形 1:1"></a><figcaption>方形 1:1</figcaption></figure>
-<figure><a href="cases/linxi/g06-02.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g06-02.jpg" width="1280" height="1600" loading="lazy" alt="竖版 4:5"></a><figcaption>竖版 4:5</figcaption></figure>
-<figure><a href="cases/linxi/g06-03.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g06-03.jpg" width="900" height="1600" loading="lazy" alt="快拍 9:16"></a><figcaption>快拍 9:16</figcaption></figure>
-</div>
-<h3>角色介绍页 APP-10</h3>
-<p class="note">角色名和介绍文字来自已批准的档案，由模型排成介绍页。</p>
-<div class="grid wide">
-<figure><a href="cases/linxi/g07-01.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g07-01.jpg" width="1600" height="900" loading="lazy" alt="介绍页 1920×1080"></a><figcaption>介绍页 1920×1080</figcaption></figure>
-<figure><a href="cases/linxi/g07-02.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g07-02.jpg" width="1600" height="900" loading="lazy" alt="介绍页 2560×1440"></a><figcaption>介绍页 2560×1440</figcaption></figure>
-</div>
-<h3>壁纸 APP-07</h3>
-<p class="note">桌面与手机两种构图。</p>
-<div class="grid wide">
-<figure><a href="cases/linxi/g08-01.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g08-01.jpg" width="1600" height="900" loading="lazy" alt="桌面 3840×2160"></a><figcaption>桌面 3840×2160</figcaption></figure>
-<figure><a href="cases/linxi/g08-02.jpg" target="_blank" rel="noopener"><img src="cases/linxi/g08-02.jpg" width="900" height="1600" loading="lazy" alt="手机 2160×3840"></a><figcaption>手机 2160×3840</figcaption></figure>
-</div>
+<header class="bar"><div class="wrap"><a class="brand serif" href="#">IP 资产生产 · 案例</a><nav>
+<a href="#linxi">林汐</a>
+<a href="#mituan">米团</a>
+</nav></div></header><main class="wrap"><section class="hero">
+<p class="eyebrow">IP ASSET PRODUCTION · CASES</p>
+<h1 class="serif">从一张定妆图，到整套可用的角色资产。</h1>
+<p>这里的每张图都来自真实的生图调用和程序后处理，没有手工修图。一个角色先定妆，再出设定图，最后按用途做成表情包、贴片、海报、介绍页等成品包。</p><div class="cards">
+<a class="card" href="#linxi"><img src="cases/linxi/g01-01.jpg" alt="林汐"><div><small>CASE 01 · 写实数字人</small><h2 class="serif">林汐</h2><p>8 组 · 38 张资产</p></div></a>
+<a class="card" href="#mituan"><img src="cases/mituan/g01-01.jpg" alt="米团"><div><small>CASE 02 · 卡通吉祥物</small><h2 class="serif">米团</h2><p>2 组 · 5 张资产</p></div></a>
+</div></section>
+<section class="case" id="linxi"><div class="intro">
+<figure><img src="cases/linxi/g01-01.jpg" alt="定妆图 c1" loading="lazy"><figcaption>定妆图 c1 · 全部资产的身份基准</figcaption></figure><div>
+<p class="case-no">CASE 01 · 写实数字人</p><h2 class="serif">林汐</h2>
+<p class="sum">由一张真人照片（需求方授权）转成独立的写实数字人形象，定妆后所有资产都以定妆图为唯一身份基准。多个子图的一组整组一次生成为无缝网格设定图，再由程序切分；海报、横幅、介绍页的文字由模型连同画面一起排版。</p>
+<div class="stats"><div><b>8</b><span>资产组</span></div><div><b>38</b><span>张成品</span></div></div><ol class="toc">
+<li><a href="#linxi-g1"><span>01　定妆</span><em>1 张</em></a></li>
+<li><a href="#linxi-g2"><span>02　基础设定图</span><em>6 张</em></a></li>
+<li><a href="#linxi-g3"><span>03　表情包 APP-01</span><em>16 张</em></a></li>
+<li><a href="#linxi-g4"><span>04　直播贴片 APP-05</span><em>5 张</em></a></li>
+<li><a href="#linxi-g5"><span>05　社交账号包 APP-04</span><em>3 张</em></a></li>
+<li><a href="#linxi-g6"><span>06　节日海报 APP-06</span><em>3 张</em></a></li>
+<li><a href="#linxi-g7"><span>07　角色介绍页 APP-10</span><em>2 张</em></a></li>
+<li><a href="#linxi-g8"><span>08　壁纸 APP-07</span><em>2 张</em></a></li>
+</ol></div></div>
+<div class="group" id="linxi-g2"><div class="ghead"><h3 class="serif"><span>02</span>基础设定图</h3><div>
+<p>每组 1 次调用，无缝网格；带标注版由程序加标题和每格编号名称，供视频/生图参考和知识库使用。</p>
+<div class="tools"><button data-for="linxi-g2-grid" data-v="labeled" aria-pressed="true">标注版</button><button data-for="linxi-g2-grid" data-v="clean" aria-pressed="false">干净版</button></div>
+</div></div>
+<div class="g g-sheet" id="linxi-g2-grid">
+<figure class="wide labeled"><button class="zoom" data-full="cases/linxi/g02-01.jpg" data-cap="视角设定图"><img src="cases/linxi/g02-01.jpg" width="1600" height="1275" loading="lazy" alt="视角设定图"></button><figcaption>视角设定图</figcaption></figure>
+<figure class="wide labeled"><button class="zoom" data-full="cases/linxi/g02-02.jpg" data-cap="表情设定图"><img src="cases/linxi/g02-02.jpg" width="1600" height="1275" loading="lazy" alt="表情设定图"></button><figcaption>表情设定图</figcaption></figure>
+<figure class="wide labeled"><button class="zoom" data-full="cases/linxi/g02-03.jpg" data-cap="动作设定图"><img src="cases/linxi/g02-03.jpg" width="1600" height="1275" loading="lazy" alt="动作设定图"></button><figcaption>动作设定图</figcaption></figure>
+<figure class="wide clean"><button class="zoom" data-full="cases/linxi/g02-04.jpg" data-cap="视角设定图"><img src="cases/linxi/g02-04.jpg" width="1600" height="1200" loading="lazy" alt="视角设定图"></button><figcaption>视角设定图</figcaption></figure>
+<figure class="wide clean"><button class="zoom" data-full="cases/linxi/g02-05.jpg" data-cap="表情设定图"><img src="cases/linxi/g02-05.jpg" width="1600" height="1200" loading="lazy" alt="表情设定图"></button><figcaption>表情设定图</figcaption></figure>
+<figure class="wide clean"><button class="zoom" data-full="cases/linxi/g02-06.jpg" data-cap="动作设定图"><img src="cases/linxi/g02-06.jpg" width="1600" height="1200" loading="lazy" alt="动作设定图"></button><figcaption>动作设定图</figcaption></figure>
+</div></div>
+<div class="group" id="linxi-g3"><div class="ghead"><h3 class="serif"><span>03</span>表情包 APP-01</h3><div>
+<p>16 个大头贴式胸像，2 次调用（每张 8 格），程序切成独立透明贴纸。</p>
+</div></div>
+<div class="g g-stickers" id="linxi-g3-grid">
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-01.png" data-cap="你好"><img src="cases/linxi/g03-01.png" width="512" height="512" loading="lazy" alt="你好"></button><figcaption>你好</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-02.png" data-cap="谢谢"><img src="cases/linxi/g03-02.png" width="512" height="512" loading="lazy" alt="谢谢"></button><figcaption>谢谢</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-03.png" data-cap="好的"><img src="cases/linxi/g03-03.png" width="512" height="512" loading="lazy" alt="好的"></button><figcaption>好的</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-04.png" data-cap="加油"><img src="cases/linxi/g03-04.png" width="512" height="512" loading="lazy" alt="加油"></button><figcaption>加油</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-05.png" data-cap="开心"><img src="cases/linxi/g03-05.png" width="512" height="512" loading="lazy" alt="开心"></button><figcaption>开心</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-06.png" data-cap="爱你"><img src="cases/linxi/g03-06.png" width="512" height="512" loading="lazy" alt="爱你"></button><figcaption>爱你</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-07.png" data-cap="哈哈"><img src="cases/linxi/g03-07.png" width="512" height="512" loading="lazy" alt="哈哈"></button><figcaption>哈哈</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-08.png" data-cap="惊讶"><img src="cases/linxi/g03-08.png" width="512" height="512" loading="lazy" alt="惊讶"></button><figcaption>惊讶</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-09.png" data-cap="思考中"><img src="cases/linxi/g03-09.png" width="512" height="512" loading="lazy" alt="思考中"></button><figcaption>思考中</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-10.png" data-cap="难过"><img src="cases/linxi/g03-10.png" width="512" height="512" loading="lazy" alt="难过"></button><figcaption>难过</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-11.png" data-cap="生气"><img src="cases/linxi/g03-11.png" width="512" height="512" loading="lazy" alt="生气"></button><figcaption>生气</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-12.png" data-cap="晚安"><img src="cases/linxi/g03-12.png" width="512" height="512" loading="lazy" alt="晚安"></button><figcaption>晚安</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-13.png" data-cap="辛苦了"><img src="cases/linxi/g03-13.png" width="512" height="512" loading="lazy" alt="辛苦了"></button><figcaption>辛苦了</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-14.png" data-cap="收到"><img src="cases/linxi/g03-14.png" width="512" height="512" loading="lazy" alt="收到"></button><figcaption>收到</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-15.png" data-cap="抱歉"><img src="cases/linxi/g03-15.png" width="512" height="512" loading="lazy" alt="抱歉"></button><figcaption>抱歉</figcaption></figure>
+<figure class="sq alpha"><button class="zoom" data-full="cases/linxi/g03-16.png" data-cap="再见"><img src="cases/linxi/g03-16.png" width="512" height="512" loading="lazy" alt="再见"></button><figcaption>再见</figcaption></figure>
+</div></div>
+<div class="group" id="linxi-g4"><div class="ghead"><h3 class="serif"><span>04</span>直播贴片 APP-05</h3><div>
+<p>5 个状态 1 次调用，一张透明网格图切分。</p>
+</div></div>
+<div class="g g-mosaic n5" id="linxi-g4-grid">
+<div class="row">
+<figure class="sq alpha" style="flex:1.000 1 0"><button class="zoom" data-full="cases/linxi/g04-01.png" data-cap="欢迎"><img src="cases/linxi/g04-01.png" width="1600" height="1600" loading="lazy" alt="欢迎"></button><figcaption>欢迎</figcaption></figure>
+<figure class="sq alpha" style="flex:1.000 1 0"><button class="zoom" data-full="cases/linxi/g04-02.png" data-cap="点赞"><img src="cases/linxi/g04-02.png" width="1600" height="1600" loading="lazy" alt="点赞"></button><figcaption>点赞</figcaption></figure>
+<figure class="sq alpha" style="flex:1.000 1 0"><button class="zoom" data-full="cases/linxi/g04-03.png" data-cap="关注"><img src="cases/linxi/g04-03.png" width="1600" height="1600" loading="lazy" alt="关注"></button><figcaption>关注</figcaption></figure>
+</div><div class="row">
+<figure class="sq alpha" style="flex:1.000 1 0"><button class="zoom" data-full="cases/linxi/g04-04.png" data-cap="提示"><img src="cases/linxi/g04-04.png" width="1600" height="1600" loading="lazy" alt="提示"></button><figcaption>提示</figcaption></figure>
+<figure class="sq alpha" style="flex:1.000 1 0"><button class="zoom" data-full="cases/linxi/g04-05.png" data-cap="结束"><img src="cases/linxi/g04-05.png" width="1600" height="1600" loading="lazy" alt="结束"></button><figcaption>结束</figcaption></figure>
+</div></div></div>
+<div class="group" id="linxi-g5"><div class="ghead"><h3 class="serif"><span>05</span>社交账号包 APP-04</h3><div>
+<p>整幅成品各自生成；标题由模型直接设计在画面里。</p>
+</div></div>
+<div class="g g-mosaic n3" id="linxi-g5-grid">
+<div class="row">
+<figure class="sq" style="flex:1.000 1 0"><button class="zoom" data-full="cases/linxi/g05-01.jpg" data-cap="头像 1:1"><img src="cases/linxi/g05-01.jpg" width="1024" height="1024" loading="lazy" alt="头像 1:1"></button><figcaption>头像 1:1</figcaption></figure>
+<figure class="land" style="flex:1.778 1 0"><button class="zoom" data-full="cases/linxi/g05-02.jpg" data-cap="横幅 16:9"><img src="cases/linxi/g05-02.jpg" width="1600" height="900" loading="lazy" alt="横幅 16:9"></button><figcaption>横幅 16:9</figcaption></figure>
+<figure class="port" style="flex:0.562 1 0"><button class="zoom" data-full="cases/linxi/g05-03.jpg" data-cap="竖版封面 9:16"><img src="cases/linxi/g05-03.jpg" width="900" height="1600" loading="lazy" alt="竖版封面 9:16"></button><figcaption>竖版封面 9:16</figcaption></figure>
+</div></div></div>
+<div class="group" id="linxi-g6"><div class="ghead"><h3 class="serif"><span>06</span>节日海报 APP-06</h3><div>
+<p>新年主题三个尺寸，标题和副标题由模型排版。</p>
+</div></div>
+<div class="g g-mosaic n3" id="linxi-g6-grid">
+<div class="row">
+<figure class="sq" style="flex:1.000 1 0"><button class="zoom" data-full="cases/linxi/g06-01.jpg" data-cap="方形 1:1"><img src="cases/linxi/g06-01.jpg" width="1600" height="1600" loading="lazy" alt="方形 1:1"></button><figcaption>方形 1:1</figcaption></figure>
+<figure class="port" style="flex:0.800 1 0"><button class="zoom" data-full="cases/linxi/g06-02.jpg" data-cap="竖版 4:5"><img src="cases/linxi/g06-02.jpg" width="1280" height="1600" loading="lazy" alt="竖版 4:5"></button><figcaption>竖版 4:5</figcaption></figure>
+<figure class="port" style="flex:0.562 1 0"><button class="zoom" data-full="cases/linxi/g06-03.jpg" data-cap="快拍 9:16"><img src="cases/linxi/g06-03.jpg" width="900" height="1600" loading="lazy" alt="快拍 9:16"></button><figcaption>快拍 9:16</figcaption></figure>
+</div></div></div>
+<div class="group" id="linxi-g7"><div class="ghead"><h3 class="serif"><span>07</span>角色介绍页 APP-10</h3><div>
+<p>角色名和介绍文字来自已批准的档案，由模型排成介绍页。</p>
+</div></div>
+<div class="g g-mosaic n2" id="linxi-g7-grid">
+<div class="row">
+<figure class="land" style="flex:1.778 1 0"><button class="zoom" data-full="cases/linxi/g07-01.jpg" data-cap="介绍页 1920×1080"><img src="cases/linxi/g07-01.jpg" width="1600" height="900" loading="lazy" alt="介绍页 1920×1080"></button><figcaption>介绍页 1920×1080</figcaption></figure>
+<figure class="land" style="flex:1.778 1 0"><button class="zoom" data-full="cases/linxi/g07-02.jpg" data-cap="介绍页 2560×1440"><img src="cases/linxi/g07-02.jpg" width="1600" height="900" loading="lazy" alt="介绍页 2560×1440"></button><figcaption>介绍页 2560×1440</figcaption></figure>
+</div></div></div>
+<div class="group" id="linxi-g8"><div class="ghead"><h3 class="serif"><span>08</span>壁纸 APP-07</h3><div>
+<p>桌面与手机两种构图。</p>
+</div></div>
+<div class="g g-mosaic n2" id="linxi-g8-grid">
+<div class="row">
+<figure class="land" style="flex:1.778 1 0"><button class="zoom" data-full="cases/linxi/g08-01.jpg" data-cap="桌面 3840×2160"><img src="cases/linxi/g08-01.jpg" width="1600" height="900" loading="lazy" alt="桌面 3840×2160"></button><figcaption>桌面 3840×2160</figcaption></figure>
+<figure class="port" style="flex:0.562 1 0"><button class="zoom" data-full="cases/linxi/g08-02.jpg" data-cap="手机 2160×3840"><img src="cases/linxi/g08-02.jpg" width="900" height="1600" loading="lazy" alt="手机 2160×3840"></button><figcaption>手机 2160×3840</figcaption></figure>
+</div></div></div>
 </section>
-<section class="case" id="mituan"><h2>米团 · 卡通吉祥物</h2><p>从文字描述设计的原创卡通吉祥物，定妆后做会议室门牌包；门牌文字需要逐字精确，由排版程序设置。</p>
-<h3>定妆</h3>
-<div class="grid">
-<figure><a href="cases/mituan/g01-01.jpg" target="_blank" rel="noopener"><img src="cases/mituan/g01-01.jpg" width="1200" height="1600" loading="lazy" alt="定妆图"></a><figcaption>定妆图</figcaption></figure>
-</div>
-<h3>会议室门牌 APP-02</h3>
-<p class="note">300×120 mm 印刷门牌，四个状态。</p>
-<div class="grid wide">
-<figure><a href="cases/mituan/g02-01.jpg" target="_blank" rel="noopener"><img src="cases/mituan/g02-01.jpg" width="1600" height="659" loading="lazy" alt="会议中"></a><figcaption>会议中</figcaption></figure>
-<figure><a href="cases/mituan/g02-02.jpg" target="_blank" rel="noopener"><img src="cases/mituan/g02-02.jpg" width="1600" height="659" loading="lazy" alt="空闲"></a><figcaption>空闲</figcaption></figure>
-<figure><a href="cases/mituan/g02-03.jpg" target="_blank" rel="noopener"><img src="cases/mituan/g02-03.jpg" width="1600" height="659" loading="lazy" alt="请勿打扰"></a><figcaption>请勿打扰</figcaption></figure>
-<figure><a href="cases/mituan/g02-04.jpg" target="_blank" rel="noopener"><img src="cases/mituan/g02-04.jpg" width="1600" height="659" loading="lazy" alt="欢迎使用"></a><figcaption>欢迎使用</figcaption></figure>
-</div>
+<section class="case" id="mituan"><div class="intro">
+<figure><img src="cases/mituan/g01-01.jpg" alt="定妆图" loading="lazy"><figcaption>定妆图 · 全部资产的身份基准</figcaption></figure><div>
+<p class="case-no">CASE 02 · 卡通吉祥物</p><h2 class="serif">米团</h2>
+<p class="sum">从文字描述设计的原创卡通吉祥物，定妆后做会议室门牌包；门牌文字需要逐字精确，由排版程序设置。</p>
+<div class="stats"><div><b>2</b><span>资产组</span></div><div><b>5</b><span>张成品</span></div></div><ol class="toc">
+<li><a href="#mituan-g1"><span>01　定妆</span><em>1 张</em></a></li>
+<li><a href="#mituan-g2"><span>02　会议室门牌 APP-02</span><em>4 张</em></a></li>
+</ol></div></div>
+<div class="group" id="mituan-g2"><div class="ghead"><h3 class="serif"><span>02</span>会议室门牌 APP-02</h3><div>
+<p>300×120 mm 印刷门牌，四个状态。</p>
+</div></div>
+<div class="g g-mosaic n4" id="mituan-g2-grid">
+<div class="row">
+<figure class="land" style="flex:2.428 1 0"><button class="zoom" data-full="cases/mituan/g02-01.jpg" data-cap="会议中"><img src="cases/mituan/g02-01.jpg" width="1600" height="659" loading="lazy" alt="会议中"></button><figcaption>会议中</figcaption></figure>
+<figure class="land" style="flex:2.428 1 0"><button class="zoom" data-full="cases/mituan/g02-02.jpg" data-cap="空闲"><img src="cases/mituan/g02-02.jpg" width="1600" height="659" loading="lazy" alt="空闲"></button><figcaption>空闲</figcaption></figure>
+</div><div class="row">
+<figure class="land" style="flex:2.428 1 0"><button class="zoom" data-full="cases/mituan/g02-03.jpg" data-cap="请勿打扰"><img src="cases/mituan/g02-03.jpg" width="1600" height="659" loading="lazy" alt="请勿打扰"></button><figcaption>请勿打扰</figcaption></figure>
+<figure class="land" style="flex:2.428 1 0"><button class="zoom" data-full="cases/mituan/g02-04.jpg" data-cap="欢迎使用"><img src="cases/mituan/g02-04.jpg" width="1600" height="659" loading="lazy" alt="欢迎使用"></button><figcaption>欢迎使用</figcaption></figure>
+</div></div></div>
 </section>
-<footer>图片为网页尺寸的压缩版。案例中的角色由需求方授权生成；原始参考照片不公开。</footer></div></body></html>
+</main><footer><div class="wrap">图片为网页尺寸的压缩版。案例中的角色由需求方授权生成；原始参考照片不公开。</div></footer>
+<dialog id="lb"><div class="lb"><button class="x" aria-label="关闭">×</button>
+<button class="nav prev" aria-label="上一张">‹</button><img alt=""><p></p><button class="nav next" aria-label="下一张">›</button></div></dialog>
+<script>
+(function(){var d=document.getElementById('lb'),im=d.querySelector('img'),cap=d.querySelector('p'),list=[],i=0;
+function show(){var b=list[i];im.src=b.dataset.full;cap.textContent=b.dataset.cap+'  ·  '+(i+1)+' / '+list.length}
+document.addEventListener('click',function(e){var b=e.target.closest('button.zoom');if(b){e.preventDefault();
+ list=[].slice.call(b.closest('.g').querySelectorAll('button.zoom')).filter(function(x){return x.offsetParent});i=list.indexOf(b);show();d.showModal();return}
+ var t=e.target.closest('.tools button');if(t){var g=document.getElementById(t.dataset.for);g.classList.toggle('show-clean',t.dataset.v==='clean');
+ t.parentNode.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===t)})}});
+d.querySelector('.x').onclick=function(){d.close()};
+d.querySelector('.prev').onclick=function(){i=(i+list.length-1)%list.length;show()};
+d.querySelector('.next').onclick=function(){i=(i+1)%list.length;show()};
+d.addEventListener('click',function(e){if(e.target.classList.contains('lb'))d.close()});
+document.addEventListener('keydown',function(e){if(!d.open)return;if(e.key==='ArrowLeft')d.querySelector('.prev').click();if(e.key==='ArrowRight')d.querySelector('.next').click()});
+})();
+</script></body></html>
