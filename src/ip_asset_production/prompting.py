@@ -67,13 +67,13 @@ GLOBAL_DEFAULTS: dict[str, str] = {
     "character_brief": "按身份锚点设计的原创角色",
 }
 TEMPLATE_DEFAULTS: dict[str, dict[str, str]] = {
-    "BASE_VIEW": {"views": "正面、左侧面、背面、四分之三正面", "contact_sheet_grid": "2×2"},
+    "BASE_VIEW": {"views": "正面、左侧面、背面、四分之三正面"},
     "BASE_DETAIL": {"feature_regions": "面部/头部识别特征与标志性附属结构"},
     "BASE_EXPRESSION": {
-        "emotion_list": "开心、难过、生气、惊讶、害羞、思考、困倦、得意、委屈",
+        "emotion_list": "开心、微笑、惊讶、思考、害羞、难过、生气、眨眼、困倦、得意、委屈、欢呼",
         "emotion_intensity": "中等",
     },
-    "BASE_POSE": {"pose_list": "站立、坐姿、行走、挥手、指向、欢呼", "focus_region": "全身"},
+    "BASE_POSE": {"pose_list": "挥手、比心、指引、坐姿、行走、讲解展示、点赞、手持手机", "focus_region": "全身"},
     "BASE_STRUCTURE": {"requested_parts": "角色实际拥有的四肢末端与附属结构"},
     "BASE_OUTFIT": {"outfit_or_accessory": "默认日常造型"},
     "BASE_PROFILE": {"approved_profile_fields": "名称、性格标签、标志动作（文字由排版层添加；未确认字段留空）"},
@@ -90,6 +90,18 @@ TEMPLATE_DEFAULTS: dict[str, dict[str, str]] = {
     "APP-03": {"language": "中文", "arrow_direction": "无"},
     "APP-06": {"brand_colors": "角色主色", "campaign": "节日问候", "subtext": "（由排版层添加）"},
 }
+# Base groups are generated as ONE design-sheet image per call, never item by item (ADR in DECISIONS.md).
+SHEET_LISTS = {"BASE_VIEW": "views", "BASE_EXPRESSION": "emotion_list", "BASE_POSE": "pose_list"}
+
+
+def sheet_layout(item_list: str) -> dict[str, str]:
+    """Grid for a design sheet: one row up to 4 items, otherwise 4 columns."""
+    n = len([x for x in re.split(r"[、,，]", item_list) if x.strip()])
+    cols = n if n <= 4 else (3 if n == 9 else 4)
+    rows = -(-n // cols)
+    return {"sheet_count": str(n), "sheet_grid": f"{rows} 行 × {cols} 列"}
+
+
 STYLE_BRANCH_BY_IP = {
     "digital_human": "DIGITAL_HUMAN",
     "anime_human": "ANIME_HUMAN",
@@ -253,6 +265,8 @@ class PromptCompiler:
         values.update(self.output_variables(template, spec, variant))
         for k, v in (variables or {}).items():
             values[ALIASES.get(k.lower(), k.lower())] = _clean(v)
+        if template_id in SHEET_LISTS:
+            values.update(sheet_layout(values[SHEET_LISTS[template_id]]))
 
         layers = ["COMMON-LOCK", "STYLE-BRANCH"]
         parts = [self.render(self.library.get("COMMON-LOCK"), values)]

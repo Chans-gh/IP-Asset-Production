@@ -236,7 +236,7 @@
   {
    "template": {
     "template_id": "BASE_VIEW",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "kind": "foundation",
     "category": "A01",
     "title": "标准视图／三四六视图",
@@ -252,14 +252,8 @@
     "required_topology_tags": [],
     "outputs": [
      {
-      "width_px": 1536,
-      "height_px": 2048,
-      "format": "PNG",
-      "alpha_required": false
-     },
-     {
-      "width_px": 3072,
-      "height_px": 4096,
+      "width_px": 2048,
+      "height_px": 1536,
       "format": "PNG",
       "alpha_required": false
      }
@@ -273,8 +267,7 @@
      "CANONICAL"
     ],
     "variants": [
-     "clean",
-     "contact_sheet"
+     "sheet"
     ],
     "qa_rules": [
      "file_exists",
@@ -340,7 +333,7 @@
   {
    "template": {
     "template_id": "BASE_EXPRESSION",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "kind": "foundation",
     "category": "A03",
     "title": "表情九宫格及情绪系列",
@@ -356,14 +349,8 @@
     "required_topology_tags": [],
     "outputs": [
      {
-      "width_px": 1024,
-      "height_px": 1024,
-      "format": "PNG",
-      "alpha_required": false
-     },
-     {
-      "width_px": 3072,
-      "height_px": 3072,
+      "width_px": 2048,
+      "height_px": 1536,
       "format": "PNG",
       "alpha_required": false
      }
@@ -377,8 +364,7 @@
      "CANONICAL"
     ],
     "variants": [
-     "individual",
-     "contact_sheet"
+     "sheet"
     ],
     "qa_rules": [
      "file_exists",
@@ -397,7 +383,7 @@
   {
    "template": {
     "template_id": "BASE_POSE",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "kind": "foundation",
     "category": "A04",
     "title": "常用动作／手势／头颈动作",
@@ -413,8 +399,8 @@
     "required_topology_tags": [],
     "outputs": [
      {
-      "width_px": 1536,
-      "height_px": 2048,
+      "width_px": 2048,
+      "height_px": 1536,
       "format": "PNG",
       "alpha_required": false
      }
@@ -427,7 +413,7 @@
      "CANONICAL"
     ],
     "variants": [
-     "clean"
+     "sheet"
     ],
     "qa_rules": [
      "file_exists",

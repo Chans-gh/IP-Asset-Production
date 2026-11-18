@@ -24,10 +24,10 @@ PRIORITY_RANK = {"P0": 0, "P1": 1, "P2": 2}
 # Independent images generated per template (composites are produced by postprocessing).
 GENERATION_COUNTS = {
     "CANONICAL": 1,
-    "BASE_VIEW": 4,
+    "BASE_VIEW": 1,  # one design sheet per group
     "BASE_DETAIL": 4,
-    "BASE_EXPRESSION": 9,
-    "BASE_POSE": 6,
+    "BASE_EXPRESSION": 1,
+    "BASE_POSE": 1,
     "BASE_STRUCTURE": 4,
     "BASE_OUTFIT": 3,
     "BASE_PROFILE": 1,
@@ -51,7 +51,7 @@ GENERATION_COUNTS = {
     "APP-09": 3,
     "APP-10": 2,
 }
-COMPOSITES = {"BASE_VIEW": 1, "BASE_EXPRESSION": 1, "NEW-01": 1, "NEW-02": 1, "NEW-04": 1, "APP-01": 1}
+COMPOSITES = {"NEW-01": 1, "NEW-02": 1, "NEW-04": 1, "APP-01": 1}
 USE_CASE_ID = re.compile(r"^[a-z_]+$")
 
 
