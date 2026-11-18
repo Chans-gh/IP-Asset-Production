@@ -1,4 +1,5 @@
 """ADR-016: base groups are one design-sheet image per model call."""
+
 from ip_asset_production.planner import generation_count
 from ip_asset_production.prompting import PromptCompiler, sheet_layout
 

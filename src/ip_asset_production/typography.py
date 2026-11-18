@@ -75,7 +75,7 @@ def _font(path: str, size: int) -> ImageFont.FreeTypeFont:
 @lru_cache(maxsize=8)
 def _cmap(path: str) -> frozenset[int] | None:
     try:
-        from fontTools.ttLib import TTCollection, TTFont
+        from fontTools.ttLib import TTCollection, TTFont  # type: ignore[import-untyped]
     except ImportError:  # pragma: no cover - fonttools is a declared dependency
         return None
     if path.lower().endswith(".ttc"):

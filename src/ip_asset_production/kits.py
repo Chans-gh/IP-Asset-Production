@@ -170,7 +170,9 @@ def _sheet_cells(
         tiles: list[Image.Image | None] = [None] * len(chunk)
         if oc.delivered:
             sheet_img = Image.open(_task_file(ctx, oc)).convert("RGBA")
-            tiles = [keep_main_subject(clean_native_alpha(t)[0]) for t in slice_sheet(sheet_img, cols, rows)[: len(chunk)]]
+            tiles = [
+                keep_main_subject(clean_native_alpha(t)[0]) for t in slice_sheet(sheet_img, cols, rows)[: len(chunk)]
+            ]
         cells.extend((tiles[k], oc) for k in range(len(chunk)))
     return cells, outcomes
 
@@ -385,7 +387,9 @@ def _build_signs(
     font = ctx.need_font()
     kit_dir = ctx.out_dir / kit_id
     sx0, sy0, sx1, sy1 = ps.safe_box_px
-    entries, outcomes, previews = [], [], []
+    entries: list[dict[str, Any]] = []
+    outcomes: list[TaskOutcome] = []
+    previews: list[Image.Image] = []
     if side == "right":
         ill_w, ill_h = round((sx1 - sx0) * illustration_ratio), sy1 - sy0
     else:
@@ -474,7 +478,7 @@ def build_door_sign_kit(
     items = list(states or ks["states"])
     if len(items) < 4 and states is None:
         raise KitError("door sign kit needs at least 4 states")
-    ps = PrintSpec(tuple(ks["trim_mm"]), ks["bleed_mm"], ks["ppi"], ks["safe_mm"])  # type: ignore[arg-type]
+    ps = PrintSpec(tuple(ks["trim_mm"]), ks["bleed_mm"], ks["ppi"], ks["safe_mm"])
     variables = {"room_name": room, "sign_states": "、".join(s["text_zh"] for s in items)}
     return _build_signs(
         ctx,
@@ -530,7 +534,8 @@ def _screen_items(
     copy_extra: Sequence[tuple[str, str]] = (),
 ) -> KitResult:
     kit_dir = ctx.out_dir / kit_id
-    entries, outcomes = [], []
+    entries: list[dict[str, Any]] = []
+    outcomes: list[TaskOutcome] = []
     # ADR-016: transparent sub-images of one group come from one seamless sheet; full-frame
     # deliverables (banner, poster, wallpaper, intro page) are single compositions of their own.
     group = [it for it in items if it.get("alpha")]
@@ -555,9 +560,7 @@ def _screen_items(
         else:
             title = headline if it.get("text_zh") == "{{headline}}" else it.get("text_zh")
             copy = ([("标题", title)] if title else []) + list(copy_extra)
-            oc = _generate(
-                ctx, kit_id, it["item_id"], _frame_text(it, spec, copy), spec, variables, fit_mode="cover"
-            )
+            oc = _generate(ctx, kit_id, it["item_id"], _frame_text(it, spec, copy), spec, variables, fit_mode="cover")
             outcomes.append(oc)
             img = Image.open(_task_file(ctx, oc)).convert("RGB") if oc.delivered else None
         entry: dict[str, Any] = {"item_id": it["item_id"], "status": oc.status.value, "errors": oc.errors}
@@ -568,7 +571,12 @@ def _screen_items(
             if it["item_id"] not in tiles and copy:
                 # model-rendered copy: exactness must be confirmed by a reviewer (no OCR gate yet)
                 checks.append(
-                    Check("model_text_exact", "needs_review", "核对：" + "；".join(f"{r}「{x}」" for r, x in copy), hard=False)
+                    Check(
+                        "model_text_exact",
+                        "needs_review",
+                        "核对：" + "；".join(f"{r}「{x}」" for r, x in copy),
+                        hard=False,
+                    )
                 )
                 entry["copy"] = [{"role": r, "text": x} for r, x in copy]
             qa = finalize(checks, allow_unreviewed_soft=ctx.runner.allow_unreviewed_soft)
@@ -596,7 +604,7 @@ def build_sticker_kit(ctx: KitContext, *, count: int | None = None) -> KitResult
     ks = _kit_spec(ctx.compiler.registry.data, "APP-08")
     n = count or ks["default_count"]
     poses = (ks["poses_en"] * 4)[:n]
-    ps = PrintSpec(tuple(ks["trim_mm"]), ks["bleed_mm"], ks["ppi"], 2.0)  # type: ignore[arg-type]
+    ps = PrintSpec(tuple(ks["trim_mm"]), ks["bleed_mm"], ks["ppi"], 2.0)
     kit_dir = ctx.out_dir / "APP-08"
     master_spec = OutputSpec(
         width_px=ks["master_px"], height_px=ks["master_px"], format="PNG", alpha_required=True, safe_margin_pct=0.06
@@ -659,10 +667,10 @@ def build_application_kit(ctx: KitContext, kit_id: str, variables: Mapping[str, 
         return build_door_sign_kit(ctx, room_name=v.get("room_name"), states=v.get("states"))
     if kit_id in ("APP-03", "APP-09"):
         ks = _kit_spec(data, kit_id)
-        ps = PrintSpec(tuple(ks["trim_mm"]), ks["bleed_mm"], ks["ppi"], ks["safe_mm"])  # type: ignore[arg-type]
+        ps = PrintSpec(tuple(ks["trim_mm"]), ks["bleed_mm"], ks["ppi"], ks["safe_mm"])
         items = v.get("items") or ks["items"]
         if kit_id == "APP-03":
-            pv = {
+            pv: dict[str, Any] = {
                 "sign_locations": "、".join(i["text_zh"] for i in items),
                 "physical_size_mm": f"{ks['trim_mm'][0]}×{ks['trim_mm'][1]}",
             }
@@ -683,7 +691,7 @@ def build_application_kit(ctx: KitContext, kit_id: str, variables: Mapping[str, 
     if kit_id in ("APP-04", "APP-06", "APP-07", "APP-10"):
         ks = _kit_spec(data, kit_id)
         items = [dict(i, pose_en=i.get("pose_en", ks.get("pose_en", ""))) for i in ks["items"]]
-        pv: dict[str, Any] = {}
+        pv = {}
         copy_extra: list[tuple[str, str]] = []
         if kit_id == "APP-04":
             if not v.get("headline"):

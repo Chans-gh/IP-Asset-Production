@@ -290,7 +290,7 @@ class PreviewManifest:
     def __init__(self, path: Path) -> None:
         self.path = Path(path)
         self.doc: dict[str, Any] = load_json(self.path)
-        self._by_id = {i["preview_id"]: i for i in self.doc["items"]}
+        self._by_id: dict[str, dict[str, Any]] = {i["preview_id"]: i for i in self.doc["items"]}
 
     def item(self, preview_id: str) -> dict[str, Any]:
         try:

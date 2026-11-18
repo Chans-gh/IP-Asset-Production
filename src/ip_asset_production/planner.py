@@ -198,13 +198,13 @@ class AssetPlanner:
         prio = {t: self.registry.get(t).default_priority for t in active}
         if explicit:
             raised = [t for t in targets if t in prio]
-            for t in raised:
-                prio[t] = "P0"
+            for tk in raised:
+                prio[tk] = "P0"
             # dependencies of a raised target are at least as urgent
-            for t in reversed(order):
-                for d in deps[t]:
-                    if PRIORITY_RANK[prio[t]] < PRIORITY_RANK[prio[d]]:
-                        prio[d] = prio[t]
+            for tk in reversed(order):
+                for dk in deps[tk]:
+                    if PRIORITY_RANK[prio[tk]] < PRIORITY_RANK[prio[dk]]:
+                        prio[dk] = prio[tk]
 
         # reuse (SPEC §5.3 step 3, §9.3)
         reused: dict[str, ExistingAsset] = {}
@@ -220,25 +220,25 @@ class AssetPlanner:
 
         tasks: list[dict[str, Any]] = []
         for tid in [*order, *[t for t in decisions if t not in active]]:
-            d = decisions[tid]
-            t = self.registry.get(tid)
+            dec = decisions[tid]
+            tpl = self.registry.get(tid)
             task: dict[str, Any] = {
                 "task_id": f"{cv.character_id}-{cv.version}-{tid}",
                 "template_id": tid,
-                "priority": prio.get(tid, t.default_priority),
-                "applicability": d.applicability,
+                "priority": prio.get(tid, tpl.default_priority),
+                "applicability": dec.applicability,
                 "dependencies": [f"{cv.character_id}-{cv.version}-{x}" for x in deps.get(tid, [])],
-                "rationale": d.rationale
+                "rationale": dec.rationale
                 if tid not in reused
-                else f"{d.rationale}；复用已通过 QA 的产物 {reused[tid].path}",
-                "output_profile_id": f"{tid}:{t.primary_output['width_px']}x{t.primary_output['height_px']}",
+                else f"{dec.rationale}；复用已通过 QA 的产物 {reused[tid].path}",
+                "output_profile_id": f"{tid}:{tpl.primary_output['width_px']}x{tpl.primary_output['height_px']}",
             }
             if tid in variant_of:
                 task["variant"] = variant_of[tid]
-            elif t.variants:
-                task["variant"] = t.variants[0]
-            if d.applicability == "skip":
-                task["skip_reason"] = d.rationale
+            elif tpl.variants:
+                task["variant"] = tpl.variants[0]
+            if dec.applicability == "skip":
+                task["skip_reason"] = dec.rationale
             tasks.append(task)
 
         plan = {
@@ -263,19 +263,19 @@ class AssetPlanner:
         }
         explanation = []
         for tid in order:
-            t = self.registry.get(tid)
+            tpl = self.registry.get(tid)
             role = "必做" if prio[tid] == "P0" else ("推荐" if prio[tid] == "P1" else "可选")
             explanation.append(
-                f"{prio[tid]} {role}：{t.title}（{tid}）× {per_template.get(tid, 0)} 张 — {decisions[tid].rationale}"
+                f"{prio[tid]} {role}：{tpl.title}（{tid}）× {per_template.get(tid, 0)} 张 — {decisions[tid].rationale}"
             )
-        for tid, d in decisions.items():
-            if d.applicability == "skip":
-                explanation.append(f"跳过：{self.registry.get(tid).title}（{tid}）— {d.rationale}")
+        for tid, dec in decisions.items():
+            if dec.applicability == "skip":
+                explanation.append(f"跳过：{self.registry.get(tid).title}（{tid}）— {dec.rationale}")
         return PlanResult(
             plan=plan,
             execution_order=order,
             reused=reused,
-            skipped={t: d for t, d in decisions.items() if d.applicability == "skip"},
+            skipped={t: dec for t, dec in decisions.items() if dec.applicability == "skip"},
             estimates=estimates,
             explanation_zh=explanation,
         )

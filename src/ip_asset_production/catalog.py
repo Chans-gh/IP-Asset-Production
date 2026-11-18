@@ -9,7 +9,7 @@ character via ``anatomy.capability_tags`` / ``anatomy.absent_parts``.
 
 from __future__ import annotations
 
-from collections.abc import Iterable, Mapping
+from collections.abc import Iterable, Iterator, Mapping
 from dataclasses import dataclass, field
 from typing import Any, Literal
 
@@ -106,7 +106,7 @@ class TemplateRegistry:
     def __contains__(self, template_id: object) -> bool:
         return template_id in self._templates
 
-    def __iter__(self) -> Iterable[Template]:  # type: ignore[override]
+    def __iter__(self) -> Iterator[Template]:
         return iter(self._templates.values())
 
     def ids(self) -> list[str]:

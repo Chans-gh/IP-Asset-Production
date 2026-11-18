@@ -161,7 +161,11 @@ def _path_findings(rel: str, traced_previews: set[str]) -> list[Finding]:
             )
         elif rel.startswith((PREVIEW_PREFIX, CASE_PREFIX)) and rel not in traced_previews:
             findings.append(
-                Finding(rel, "untraced-preview", "preview/case image is not referenced by preview_manifest.json or site/cases/*/case.json")
+                Finding(
+                    rel,
+                    "untraced-preview",
+                    "preview/case image is not referenced by preview_manifest.json or site/cases/*/case.json",
+                )
             )
     return findings
 

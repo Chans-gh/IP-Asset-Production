@@ -176,7 +176,7 @@ class TaskRunner:
             status=TaskStatus(r["status"]),
             attempts=r["attempt"],
             files=files,
-            native_size=tuple(r["native_size"]) if r.get("native_size") else None,  # type: ignore[arg-type]
+            native_size=tuple(r["native_size"]) if r.get("native_size") else None,
             provider=r.get("provider"),
             model=qa.get("model"),
             is_mock=bool(qa.get("is_mock")),
@@ -285,7 +285,8 @@ class TaskRunner:
             )
             outcome.qa = qa
             outcome.steps = [
-                f"native {native_file.width_px}x{native_file.height_px} ({native_file.path}, sha256 {native_file.sha256[:12]})",
+                f"native {native_file.width_px}x{native_file.height_px} "
+                f"({native_file.path}, sha256 {native_file.sha256[:12]})",
                 *processed.steps,
             ]
             outcome.extras = {

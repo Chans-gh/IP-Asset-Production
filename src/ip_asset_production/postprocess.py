@@ -105,7 +105,7 @@ def border_color(img: Image.Image, band: int = 4) -> tuple[int, int, int]:
     for y in range(0, h, step):
         for x in (*range(band), *range(w - band, w)):
             samples.append(px[x, y])
-    return tuple(int(median(c[i] for c in samples)) for i in range(3))  # type: ignore[return-value]
+    return tuple(int(median(c[i] for c in samples)) for i in range(3))  # type: ignore[return-value,index]
 
 
 def remove_background(img: Image.Image, *, tolerance: int = 28, work_px: int = 384) -> Processed:
@@ -260,12 +260,16 @@ def keep_main_subject(img: Image.Image, *, scale: int = 4, floor: int = 32) -> I
     w, h = rgba.size
     sw, sh = max(1, w // scale), max(1, h // scale)
     small = rgba.getchannel("A").resize((sw, sh), Image.Resampling.BOX)
-    px = small.load()
+    alpha_vals = list(small.getdata())
+
+    def px_at(x: int, y: int) -> int:
+        return int(alpha_vals[y * sw + x])
+
     seen = [[False] * sw for _ in range(sh)]
     best: tuple[int, tuple[int, int, int, int]] | None = None
     for y0 in range(sh):
         for x0 in range(sw):
-            if seen[y0][x0] or px[x0, y0] < floor:
+            if seen[y0][x0] or px_at(x0, y0) < floor:
                 continue
             seen[y0][x0] = True
             q, n = deque([(x0, y0)]), 0
@@ -275,7 +279,7 @@ def keep_main_subject(img: Image.Image, *, scale: int = 4, floor: int = 32) -> I
                 n += 1
                 bx0, by0, bx1, by1 = min(bx0, x), min(by0, y), max(bx1, x), max(by1, y)
                 for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-                    if 0 <= nx < sw and 0 <= ny < sh and not seen[ny][nx] and px[nx, ny] >= floor:
+                    if 0 <= nx < sw and 0 <= ny < sh and not seen[ny][nx] and px_at(nx, ny) >= floor:
                         seen[ny][nx] = True
                         q.append((nx, ny))
             if best is None or n > best[0]:
