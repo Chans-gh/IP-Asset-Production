@@ -36,3 +36,22 @@ def test_emoji_kit_counts_sheet_calls():
 
     assert generation_count("APP-01", {"emoji_count": 16}) == 2
     assert generation_count("APP-01", {"emoji_count": 24}) == 3
+
+
+def test_group_templates_are_one_sheet_call():
+    from ip_asset_production.planner import generation_count
+
+    for tid in ("NEW-06", "NEW-12", "APP-03", "APP-05", "APP-09"):
+        assert generation_count(tid) == 1
+
+
+def test_annotate_sheet_keeps_grid_and_adds_title_strip():
+    from PIL import Image
+
+    from ip_asset_production.annotate import annotate_sheet
+    from ip_asset_production.typography import find_font
+
+    img = Image.new("RGB", (800, 600), (120, 160, 200))
+    out = annotate_sheet(img, columns=4, rows=2, labels=["正面"] * 8, title="林汐 v1 · 视角", font=find_font())
+    assert out.width == 800 and out.height > 600
+    assert out.crop((0, out.height - 600, 800, out.height)).getpixel((790, 590)) == (120, 160, 200)

@@ -21,7 +21,16 @@ from .data import RepoData
 from .jobs import TaskOutcome, TaskRunner, save_png
 from .models import OutputSpec, ReferenceImage
 from .paths import safe_join
-from .postprocess import WARM_WHITE, PostprocessError, clean_native_alpha, contact_sheet, fit_subject_with_margin, fit_to_spec, keep_main_subject, slice_sheet
+from .postprocess import (
+    WARM_WHITE,
+    PostprocessError,
+    clean_native_alpha,
+    contact_sheet,
+    fit_subject_with_margin,
+    fit_to_spec,
+    keep_main_subject,
+    slice_sheet,
+)
 from .print_layout import PrintSpec, write_print_pdf
 from .prompting import PromptCompiler
 from .qa import Check, check_image_file, check_print_pdf, check_text, finalize
@@ -122,6 +131,50 @@ def _task_file(ctx: KitContext, outcome: TaskOutcome) -> Path:
     return safe_join(ctx.runner.task_dir(outcome.task_id), outcome.files[0].path)
 
 
+def _sheet_cells(
+    ctx: KitContext,
+    kit_id: str,
+    names: Sequence[str],
+    *,
+    sheet_desc: str,
+    cell_desc: str,
+    variables: Mapping[str, Any],
+    per_sheet: int = 8,
+    columns: int = 4,
+) -> tuple[list[tuple[Image.Image | None, TaskOutcome]], list[TaskOutcome]]:
+    """ADR-016: generate a group as seamless transparent grid sheets (one model call per sheet) and cut them.
+
+    Returns one ``(tile, outcome)`` per name (tile is ``None`` when its sheet failed) plus the sheet outcomes.
+    Tiles are cleaned of alpha haze and neighbour-cell slivers, ready for ``fit_subject_with_margin``.
+    """
+    cells: list[tuple[Image.Image | None, TaskOutcome]] = []
+    outcomes: list[TaskOutcome] = []
+    for s0 in range(0, len(names), per_sheet):
+        chunk = list(names[s0 : s0 + per_sheet])
+        cols = min(columns, len(chunk))
+        rows = -(-len(chunk) // cols)
+        h = round(2048 * 3 / 4) if (rows, cols) == (2, 4) else round(2048 * rows / cols)
+        spec = OutputSpec(width_px=2048, height_px=h, format="PNG", alpha_required=True)
+        listing = "、".join(f"{s0 + k + 1}.{m}" for k, m in enumerate(chunk))
+        oc = _generate(
+            ctx,
+            kit_id,
+            f"sheet{s0 // per_sheet + 1:02d}",
+            f"一张{sheet_desc}：同一张图内 {rows} 行 × {cols} 列严格等分的 {len(chunk)} 个格子，按行依次为 {listing}；"
+            f"{cell_desc}；主体居中、四周留空白、不越出格子；无缝网格、格子之间紧贴，不画分隔线或边框，"
+            "整张透明背景，图内不加任何文字",
+            spec,
+            variables,
+        )
+        outcomes.append(oc)
+        tiles: list[Image.Image | None] = [None] * len(chunk)
+        if oc.delivered:
+            sheet_img = Image.open(_task_file(ctx, oc)).convert("RGBA")
+            tiles = [keep_main_subject(clean_native_alpha(t)[0]) for t in slice_sheet(sheet_img, cols, rows)[: len(chunk)]]
+        cells.extend((tiles[k], oc) for k in range(len(chunk)))
+    return cells, outcomes
+
+
 def _write_manifest(ctx: KitContext, kit_id: str, kit_dir: Path, body: dict[str, Any]) -> KitResult:
     cv = ctx.character
     manifest = {
@@ -175,35 +228,19 @@ def build_emoji_kit(
         "emoji_meanings": "、".join(zh),
         "exact_text_map": "无（如需文字由排版层另行叠加）" if not text_map else "由排版层叠加",
     }
-    items, outcomes, sheet_tiles = [], [], []
-    # ADR-016: one model call per sheet (max 16 cells, 4 columns), then cut into single stickers.
-    # 8 cells per 4:3 sheet (2 x 4) keeps each native cell near 340 px; bust framing keeps faces large.
-    per_sheet = ks.get("cells_per_sheet", 8)
-    cells: list[tuple[int, str, Image.Image | None, TaskOutcome]] = []
-    for s0 in range(0, count, per_sheet):
-        chunk = zh[s0 : s0 + per_sheet]
-        cols = 4
-        rows = -(-len(chunk) // cols)
-        sheet_spec = OutputSpec(width_px=2048, height_px=1536 if rows == 2 else 2048 * rows // cols, format="PNG", alpha_required=True)
-        listing = "、".join(f"{s0 + k + 1}.{m}" for k, m in enumerate(chunk))
-        oc = _generate(
-            ctx,
-            "APP-01",
-            f"sheet{s0 // per_sheet + 1:02d}",
-            f"一张表情包设定图：同一张图内 {rows} 行 × {cols} 列严格等分的 {len(chunk)} 个格子，按行依次为 {listing}；"
-            "每格是一张大头贴式表情：只画头部到胸口的胸像（不画全身、不画腿），脸部占格子高度约一半，"
-            "表情和手势鲜明、一眼看懂聊天语义，手势可抬到脸旁入画；胸像居中、四周留空白、不越出格子，"
-            "格子之间不画分隔线，整张透明背景，图内不加任何文字",
-            sheet_spec,
-            variables,
-        )
-        outcomes.append(oc)
-        tiles: list[Image.Image | None] = [None] * len(chunk)
-        if oc.delivered:
-            sheet_img = Image.open(_task_file(ctx, oc)).convert("RGBA")
-            tiles = list(slice_sheet(sheet_img, cols, rows)[: len(chunk)])
-        for k, m in enumerate(chunk):
-            cells.append((s0 + k + 1, m, tiles[k], oc))
+    items, sheet_tiles = [], []
+    # Bust framing keeps faces large in ~340 px native cells (8 per 4:3 sheet).
+    got, outcomes = _sheet_cells(
+        ctx,
+        "APP-01",
+        zh,
+        sheet_desc="表情包设定图",
+        cell_desc="每格是一张大头贴式表情：只画头部到胸口的胸像（不画全身、不画腿），脸部占格子高度约一半，"
+        "表情和手势鲜明、一眼看懂聊天语义，手势可抬到脸旁入画",
+        variables=variables,
+        per_sheet=ks.get("cells_per_sheet", 8),
+    )
+    cells = [(i + 1, zh[i], tile, oc) for i, (tile, oc) in enumerate(got)]
     for i, meaning, tile, oc in cells:
         entry: dict[str, Any] = {
             "index": i,
@@ -215,7 +252,6 @@ def build_emoji_kit(
         img = None
         if tile is not None:
             try:
-                tile = keep_main_subject(clean_native_alpha(tile)[0])
                 img = fit_subject_with_margin(tile, (spec.width_px, spec.height_px), ks["safe_margin_pct"])
                 entry["native_cell_px"] = list(tile.size)
             except PostprocessError as exc:
@@ -351,31 +387,28 @@ def _build_signs(
     kit_dir = ctx.out_dir / kit_id
     sx0, sy0, sx1, sy1 = ps.safe_box_px
     entries, outcomes, previews = [], [], []
-    for it in items:
+    if side == "right":
+        ill_w, ill_h = round((sx1 - sx0) * illustration_ratio), sy1 - sy0
+    else:
+        ill_w, ill_h = sx1 - sx0, round((sy1 - sy0) * illustration_ratio)
+    got, outcomes = _sheet_cells(
+        ctx,
+        kit_id,
+        [f"{texts_for(it)[0][0]}（{it.get('pose_en', '')}）" for it in items],
+        sheet_desc="角色状态插画设定图",
+        cell_desc="每格一个角色状态插画，只画角色和少量道具，不画文字、不画牌子",
+        variables=variables,
+    )
+    for it, (tile, oc) in zip(items, got):
         texts = texts_for(it)
-        if side == "right":
-            ill_w, ill_h = round((sx1 - sx0) * illustration_ratio), sy1 - sy0
-        else:
-            ill_w, ill_h = sx1 - sx0, round((sy1 - sy0) * illustration_ratio)
-        ill_spec = OutputSpec(width_px=ill_w, height_px=ill_h, format="PNG", alpha_required=True, safe_margin_pct=0.03)
-        oc = _generate(
-            ctx,
-            kit_id,
-            it["item_id"],
-            f"{texts[0][0]}：{it.get('pose_en', '')}；只画角色插画，不画文字",
-            ill_spec,
-            variables,
-            safe_margin=0.03,
-        )
-        outcomes.append(oc)
         entry: dict[str, Any] = {
             "item_id": it["item_id"],
             "text": [t for t, _ in texts],
             "status": oc.status.value,
             "errors": oc.errors,
         }
-        if oc.delivered:
-            ill = Image.open(_task_file(ctx, oc))
+        if tile is not None:
+            ill = fit_subject_with_margin(tile, (ill_w, ill_h), 0.03)
             accent = _hex(it.get("accent", "#2F6FB3"))
             canvas, records, ill_box = _sign_layout(
                 ill, texts, ps, font=font, accent=accent, illustration_ratio=illustration_ratio, side=side
@@ -469,23 +502,35 @@ def _screen_items(
 ) -> KitResult:
     kit_dir = ctx.out_dir / kit_id
     entries, outcomes = [], []
+    # ADR-016: transparent sub-images of one group come from one seamless sheet; full-frame
+    # deliverables (banner, poster, wallpaper, intro page) are single compositions of their own.
+    group = [it for it in items if it.get("alpha")]
+    tiles: dict[str, tuple[Image.Image | None, TaskOutcome]] = {}
+    if group:
+        got, outcomes = _sheet_cells(
+            ctx,
+            kit_id,
+            [f"{it['item_id']}（{it.get('pose_en', '')}）" for it in group],
+            sheet_desc="角色贴片设定图",
+            cell_desc="每格一个角色状态贴片，只画角色和少量道具，文字区留空",
+            variables=variables,
+        )
+        tiles = {it["item_id"]: g for it, g in zip(group, got)}
     for it in items:
         spec = OutputSpec(
             width_px=it["width_px"], height_px=it["height_px"], format="PNG", alpha_required=bool(it.get("alpha"))
         )
-        oc = _generate(
-            ctx,
-            kit_id,
-            it["item_id"],
-            it.get("pose_en", it["item_id"]),
-            spec,
-            variables,
-            fit_mode="cover" if not it.get("alpha") else "contain",
-        )
-        outcomes.append(oc)
+        if it["item_id"] in tiles:
+            tile, oc = tiles[it["item_id"]]
+            img = fit_subject_with_margin(tile, (spec.width_px, spec.height_px), 0.06) if tile is not None else None
+        else:
+            oc = _generate(
+                ctx, kit_id, it["item_id"], it.get("pose_en", it["item_id"]), spec, variables, fit_mode="cover"
+            )
+            outcomes.append(oc)
+            img = Image.open(_task_file(ctx, oc)).convert("RGB") if oc.delivered else None
         entry: dict[str, Any] = {"item_id": it["item_id"], "status": oc.status.value, "errors": oc.errors}
-        if oc.delivered:
-            img = Image.open(_task_file(ctx, oc)).convert("RGBA" if it.get("alpha") else "RGB")
+        if img is not None:
             text = it.get("text_zh")
             records: list[TextRecord] = []
             if text == "{{headline}}":
@@ -531,15 +576,19 @@ def build_sticker_kit(ctx: KitContext, *, count: int | None = None) -> KitResult
         width_px=ks["master_px"], height_px=ks["master_px"], format="PNG", alpha_required=True, safe_margin_pct=0.06
     )
     variables = {"sticker_variants": n, "print_size_mm": f"{ks['trim_mm'][0]}×{ks['trim_mm'][1]}"}
-    entries, outcomes = [], []
-    for i, pose in enumerate(poses, start=1):
-        oc = _generate(
-            ctx, "APP-08", f"{i:02d}", f"贴纸 {i}/{n}：{pose}，外轮廓留白", master_spec, variables, safe_margin=0.06
-        )
-        outcomes.append(oc)
+    entries = []
+    got, outcomes = _sheet_cells(
+        ctx,
+        "APP-08",
+        poses,
+        sheet_desc="贴纸设定图",
+        cell_desc="每格一个完整角色贴纸造型，外轮廓清楚、适合沿轮廓模切",
+        variables=variables,
+    )
+    for i, (pose, (tile, oc)) in enumerate(zip(poses, got), start=1):
         entry: dict[str, Any] = {"index": i, "pose_en": pose, "status": oc.status.value, "errors": oc.errors}
-        if oc.delivered:
-            img = Image.open(_task_file(ctx, oc)).convert("RGBA")
+        if tile is not None:
+            img = fit_subject_with_margin(tile, (master_spec.width_px, master_spec.height_px), 0.06)
             master = kit_dir / f"sticker_{i:02d}.png"
             save_png(img, master, mock=ctx.is_mock)
             w, h = ps.canvas_px

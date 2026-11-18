@@ -18,3 +18,4 @@
 | ADR-014 | 生成结果状态 | 确认（M0） | `generation-result` 使用小写状态，对应 SPEC §9.2；SPEC 的 `DRAFT/APPROVAL_PENDING` 属于计划/请求层（`approval_status`），不进入结果。`passed/exported` 必须带真实文件（模型强制）；M0 的 `execute_once` 只到 `qa_pending`，QA 在 M2 |
 | ADR-015 | 公开仓库扫描策略 | 确认（M0） | `scripts/secret_scan.py` 无行内豁免标记；媒体文件只允许位于 `styles/previews/`（且须被 manifest `actual_file` 引用）与 `tests/fixtures/synthetic/`；扫描 tracked + 未忽略的新文件，`--staged` 仅扫暂存区 |
 | ADR-016 | 基础组整组一张设定图 | 确认（需求方定） | BASE_VIEW / BASE_EXPRESSION / BASE_POSE 每组只调用一次模型，直接生成一张设定图（默认 2048×1536，4:3，与模型原生 1360×1024 画幅一致），网格由 `prompting.sheet_layout` 按条目数算出；不再逐项单出再拼板。表情包 APP-01 每 8 个大头贴式胸像一张 4:3 透明设定图（2×4），程序切成独立贴纸（全身构图每格太小、表情看不清，需求方定为胸像）；其他成品包的单项图各自生成。真实测试：逐张出 22 张 vs 设定图 3 张，身份一致性相当 |
+| ADR-017 | 设定图无缝网格 + 程序文字标注版 | 确认（需求方定） | 凡含多个子图的一组（ADR-016）都生成一张无缝网格设定图：格子严格等分且紧贴，不留白边、不画分隔线或边框，模型图内不写字。设定图用作视频/生图参考或知识库时，由 `annotate.annotate_sheet` 在图上加标题条和每格编号+名称，另存 `*_labeled.png`，干净版保留。文字由程序画，保证逐字准确；只有整幅成品（海报、横幅、壁纸、介绍页）各自单独生成 |

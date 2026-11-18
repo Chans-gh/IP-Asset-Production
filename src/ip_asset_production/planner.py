@@ -25,30 +25,30 @@ PRIORITY_RANK = {"P0": 0, "P1": 1, "P2": 2}
 GENERATION_COUNTS = {
     "CANONICAL": 1,
     "BASE_VIEW": 1,  # one design sheet per group
-    "BASE_DETAIL": 4,
+    "BASE_DETAIL": 1,  # ADR-016 group sheet
     "BASE_EXPRESSION": 1,
     "BASE_POSE": 1,
-    "BASE_STRUCTURE": 4,
-    "BASE_OUTFIT": 3,
+    "BASE_STRUCTURE": 1,  # ADR-016 group sheet
+    "BASE_OUTFIT": 1,  # ADR-016 group sheet
     "BASE_PROFILE": 1,
-    "NEW-02": 4,
-    "NEW-04": 4,
-    "NEW-05": 4,
-    "NEW-06": 6,
-    "NEW-07": 6,
-    "NEW-08": 4,
-    "NEW-09": 4,
-    "NEW-10": 4,
-    "NEW-11": 4,
-    "NEW-12": 5,
-    "APP-02": 4,
-    "APP-03": 4,
+    "NEW-02": 1,  # ADR-016 group sheet
+    "NEW-04": 1,  # ADR-016 group sheet
+    "NEW-05": 1,  # ADR-016 group sheet
+    "NEW-06": 1,  # ADR-016 group sheet
+    "NEW-07": 1,  # ADR-016 group sheet
+    "NEW-08": 1,  # ADR-016 group sheet
+    "NEW-09": 1,  # ADR-016 group sheet
+    "NEW-10": 1,  # ADR-016 group sheet
+    "NEW-11": 1,  # ADR-016 group sheet
+    "NEW-12": 1,  # ADR-016 group sheet
+    "APP-02": 1,  # ADR-016 group sheet
+    "APP-03": 1,  # ADR-016 group sheet
     "APP-04": 3,
-    "APP-05": 5,
+    "APP-05": 1,  # ADR-016 group sheet
     "APP-06": 3,
     "APP-07": 2,
-    "APP-08": 6,
-    "APP-09": 3,
+    "APP-08": 1,  # ADR-016 group sheet
+    "APP-09": 1,  # ADR-016 group sheet
     "APP-10": 2,
 }
 COMPOSITES = {"NEW-01": 1, "NEW-02": 1, "NEW-04": 1, "APP-01": 1}
@@ -96,9 +96,9 @@ def generation_count(template_id: str, variables: Mapping[str, Any] | None = Non
     if template_id == "APP-01":
         return -(-int(variables.get("emoji_count", 16)) // 8)  # ADR-016: 8 busts per sheet call
     if template_id == "APP-08":
-        return int(variables.get("sticker_count", GENERATION_COUNTS["APP-08"]))
+        return -(-int(variables.get("sticker_count", 6)) // 8)
     if template_id == "APP-02" and variables.get("states"):
-        return len(variables["states"])
+        return -(-len(variables["states"]) // 8)
     return GENERATION_COUNTS.get(template_id, 1)
 
 
