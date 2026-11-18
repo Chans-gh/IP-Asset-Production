@@ -213,7 +213,6 @@ def build_emoji_kit(
     zh = list(meanings or ks["meanings_zh"][:count])
     if len(zh) != count:
         raise KitError(f"need exactly {count} meanings, got {len(zh)}")
-    en = ks["meanings_en"][:count] if meanings is None else zh
     kit_dir = ctx.out_dir / "APP-01"
     master_dir, small_dir = kit_dir / "png_1024", kit_dir / "png_512"
     spec = OutputSpec(
@@ -399,7 +398,7 @@ def _build_signs(
         cell_desc="每格一个角色状态插画，只画角色和少量道具，不画文字、不画牌子",
         variables=variables,
     )
-    for it, (tile, oc) in zip(items, got):
+    for it, (tile, oc) in zip(items, got, strict=False):
         texts = texts_for(it)
         entry: dict[str, Any] = {
             "item_id": it["item_id"],
@@ -492,17 +491,33 @@ def build_door_sign_kit(
 # ---------------------------------------------------------------------------- generic APP-03..10
 
 
-def _frame_text(it: Mapping[str, Any], spec: OutputSpec) -> str:
-    """Composition rule for a full-frame deliverable: head fully in frame, and a clean title area when text is laid on."""
+def _frame_text(it: Mapping[str, Any], spec: OutputSpec, copy: Sequence[tuple[str, str]] = ()) -> str:
+    """Prompt for a full-frame designed deliverable (ADR-018).
+
+    The model composes the picture *and* its typography: exact copy goes into the prompt and the
+    model picks layout and a typeface that fits the design. Head always fully in frame.
+    """
     w, h = spec.width_px, spec.height_px
-    titled = bool(it.get("text_zh"))
     if w > h * 1.1:
-        where = "人物站在画面右侧三分之一，头顶完整入画并留出空间" + ("；画面左半部分是干净简洁的背景，留作标题区" if titled else "")
-    elif h > w * 1.1 or titled:
-        where = "人物位于画面下方三分之二，头顶完整入画" + ("；画面上方四分之一是干净简洁的背景，留作标题区" if titled else "")
+        where = "横版构图，人物偏一侧，头顶完整入画并留出空间"
+    elif h > w * 1.1:
+        where = "竖版构图，头顶完整入画并留出空间"
     else:
-        where = "人物居中，头顶完整入画并留出空间"
-    return f"{it.get('pose_en', '')}；{where}；画面里不出现任何文字"
+        where = "方形构图，头顶完整入画并留出空间"
+    if copy:
+        lines = "；".join(f"{role}：「{text}」" for role, text in copy)
+        words = (
+            f"这是一张完整的平面设计成品，画面中直接设计并排版以下文字，逐字准确、不增不减、无错别字：{lines}。"
+            "字体、字号、颜色和位置由你按整体设计安排，选择与画面风格和主题相称、有设计感的字体，"
+            "文字清晰易读、层次分明，不遮挡人物面部，画面中不出现其他任何文字、水印或标志"
+        )
+    else:
+        words = "画面里不出现任何文字"
+    return f"{it.get('pose_en', '')}；{where}；{words}"
+
+
+def cv_name(ctx: KitContext) -> str:
+    return str(getattr(ctx.character, "display_name", "") or ctx.character.character_id)
 
 
 def _screen_items(
@@ -512,6 +527,7 @@ def _screen_items(
     variables: Mapping[str, Any],
     *,
     headline: str | None = None,
+    copy_extra: Sequence[tuple[str, str]] = (),
 ) -> KitResult:
     kit_dir = ctx.out_dir / kit_id
     entries, outcomes = [], []
@@ -528,7 +544,7 @@ def _screen_items(
             cell_desc="每格一个角色状态贴片，只画角色和少量道具，文字区留空",
             variables=variables,
         )
-        tiles = {it["item_id"]: g for it, g in zip(group, got)}
+        tiles = {it["item_id"]: g for it, g in zip(group, got, strict=False)}
     for it in items:
         spec = OutputSpec(
             width_px=it["width_px"], height_px=it["height_px"], format="PNG", alpha_required=bool(it.get("alpha"))
@@ -537,32 +553,24 @@ def _screen_items(
             tile, oc = tiles[it["item_id"]]
             img = fit_subject_with_margin(tile, (spec.width_px, spec.height_px), 0.06) if tile is not None else None
         else:
+            title = headline if it.get("text_zh") == "{{headline}}" else it.get("text_zh")
+            copy = ([("标题", title)] if title else []) + list(copy_extra)
             oc = _generate(
-                ctx, kit_id, it["item_id"], _frame_text(it, spec), spec, variables, fit_mode="cover"
+                ctx, kit_id, it["item_id"], _frame_text(it, spec, copy), spec, variables, fit_mode="cover"
             )
             outcomes.append(oc)
             img = Image.open(_task_file(ctx, oc)).convert("RGB") if oc.delivered else None
         entry: dict[str, Any] = {"item_id": it["item_id"], "status": oc.status.value, "errors": oc.errors}
         if img is not None:
-            text = it.get("text_zh")
-            records: list[TextRecord] = []
-            if text == "{{headline}}":
-                text = headline
-            if text:
-                font = ctx.need_font()
-                w, h = img.size
-                if w > h * 1.1:  # title area is the clean left half (see _frame_text)
-                    box = (round(w * 0.06), round(h * 0.35), round(w * 0.46), round(h * 0.6))
-                    align = "left"
-                else:
-                    box = (round(w * 0.08), round(h * 0.04), round(w * 0.92), round(h * 0.16))
-                    align = "center"
-                records.append(draw_text(img, text, box, font=font, color=(34, 34, 34), align=align, max_lines=2))
             out = kit_dir / f"{it['item_id']}.png"
             save_png(img, out, mock=ctx.is_mock)
             checks = check_image_file(out, spec, expect_real=not ctx.is_mock)
-            if text:
-                checks.append(check_text(records, [text]))
+            if it["item_id"] not in tiles and copy:
+                # model-rendered copy: exactness must be confirmed by a reviewer (no OCR gate yet)
+                checks.append(
+                    Check("model_text_exact", "needs_review", "核对：" + "；".join(f"{r}「{x}」" for r, x in copy), hard=False)
+                )
+                entry["copy"] = [{"role": r, "text": x} for r, x in copy]
             qa = finalize(checks, allow_unreviewed_soft=ctx.runner.allow_unreviewed_soft)
             entry.update(
                 files={"png": out.name},
@@ -603,7 +611,7 @@ def build_sticker_kit(ctx: KitContext, *, count: int | None = None) -> KitResult
         cell_desc="每格一个完整角色贴纸造型，外轮廓清楚、适合沿轮廓模切",
         variables=variables,
     )
-    for i, (pose, (tile, oc)) in enumerate(zip(poses, got), start=1):
+    for i, (pose, (tile, oc)) in enumerate(zip(poses, got, strict=False), start=1):
         entry: dict[str, Any] = {"index": i, "pose_en": pose, "status": oc.status.value, "errors": oc.errors}
         if tile is not None:
             img = fit_subject_with_margin(tile, (master_spec.width_px, master_spec.height_px), 0.06)
@@ -676,17 +684,20 @@ def build_application_kit(ctx: KitContext, kit_id: str, variables: Mapping[str, 
         ks = _kit_spec(data, kit_id)
         items = [dict(i, pose_en=i.get("pose_en", ks.get("pose_en", ""))) for i in ks["items"]]
         pv: dict[str, Any] = {}
+        copy_extra: list[tuple[str, str]] = []
         if kit_id == "APP-06":
             for key in ("holiday", "headline"):
                 if not v.get(key):
                     raise KitError(f"APP-06 needs variable {key!r}")
             pv = {"holiday": v["holiday"], "headline": v["headline"], "subtext": v.get("subtext", "（由排版层添加）")}
             items = [dict(i, text_zh="{{headline}}") for i in items]
+            copy_extra = [("副标题", v["subtext"])] if v.get("subtext") else []
         if kit_id == "APP-10":
             if not v.get("ip_profile"):
                 raise KitError("APP-10 needs the approved 'ip_profile' text (no invented persona)")
             pv = {"ip_profile": v["ip_profile"]}
-        return _screen_items(ctx, kit_id, items, pv, headline=v.get("headline"))
+            copy_extra = [("角色名", v.get("name", cv_name(ctx))), ("介绍", v["ip_profile"])]
+        return _screen_items(ctx, kit_id, items, pv, headline=v.get("headline"), copy_extra=copy_extra)
     if kit_id == "APP-05":
         ks = _kit_spec(data, kit_id)
         items = [
