@@ -498,7 +498,7 @@ def _frame_text(it: Mapping[str, Any], spec: OutputSpec) -> str:
     titled = bool(it.get("text_zh"))
     if w > h * 1.1:
         where = "人物站在画面右侧三分之一，头顶完整入画并留出空间" + ("；画面左半部分是干净简洁的背景，留作标题区" if titled else "")
-    elif h > w * 1.1:
+    elif h > w * 1.1 or titled:
         where = "人物位于画面下方三分之二，头顶完整入画" + ("；画面上方四分之一是干净简洁的背景，留作标题区" if titled else "")
     else:
         where = "人物居中，头顶完整入画并留出空间"
