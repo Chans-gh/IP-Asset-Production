@@ -297,7 +297,7 @@ class PromptCompiler:
             parts.append(f"结构适配：{_clean(adaptation)}，按角色自身结构表达，不添加不存在的部位。")
         if kit_item:
             layers.append("KIT-ITEM")
-            parts.append(f"本次请求只生成该系列中的一张独立图：{_clean(kit_item)}。")
+            parts.append(f"本次请求生成：{_clean(kit_item)}。")
         layers += ["COMMON-OUTPUT", "QA"]
         parts.append(self.render(self.library.get("COMMON-OUTPUT"), values))
         parts.append(QA_CONSTRAINTS)

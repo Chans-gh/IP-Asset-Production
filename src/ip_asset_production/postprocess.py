@@ -266,6 +266,17 @@ def fit_subject_with_margin(img: Image.Image, size: tuple[int, int], margin_pct:
     return canvas
 
 
+def slice_sheet(img: Image.Image, columns: int, rows: int) -> list[Image.Image]:
+    """Cut a model-generated design sheet into its equal grid cells (row-major)."""
+    w, h = img.size
+    cells = []
+    for r in range(rows):
+        for c in range(columns):
+            box = (round(c * w / columns), round(r * h / rows), round((c + 1) * w / columns), round((r + 1) * h / rows))
+            cells.append(img.crop(box))
+    return cells
+
+
 def contact_sheet(
     images: Sequence[Image.Image],
     *,

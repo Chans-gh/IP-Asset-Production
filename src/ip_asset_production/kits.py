@@ -21,7 +21,7 @@ from .data import RepoData
 from .jobs import TaskOutcome, TaskRunner, save_png
 from .models import OutputSpec, ReferenceImage
 from .paths import safe_join
-from .postprocess import WARM_WHITE, contact_sheet, fit_to_spec
+from .postprocess import WARM_WHITE, PostprocessError, contact_sheet, fit_subject_with_margin, fit_to_spec, slice_sheet
 from .print_layout import PrintSpec, write_print_pdf
 from .prompting import PromptCompiler
 from .qa import Check, check_image_file, check_print_pdf, check_text, finalize
@@ -176,21 +176,47 @@ def build_emoji_kit(
         "exact_text_map": "无（如需文字由排版层另行叠加）" if not text_map else "由排版层叠加",
     }
     items, outcomes, sheet_tiles = [], [], []
-    for i, meaning in enumerate(zh, start=1):
+    # ADR-016: one model call per sheet (max 16 cells, 4 columns), then cut into single stickers.
+    per_sheet = 16 if count <= 16 else 12
+    cells: list[tuple[int, str, Image.Image | None, TaskOutcome]] = []
+    for s0 in range(0, count, per_sheet):
+        chunk = zh[s0 : s0 + per_sheet]
+        cols = 4
+        rows = -(-len(chunk) // cols)
+        sheet_spec = OutputSpec(width_px=2048, height_px=2048 * rows // cols, format="PNG", alpha_required=True)
+        listing = "、".join(f"{s0 + k + 1}.{m}" for k, m in enumerate(chunk))
         oc = _generate(
             ctx,
             "APP-01",
-            f"{i:02d}",
-            f"第 {i}/{count} 个表情，语义「{meaning}」（{en[i - 1]}），单个角色，透明背景",
-            spec,
+            f"sheet{s0 // per_sheet + 1:02d}",
+            f"一张表情包设定图：同一张图内 {rows} 行 × {cols} 列严格等分的 {len(chunk)} 个格子，按行依次为 {listing}；"
+            "每格一个完整角色、居中、四周留足空白、不越出格子，格子之间不画分隔线，整张透明背景，图内不加任何文字",
+            sheet_spec,
             variables,
-            safe_margin=ks["safe_margin_pct"],
         )
         outcomes.append(oc)
-        entry: dict[str, Any] = {"index": i, "meaning_zh": meaning, "status": oc.status.value, "errors": oc.errors}
+        tiles: list[Image.Image | None] = [None] * len(chunk)
         if oc.delivered:
-            src = _task_file(ctx, oc)
-            img = Image.open(src).convert("RGBA")
+            sheet_img = Image.open(_task_file(ctx, oc)).convert("RGBA")
+            tiles = list(slice_sheet(sheet_img, cols, rows)[: len(chunk)])
+        for k, m in enumerate(chunk):
+            cells.append((s0 + k + 1, m, tiles[k], oc))
+    for i, meaning, tile, oc in cells:
+        entry: dict[str, Any] = {
+            "index": i,
+            "meaning_zh": meaning,
+            "status": oc.status.value,
+            "errors": oc.errors,
+            "source_sheet_task": oc.task_id,
+        }
+        img = None
+        if tile is not None:
+            try:
+                img = fit_subject_with_margin(tile, (spec.width_px, spec.height_px), ks["safe_margin_pct"])
+                entry["native_cell_px"] = list(tile.size)
+            except PostprocessError as exc:
+                entry["status"], entry["errors"] = "failed", [f"empty cell: {exc}"]
+        if img is not None:
             if text_map and i in text_map:
                 font = ctx.need_font()
                 rec = draw_text(
