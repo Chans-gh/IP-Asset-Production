@@ -21,7 +21,7 @@ from .data import RepoData
 from .jobs import TaskOutcome, TaskRunner, save_png
 from .models import OutputSpec, ReferenceImage
 from .paths import safe_join
-from .postprocess import WARM_WHITE, PostprocessError, contact_sheet, fit_subject_with_margin, fit_to_spec, slice_sheet
+from .postprocess import WARM_WHITE, PostprocessError, clean_native_alpha, contact_sheet, fit_subject_with_margin, fit_to_spec, keep_main_subject, slice_sheet
 from .print_layout import PrintSpec, write_print_pdf
 from .prompting import PromptCompiler
 from .qa import Check, check_image_file, check_print_pdf, check_text, finalize
@@ -177,20 +177,23 @@ def build_emoji_kit(
     }
     items, outcomes, sheet_tiles = [], [], []
     # ADR-016: one model call per sheet (max 16 cells, 4 columns), then cut into single stickers.
-    per_sheet = 16 if count <= 16 else 12
+    # 8 cells per 4:3 sheet (2 x 4) keeps each native cell near 340 px; bust framing keeps faces large.
+    per_sheet = ks.get("cells_per_sheet", 8)
     cells: list[tuple[int, str, Image.Image | None, TaskOutcome]] = []
     for s0 in range(0, count, per_sheet):
         chunk = zh[s0 : s0 + per_sheet]
         cols = 4
         rows = -(-len(chunk) // cols)
-        sheet_spec = OutputSpec(width_px=2048, height_px=2048 * rows // cols, format="PNG", alpha_required=True)
+        sheet_spec = OutputSpec(width_px=2048, height_px=1536 if rows == 2 else 2048 * rows // cols, format="PNG", alpha_required=True)
         listing = "、".join(f"{s0 + k + 1}.{m}" for k, m in enumerate(chunk))
         oc = _generate(
             ctx,
             "APP-01",
             f"sheet{s0 // per_sheet + 1:02d}",
             f"一张表情包设定图：同一张图内 {rows} 行 × {cols} 列严格等分的 {len(chunk)} 个格子，按行依次为 {listing}；"
-            "每格一个完整角色、居中、四周留足空白、不越出格子，格子之间不画分隔线，整张透明背景，图内不加任何文字",
+            "每格是一张大头贴式表情：只画头部到胸口的胸像（不画全身、不画腿），脸部占格子高度约一半，"
+            "表情和手势鲜明、一眼看懂聊天语义，手势可抬到脸旁入画；胸像居中、四周留空白、不越出格子，"
+            "格子之间不画分隔线，整张透明背景，图内不加任何文字",
             sheet_spec,
             variables,
         )
@@ -212,6 +215,7 @@ def build_emoji_kit(
         img = None
         if tile is not None:
             try:
+                tile = keep_main_subject(clean_native_alpha(tile)[0])
                 img = fit_subject_with_margin(tile, (spec.width_px, spec.height_px), ks["safe_margin_pct"])
                 entry["native_cell_px"] = list(tile.size)
             except PostprocessError as exc:

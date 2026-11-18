@@ -18,3 +18,21 @@ def test_base_templates_default_to_sheet_output():
         t = reg.get(tid)
         assert t.variants == ("sheet",)
         assert (t.primary_output["width_px"], t.primary_output["height_px"]) == (2048, 1536)
+
+
+def test_keep_main_subject_drops_edge_sliver():
+    from PIL import Image
+
+    from ip_asset_production.postprocess import keep_main_subject, subject_bbox
+
+    img = Image.new("RGBA", (400, 400), (0, 0, 0, 0))
+    img.paste((200, 100, 100, 255), (150, 100, 300, 350))
+    img.paste((200, 100, 100, 255), (0, 50, 4, 380))  # neighbour-cell sliver
+    assert subject_bbox(keep_main_subject(img)) == (150, 100, 300, 350)
+
+
+def test_emoji_kit_counts_sheet_calls():
+    from ip_asset_production.planner import generation_count
+
+    assert generation_count("APP-01", {"emoji_count": 16}) == 2
+    assert generation_count("APP-01", {"emoji_count": 24}) == 3

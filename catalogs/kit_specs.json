@@ -9,6 +9,8 @@
    "export_px": [512],
    "safe_margin_pct": 0.08,
    "sheet_columns": 4,
+   "cells_per_sheet": 8,
+   "framing_zh": "大头贴式胸像（头部到胸口）",
    "meanings_zh": ["你好", "谢谢", "好的", "加油", "开心", "爱你", "哈哈", "惊讶", "思考中", "难过", "生气", "晚安", "辛苦了", "收到", "抱歉", "再见", "点赞", "求助", "庆祝", "无语", "害羞", "忙碌中", "早安", "冲鸭"],
    "meanings_en": ["hello wave", "thank you bow", "OK gesture", "cheering", "joyful", "sending love", "laughing", "surprised", "thinking", "sad", "angry", "good night sleepy", "appreciating hard work", "message received", "apologizing", "goodbye", "thumbs up", "asking for help", "celebrating", "speechless", "shy blushing", "busy working", "good morning", "charging forward"]
   },

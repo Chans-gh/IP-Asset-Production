@@ -249,6 +249,47 @@ def within_safe_margin(img: Image.Image, margin_pct: float) -> tuple[bool, str]:
     return ok, f"subject bbox {box} vs margin {margin_pct:.0%}"
 
 
+def keep_main_subject(img: Image.Image, *, scale: int = 4, floor: int = 32) -> Image.Image:
+    """Clear alpha outside the bounding box of the largest opaque component.
+
+    Sheet cells often carry slivers of the neighbouring cell at their edges; those would
+    stretch the subject bbox and push the subject off-centre when it is fitted.
+    """
+    rgba = img.convert("RGBA")
+    w, h = rgba.size
+    sw, sh = max(1, w // scale), max(1, h // scale)
+    small = rgba.getchannel("A").resize((sw, sh), Image.Resampling.BOX)
+    px = small.load()
+    seen = [[False] * sw for _ in range(sh)]
+    best: tuple[int, tuple[int, int, int, int]] | None = None
+    for y0 in range(sh):
+        for x0 in range(sw):
+            if seen[y0][x0] or px[x0, y0] < floor:
+                continue
+            seen[y0][x0] = True
+            q, n = deque([(x0, y0)]), 0
+            bx0, by0, bx1, by1 = x0, y0, x0, y0
+            while q:
+                x, y = q.popleft()
+                n += 1
+                bx0, by0, bx1, by1 = min(bx0, x), min(by0, y), max(bx1, x), max(by1, y)
+                for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                    if 0 <= nx < sw and 0 <= ny < sh and not seen[ny][nx] and px[nx, ny] >= floor:
+                        seen[ny][nx] = True
+                        q.append((nx, ny))
+            if best is None or n > best[0]:
+                best = (n, (bx0, by0, bx1, by1))
+    if best is None:
+        return rgba
+    bx0, by0, bx1, by1 = best[1]
+    box = (max(0, (bx0 - 1) * scale), max(0, (by0 - 1) * scale), min(w, (bx1 + 2) * scale), min(h, (by1 + 2) * scale))
+    mask = Image.new("L", (w, h), 0)
+    mask.paste(255, box)
+    out = rgba.copy()
+    out.putalpha(ImageChops.multiply(rgba.getchannel("A"), mask))
+    return out
+
+
 def fit_subject_with_margin(img: Image.Image, size: tuple[int, int], margin_pct: float) -> Image.Image:
     """Re-centre an RGBA subject inside a canvas leaving ``margin_pct`` on all sides."""
     rgba = img.convert("RGBA")

@@ -94,7 +94,7 @@ class PlanResult:
 def generation_count(template_id: str, variables: Mapping[str, Any] | None = None) -> int:
     variables = variables or {}
     if template_id == "APP-01":
-        return int(variables.get("emoji_count", 16))
+        return -(-int(variables.get("emoji_count", 16)) // 8)  # ADR-016: 8 busts per sheet call
     if template_id == "APP-08":
         return int(variables.get("sticker_count", GENERATION_COUNTS["APP-08"]))
     if template_id == "APP-02" and variables.get("states"):
